@@ -1,6 +1,6 @@
 .carousel-container {
 
-    margin-top: 200px;
+    margin: 200px;
     perspective: 800px; /* Adjust perspective distance as needed */
     display: flex;
     justify-content: center;
@@ -9,8 +9,8 @@
   
   .carousel {
     position: relative;
-    width: 650px; /* Adjust width as needed */
-    height: 450px; /* Adjust height as needed */
+    width: 600px; /* Adjust width as needed */
+    height: 400px; /* Adjust height as needed */
     transform-style: preserve-3d;
   }
   
@@ -54,11 +54,11 @@
 
 .prev-button {
     font-size: 30px;
-  left: -500px;
+  left: -450px;
 }
 
 .next-button {
     font-size: 30px;
-  right: -500px;
+  right: -450px;
 }
   
