@@ -29,20 +29,7 @@ nav {
     color: var(--primary-color-dark);
   }
   
-  nav .checkbox {
-    display: none;
-  }
-  
-  nav input {
-    display: none;
-  }
-  
-  nav .checkbox i {
-    font-size: 2rem;
-    color: var(--primary-color);
-    cursor: pointer;
-  }
-  
+
   ul {
     display: flex;
     align-items: center;
@@ -66,17 +53,7 @@ nav {
     color: var(--secondary-color);
   }
   
-  ul.active {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-  }
-  
+ 
   ul.active li {
     text-align: center;
   }
@@ -85,55 +62,57 @@ nav {
     display: block;
     padding: 1rem;
   }
-  
-  /* Hamburger icon styles */
-  .checkbox {
+
+  .menu-toggle{
     display: none;
-    cursor: pointer;
   }
   
-  .checkbox i {
-    font-size: 2rem;
-    color: var(--primary-color);
-  }
-  
-  .checkbox i:hover {
-    color: var(--primary-color-dark);
-  }
-  
+
   /* Updated media query for responsiveness */
   @media (max-width: 750px) {
-    nav .checkbox {
-      display: block;
-      z-index: 100;
-    }
-  
-    nav input:checked ~ ul {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: calc(100% + 1rem); /* Adjusted to add some space below the navbar */
-      top: 100%;
-      left: 0;
-      width: 100%;
-      background-color: #ffffff;
-      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-      z-index: 100;
-    }
+
+    .menu-toggle {
+        display: block;
+        padding:  10px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+      }
   
     ul {
       position: absolute;
-      color: black;
       width: 100%;
-      height: auto; /* Changed to auto */
-      left: 0; /* Changed to 0 */
-      top: 100%; /* Changed to 100% */
-      background-color: #ffff;
+      height: auto;
+      left: 0;
+      top: calc(100% + 1rem); /* Adjusted to add some space below the navbar */
+      background-color: var(--extra-light);
       flex-direction: column;
       justify-content: center;
       gap: 3rem;
-      display: none; /* Added */
-      z-index: 100;
+      display: none;
+      z-index: 99; /* Ensure it's above the rest of the content */
+    }
+    .toggle-lines {
+        padding: 2px;
+        width: 25px;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+      }
+      
+      .line {
+        width: 100%;
+        height: 2px;
+        margin-bottom: 3px;
+        margin-top: 3px;
+        background-color: black;
+        border-radius: 3px;
+      }
+  
+    ul.active {
+      display: flex;
     }
   
     ul li a {
