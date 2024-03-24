@@ -15,7 +15,11 @@ const Navbar = () => {
           <a href="#">Kaustubh Enterprize</a>
         </div>
         <button className="menu-toggle" onClick={toggleMenu}>
-          <i className="fas fa-bars"></i>
+          <div className="toggle-lines">
+            <div className="line"></div>
+            <div className="line"></div>
+            <div className="line"></div>
+          </div>
         </button>
         <ul className={`nav__links ${isOpen ? 'active' : ''}`}>
           <li>
