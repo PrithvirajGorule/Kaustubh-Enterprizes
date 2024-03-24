@@ -1,0 +1,64 @@
+.carousel-container {
+
+    margin-top: 200px;
+    perspective: 800px; /* Adjust perspective distance as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carousel {
+    position: relative;
+    width: 650px; /* Adjust width as needed */
+    height: 450px; /* Adjust height as needed */
+    transform-style: preserve-3d;
+  }
+  
+  .carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    transition: transform 0.5s ease, filter 0.5s ease;
+  }
+  
+  .prev {
+    left: -100%;
+    transform: translateZ(-150px) rotateY(-15deg);
+    filter: blur(2px);
+  }
+  
+  .current {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .next {
+    left: 100%;
+    transform: translateZ(-150px) rotateY(15deg);
+    filter: blur(2px);
+  }
+
+
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #000000;
+}
+
+.prev-button {
+    font-size: 30px;
+  left: -500px;
+}
+
+.next-button {
+    font-size: 30px;
+  right: -500px;
+}
+  
