@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './../CSS/Navbar.css';
+import logo from'./../Assects/logo.jpeg'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,10 +11,16 @@ const Navbar = () => {
 
   return (
     <nav className={`navbar ${isOpen ? 'active' : ''}`}>
+      <div className='content'>
+      <spam className="logo">
+          
+          <img src={logo} className='logoimg'></img>
+            <a href="#">Kaustubh Enterprize</a>
+             
+          </spam>
       <div className="nav__content">
-        <div className="logo">
-          <a href="#">Kaustubh Enterprize</a>
-        </div>
+      
+        
         <button className="menu-toggle" onClick={toggleMenu}>
           <div className="toggle-lines">
             <div className="line"></div>
@@ -35,6 +42,7 @@ const Navbar = () => {
             <a href="#">Contact Us</a>
           </li>
         </ul>
+      </div>
       </div>
     </nav>
   );
