@@ -6,6 +6,7 @@
     background-color: #ffffff;
     z-index: 99;
     box-shadow: 0px 5px 10px #0000001a; /* Box shadow added to bottom */
+    margin-bottom: 50px;
   }
   
   .content {
@@ -60,9 +61,9 @@
   }
   
   ul li a:hover {
-    border-top-color: var(--secondary-color);
-    border-bottom-color: var(--secondary-color);
-    color: var(--secondary-color);
+    /* border-top-color: rgb(74, 171, 212); */
+    border-bottom-color: rgb(74, 171, 212);
+    color: rgb(18, 29, 84);
   }
   
  
@@ -99,7 +100,7 @@
       height: auto;
       left: 0;
       top: calc(100% + 1rem); /* Adjusted to add some space below the navbar */
-      background-color: var(--extra-light);
+      background-color: #ffff;
       flex-direction: column;
       justify-content: center;
       gap: 3rem;
