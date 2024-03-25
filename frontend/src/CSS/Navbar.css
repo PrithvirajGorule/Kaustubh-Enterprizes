@@ -84,7 +84,7 @@
   /* Updated media query for responsiveness */
 
 
-  @media (max-width: 800px) {
+  @media (max-width: 870px) {
 
     .menu-toggle {
         display: block;

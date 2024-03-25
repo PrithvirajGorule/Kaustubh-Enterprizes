@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className='content'>
         <div className="logo">
           <img src={logo} className='logoimg' alt="Logo" />
-          <a href="#">Kaustubh Enterprize</a>
+          <a href="/Home">Kaustubh Enterprize</a>
         </div>
         <div className="nav__content">
           <button className="menu-toggle" onClick={toggleMenu}>
@@ -29,19 +29,19 @@ const Navbar = () => {
           <ul className={`nav__links ${isOpen ? 'active' : ''}`}>
             <li>
               <FontAwesomeIcon icon={faHome} />
-              <a href="#">Home</a>
+              <a href="/home">Home</a>
             </li>
             <li>
               <FontAwesomeIcon icon={faBriefcase} />
-              <a href="#">Products</a>
+              <a href="/Products">Products</a>
             </li>
             <li>
               <FontAwesomeIcon icon={faInfoCircle} />
-              <a href="#">About</a>
+              <a href="/About">About</a>
             </li>
             <li>
               <FontAwesomeIcon icon={faEnvelope} />
-              <a href="#">Contact Us</a>
+              <a href="Contact-us">Contact Us</a>
             </li>
           </ul>
         </div>
