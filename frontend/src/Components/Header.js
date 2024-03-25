@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className='content'>
         <div className="logo">
           <img src={logo} className='logoimg' alt="Logo" />
-          <a href="/Home">Kaustubh Enterprize</a>
+          <a href="/">Kaustubh Enterprize</a>
         </div>
         <div className="nav__content">
           <button className="menu-toggle" onClick={toggleMenu}>
@@ -29,7 +29,7 @@ const Navbar = () => {
           <ul className={`nav__links ${isOpen ? 'active' : ''}`}>
             <li>
               <FontAwesomeIcon icon={faHome} />
-              <a href="/home">Home</a>
+              <a href="/">Home</a>
             </li>
             <li>
               <FontAwesomeIcon icon={faBriefcase} />

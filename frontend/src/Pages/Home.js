@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './../CSS/Home.css'; // Import CSS file for homepage styling
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const images = [ // Array of image URLs
   './../Assets/image1.jpg',
