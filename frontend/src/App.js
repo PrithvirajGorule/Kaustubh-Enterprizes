@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./Components/Header";
 import Homepage from "./Pages/Home";
 import ContactUs from "./Pages/ContactUs";
+
+
 import Footer from "./Components/Footer";
 
 function App() {
@@ -18,13 +20,17 @@ function App() {
             path="/"
             element={<Homepage />}
           />
-
+          
           <Route
             path="/Contact-us"
             element={<ContactUs />}
           />
-
+ <Route
+            path="/About"
+            element={<About />}
+          />
         </Routes>
+       
     </Router>
     <Footer></Footer>
 
