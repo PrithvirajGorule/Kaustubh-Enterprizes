@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./Components/Header";
 import Homepage from "./Pages/Home";
 import ContactUs from "./Pages/ContactUs";
-
+import About from "./Pages/About";
 
 function App() {
   return (
@@ -18,13 +18,17 @@ function App() {
             path="/"
             element={<Homepage />}
           />
-
+          
           <Route
             path="/Contact-us"
             element={<ContactUs />}
           />
-
+ <Route
+            path="/About"
+            element={<About />}
+          />
         </Routes>
+       
     </Router>
 
 
