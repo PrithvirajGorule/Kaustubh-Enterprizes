@@ -8,7 +8,7 @@ import ContactUs from "./Pages/ContactUs";
 
 
 import Footer from "./Components/Footer";
-
+import About from "./Pages/About";
 function App() {
   return (
     <div className="App">
