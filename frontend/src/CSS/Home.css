@@ -25,7 +25,7 @@
   
   .slider {
     display: flex;
-    position: relative; /* For absolute positioning of controls */
+    /* position: relative; For absolute positioning of controls */
   }
   
   .slider-item {

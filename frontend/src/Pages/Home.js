@@ -55,12 +55,12 @@ const Homepage = () => {
                
               </div>
             ))}
-            <button className="slider-prev" onClick={goToPrev}>
+            {/* <button className="slider-prev" onClick={goToPrev}>
               {'<'}
             </button>
             <button className="slider-next" onClick={goToNext}>
               {'>'}
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
