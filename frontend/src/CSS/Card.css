@@ -1,0 +1,42 @@
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+  }
+  
+  .gallery-item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .gallery-item h2 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .gallery-item p {
+    margin: 0;
+    padding: 0 10px 10px;
+  }
+  
+  .gallery-item ul {
+    list-style-type: none;
+    padding: 0 10px 10px;
+  }
+  
+  .gallery-item ul li {
+    display: inline-block;
+    margin-right: 5px;
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+  }

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './../CSS/Home.css'; // Import CSS file for homepage styling
+import { DataService } from '../Services/DataService';
+import Card from '../Components/Card';
 
 
 const images = [ // Array of image URLs
@@ -10,7 +12,9 @@ const images = [ // Array of image URLs
   // Add more image URLs as needed
 ];
 
-const slogan = 'Kaustubh Enterprize Pvt Ltd'; // Single slogan constant
+const data = DataService.getAllData();
+
+// const slogan = 'Kaustubh Enterprize Pvt Ltd'; // Single slogan constant
 
 const Homepage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -40,7 +44,7 @@ const Homepage = () => {
       
         <div className="slider-container">
         <div className="slogan-box">
-                  <h2 className="slogan">{slogan}</h2>
+                  <h2 className="slogan">Kaustubh Enterprize Pvt Ltd</h2>
                   <p>We provide high quality steel with quality and assurance</p>
                   <button className='sloganbtn'>See our Products </button>
                 </div>
@@ -64,6 +68,18 @@ const Homepage = () => {
           </div>
         </div>
       </div>
+
+
+
+            {/* cards */}
+            <div>
+      <h1>Image Gallery</h1>
+      <div className="gallery-container">
+        {data.map(item => (
+          <Card key={item.id} data={item} />
+        ))}
+      </div>
+    </div>
       {/* Add more sections/components as needed */}
     </div>
   );
