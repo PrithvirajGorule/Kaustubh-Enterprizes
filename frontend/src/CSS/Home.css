@@ -9,16 +9,18 @@
   }
   
   .slider-container {
+    margin-top: 50px;
     align-content: center;
     position: relative;
-    height: 600px; /* Adjust base height as needed */
+    height: 700px; /* Adjust base height as needed */
     overflow: hidden; /* Hide overflowing content */
   }
   
   .slider img {
-    height: 600px;
+    height: 700px;
     width: 100%;
     object-fit: cover;
+    
   }
   
   .slider {
