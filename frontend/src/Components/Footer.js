@@ -1,98 +1,39 @@
-import React, { useState } from 'react';
-import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import React from 'react';
 import './../CSS/Footer.css';
+import logo from './../Assects/logo.jpeg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faBriefcase, faInfoCircle, faEnvelope, faLocation, faPhone, faLocationPin } from '@fortawesome/free-solid-svg-icons';
 
 const Footer = () => {
-  const [hovered, setHovered] = useState(false);
-
   return (
     <footer className="footer">
-      <div className="container">
-        <h2 className="style">TRIP NEST</h2>
-        <h6 className="light-text">Travel Explore, Celebrate Life</h6>
-        
-        <h3 className="title">Follow Us</h3>
-        <div className="social-icons">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            <FaFacebook className="icon-style" />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-            <FaTwitter className="icon-style" />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <FaInstagram className="icon-style" />
-          </a>
-        </div>
+      <div className="footer-content">
+        <span className='info'>
+          <img src={logo} alt="Logo" />
+          <h2>Kaustubh Enterprise</h2>
+          <p>We provide high-quality steel</p>
+        </span>
 
-        <div className="links-container">
-          <div className="column">
-            <h4 className="text-style">Discover Us</h4>
-            <a
-              href="/About"
-              className={hovered ? 'link-style hovered' : 'link-style'}
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
-            >
-              About
-            </a>
-            <br />
-            <a
-              href="/About"
-              className={hovered ? 'link-style hovered' : 'link-style'}
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
-            >
-              Our Team
-            </a>
-            <br />
-            <a
-              href="/FAQ"
-              className={hovered ? 'link-style hovered' : 'link-style'}
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
-            >
-              FAQ
-            </a>
-          </div>
+        <span className='QuickLinks'>
+          <h3>Quick Links</h3>
+          <a href="#"><FontAwesomeIcon icon={faHome} /> About</a>
+          <a href="#"><FontAwesomeIcon icon={faEnvelope} /> Contact</a>
+          <a href="#"><FontAwesomeIcon icon={faBriefcase} /> Services</a>
+        </span>
 
-          <div className="column">
-            <h4 className="text-style">Support</h4>
-            <a
-              href="/Contactus"
-              className={hovered ? 'link-style hovered' : 'link-style'}
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
-            >
-              Contact Us
-            </a>
-            <br />
-            <a
-              href="/Reviewpage"
-              className={hovered ? 'link-style hovered' : 'link-style'}
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
-            >
-              Guest Reviews
-            </a>
-            
-            <a
-              href="/TravelGuidelines"
-              className={hovered ? 'link-style hovered' : 'link-style'}
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
-            >
-              Travel Guidelines
-            </a>
-          </div>
-        </div>
-       
-        <div>
-          <h6 className="light-text">*Caution: Beware of Fake Promotions or Offers
-          *Please do not believe or engage with any promotional emails, SMS or Web-link which ask you to click on a link and fill in your details. All Veena World authorized email communications are delivered from domain @TripNest.com or @TripNest.in or SMS from VNAWLD or 741324.
-          *TripNest bears no liability or responsibility whatsoever for any communication which is fraudulent or misleading in nature and not received from registered domain.
-          </h6>
-        </div>
+        <span className='Contactfooter'>
+          <h3>Contact us</h3>
+          <p><FontAwesomeIcon icon={faLocationPin}></FontAwesomeIcon> MIDC, Pimpri Chinchwad, Pune 412105</p>
+          <p><FontAwesomeIcon icon={faEnvelope} /> example@gmail.com</p>
+          <p><FontAwesomeIcon icon={faPhone} /> 8765432907</p>
+        </span>
+
+        <span>
+          <h3>Follow us</h3>
+        </span>
       </div>
+      
+      <p>&copy; 2024 Your Company Name. All rights reserved.</p>
     </footer>
   );
 };
