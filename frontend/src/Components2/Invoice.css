@@ -1,0 +1,106 @@
+/* Invoice.css */
+.invoice-container {
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .logo {
+    width: 100px;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .quotation-info {
+    flex: 1;
+    font-size: 14px;
+  }
+  
+  .quotation-info p {
+    margin: 5px 0;
+  }
+  
+  .invoice-container h2 {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .invoice-container p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .invoice-table th, .invoice-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .invoice-table th {
+    background-color: #f2f2f2;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .totals {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+  
+  .footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #777;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  
+  .button-container button {
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .button-container a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+  }
+  
+  .button-container a:hover {
+    text-decoration: underline;
+  }
+  
