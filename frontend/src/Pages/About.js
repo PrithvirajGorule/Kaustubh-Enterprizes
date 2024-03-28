@@ -24,7 +24,7 @@ function About() {
           <img src="assets/img/Profile.jpg" alt="" />
         </div>
         <div>
-          <h2 className="about__subtitle">I'am Vasudha</h2>
+          <h2 className="about__subtitle">It's Kaustubh Enterprize  </h2>
           <p className="about__text">
             As a passionate coding enthusiast, I immerse myself in the dynamic
             worlds of Java, React.js, Spring Boot, and MySQL, crafting seamless
