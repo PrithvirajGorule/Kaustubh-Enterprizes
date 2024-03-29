@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './../CSS/Home.css'; // Import CSS file for homepage styling
 import { DataService } from '../Services/DataService';
 import Card from '../Components/Card';
+import { Link } from 'react-router-dom';
 
 
 const images = [ // Array of image URLs
@@ -46,7 +47,7 @@ const Homepage = () => {
         <div className="slogan-box">
                   <h2 className="slogan">Kaustubh Enterprize Pvt Ltd</h2>
                   <p>We provide high quality steel with quality and assurance</p>
-                  <button className='sloganbtn'>See our Products </button>
+                  <button className='sloganbtn'><Link to={`/sendquotation`}>Apply for Quotation</Link> </button>
                 </div>
           <div className="slider">
          
