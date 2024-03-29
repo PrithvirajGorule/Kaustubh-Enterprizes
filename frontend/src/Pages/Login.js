@@ -7,6 +7,7 @@ import {
 import React, { useState ,useRef } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import { redirectDocument } from "react-router-dom";
+import "../CSS/Home.css";
 // Firebase project configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDAWI_JUBwT51ZzFpJnJpt6JU6BbGUC8mc",
@@ -73,7 +74,7 @@ function LoginForm() {
         <button type="submit">Login</button>
         {error && <p>{error}</p>}
       </form>
-      <Link to="/orderlist" style={{ display: "none" }} ref={navigationRef} />
+      <Link to="/admindashboard" style={{ display: "none" }} ref={navigationRef} />
     </div>
   );
 }
