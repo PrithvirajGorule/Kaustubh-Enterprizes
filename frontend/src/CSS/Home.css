@@ -66,6 +66,7 @@
   .sloganbtn{
     padding: 10px;
     width: 200px;
+    margin:10px;
     border-radius: 10px;
     background-color: rgb(14, 48, 117);
     color: #ffff;
@@ -79,7 +80,7 @@
   }
   .slogan {
     z-index: 101;
-    margin: 0;
+    margin: 10px;
     text-align: center;
     font-size: 24px;
     /* Set text color for better contrast */
