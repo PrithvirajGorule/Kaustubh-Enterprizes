@@ -387,7 +387,7 @@ img {
 .contact__icon {
   font-size: 2rem;
   margin-bottom: 10px;
-  border: 2px solid skyblue;
+  border: 2px solid rgb(16, 52, 66);
   border-radius: 50%;
   padding: 10px;
   display: inline-flex;
