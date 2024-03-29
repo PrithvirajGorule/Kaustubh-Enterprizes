@@ -18,7 +18,7 @@ function About() {
   
     {/*===== ABOUT =====*/}
     <section className="about section " id="about">
-      <h2 className="section-title">About</h2>
+      <h2 className="section-title">About Us</h2>
       <div className="about__container bd-grid">
         <div className="about__img">
           <img src="assets/img/Profile.jpg" alt="" />
@@ -44,7 +44,7 @@ function About() {
     </section>
     {/*===== SKILLS =====*/}
     <section className="skills section" id="skills">
-      <h2 className="section-title">Skills</h2>
+      <h2 className="section-title">Services</h2>
       <div className="skills__container bd-grid">
         <div>
           <h2 className="skills__subtitle">Profesional Skills</h2>
@@ -140,24 +140,7 @@ function About() {
     </section>
   </main>
   {/*===== FOOTER =====*/}
-  <footer className="footer">
-    <p className="footer__title">Kaustubh Enterprize Pvt Ltd</p>
-    <div className="footer__social">
-      <a href="https://github.com/vasubiradar" className="footer__icon">
-        <i className="bx bxl-github" />
-      </a>
-      <a href="https://www.instagram.com/vasubiradar" className="footer__iconr">
-        <i className="bx bxl-instagram" />
-      </a>
-      <a
-        href="https://www.linkedin.com/in/vasudha-biradar-3a0aa3228"
-        className="footer__icon"
-      >
-        <i className="bx bxl-linkedin" />
-      </a>
-    </div>
-    <p className="footer__copy">© Kaustubh Enterprize Pvt Ltd. All rigths reserved</p>
-  </footer>
+ 
   {/*===== SCROLL REVEAL =====*/}
   {/*===== MAIN JS =====*/}
 </>

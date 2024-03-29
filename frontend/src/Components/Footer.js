@@ -30,6 +30,22 @@ const Footer = () => {
 
         <span>
           <h3>Follow us</h3>
+        
+    <div className="footer__social">
+    
+      <a href="https://www.instagram.com/vasubiradar" className="footer__iconr">
+        <i className="bx bxl-instagram" />
+      </a>
+      <a
+        href="https://in.linkedin.com/company/kaustubh-enterprises"
+        className="footer__icon"
+      >
+        <i className="bx bxl-linkedin" />
+      </a>
+      
+      
+
+    </div>
         </span>
       </div>
       
