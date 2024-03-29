@@ -31,11 +31,18 @@ export default class AddCustomer extends Component {
     AdminProductService.getAll().then(querySnapshot => {
       const productOptions = [];
       querySnapshot.forEach(doc => {
-        productOptions.push({ id: doc.id, name: doc.data().name });
+        // Assuming you have a field called url in your product document for the image URL
+        const productData = {
+          id: doc.id,
+          name: doc.data().name,
+          imageUrl: doc.data().url // Adjust according to your data structure
+        };
+        productOptions.push(productData);
       });
       this.setState({ productOptions });
     });
   }
+
 
   onChangeName(e) {
     this.setState({
@@ -80,7 +87,10 @@ export default class AddCustomer extends Component {
   }
 
   calculateTotal() {
-    const totalPrize = this.state.products.reduce((total, product) => total + (product.price * product.quantity), 0);
+    const totalPrize = this.state.products.reduce(
+      (total, product) => total + product.price * product.quantity,
+      0
+    );
     this.setState({ totalPrize });
   }
 
@@ -93,7 +103,8 @@ export default class AddCustomer extends Component {
       totalPrize: this.state.totalPrize
     };
 
-    orderService.create(data)
+    orderService
+      .create(data)
       .then(() => {
         console.log("Customer data saved successfully!");
         this.setState({ submitted: true });
@@ -182,6 +193,15 @@ export default class AddCustomer extends Component {
                         </option>
                       ))}
                     </select>
+                    {product.name && (
+                      <img
+                        src={this.state.productOptions.find(
+                          option => option.name === product.name
+                        ).imageUrl}
+                        alt={product.name}
+                        style={{ width: "100px", height: "100px" }}
+                      />
+                    )}
                     <input
                       type="number"
                       className="form-control"

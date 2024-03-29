@@ -5,7 +5,8 @@ function AddProductForm() {
   const [product, setProduct] = useState({
     name: '',
     price: 0,
-    description: ''
+    description: '',
+    url: '' // Add URL field
   });
 
   const handleChange = (e) => {
@@ -43,6 +44,10 @@ function AddProductForm() {
         <div>
           <label>Description:</label>
           <textarea name="description" value={product.description} onChange={handleChange} />
+        </div>
+        <div>
+          <label>URL:</label>
+          <input type="text" name="url" value={product.url} onChange={handleChange} />
         </div>
         <button type="submit">Add Product</button>
       </form>
