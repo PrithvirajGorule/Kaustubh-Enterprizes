@@ -3,6 +3,7 @@ import './../CSS/Home.css'; // Import CSS file for homepage styling
 import { DataService } from '../Services/DataService';
 import Card from '../Components/Card';
 import { Link } from 'react-router-dom';
+import AdminProductService from '../Services2/AdminProductService'; // Import the AdminProductService
 
 
 const images = [ // Array of image URLs
@@ -18,15 +19,31 @@ const data = DataService.getAllData();
 // const slogan = 'Kaustubh Enterprize Pvt Ltd'; // Single slogan constant
 
 const Homepage = () => {
+
+
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Change slide every 3 seconds (adjust as needed)
+    const fetchData = async () => {
+      try {
+        const response = await AdminProductService.getAll();
+        const productsData = response.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setProducts(productsData);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
 
-    return () => clearInterval(intervalId); // Clean up the interval
-  }, []); // Run only once on component mount
+    fetchData();
+
+    const intervalId = setInterval(() => {
+      setCurrentIndex(prevIndex => (prevIndex + 1) % products.length);
+    }, 3000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+ // Run only once on component mount
 
   const prevIndex = (currentIndex - 1 + images.length) % images.length;
   const nextIndex = (currentIndex + 1) % images.length;
@@ -76,10 +93,10 @@ const Homepage = () => {
             <div>
       <h1>Image Gallery</h1>
       <div className="gallery-container">
-        {data.map(item => (
-          <Card key={item.id} data={item} />
-        ))}
-      </div>
+          {products.map(item => (
+            <Card key={item.index} data={item} />
+          ))}
+        </div>
     </div>
       {/* Add more sections/components as needed */}
     </div>
