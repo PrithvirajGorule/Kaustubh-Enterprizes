@@ -429,6 +429,29 @@ img {
   cursor: pointer;
   margin-left: auto;
 }
+/* Styles for Service Box */
+.service__container {
+  display: flex;
+  justify-content: space-between; /* Adjust to your preference */
+}
+
+.service__box {
+  flex: 0 1 45%; /* Adjust width as needed */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+
+.service__title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.service__text {
+  text-align: justify; /* Adjust text alignment */
+}
+
 
 /* ===== FOOTER =====*/
 .footer {

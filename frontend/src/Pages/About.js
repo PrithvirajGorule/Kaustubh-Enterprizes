@@ -21,16 +21,19 @@ function About() {
       <h2 className="section-title">About Us</h2>
       <div className="about__container bd-grid">
         <div className="about__img">
-          <img src="assets/img/Profile.jpg" alt="" />
+          <img src="https://media.istockphoto.com/id/1344231216/photo/rolled-metal-warehouse-many-packs-of-metal-bars-on-the-shelves.jpg?s=612x612&w=0&k=20&c=NdBJpn98jT43UXxRMv-R1gVwynBq-2nQGmJVLx4bCxc=" alt="" />
         </div>
         <div>
           <h2 className="about__subtitle">It's Kaustubh Enterprize  </h2>
           <p className="about__text">
-            As a passionate coding enthusiast, I immerse myself in the dynamic
-            worlds of Java, React.js, Spring Boot, and MySQL, crafting seamless
-            web solutions that captivate users. Beyond coding, I find solace in
-            the art of photography, where every frame tells a unique story,
-            echoing the creativity and precision I bring to web development.
+          Kaustubh Enterprises Pvt Ltd is a premier supplier of top-quality
+           steel sheets. With a focus on excellence and customer satisfaction, 
+           we offer a diverse range of steel products tailored to various industries.
+            Our commitment to innovation and reliability ensures that every steel
+             sheet meets the highest standards. Backed by extensive industry experience,
+              we provide personalized solutions and exceptional service to our clients. 
+              Trust Kaustubh Enterprises Pvt Ltd for superior quality steel products that
+               exceed expectations.
           </p>
           <br />
           <a
@@ -44,24 +47,26 @@ function About() {
     </section>
     {/*===== SKILLS =====*/}
     <section className="skills section" id="skills">
-      <h2 className="section-title">Services</h2>
-      <div className="skills__container bd-grid">
-        <div>
-          <h2 className="skills__subtitle">Profesional Skills</h2>
-          <p className="skills__text">
-            "Experienced web developer proficient in HTML, CSS, JavaScript,
-            React.js, Java, and MySQL." "Skilled in crafting dynamic and
-            responsive web solutions, with a strong foundation in front-end and
-            back-end technologies."
-          </p>
-        
-        
-        </div>
-        <div>
-          <img src="assets/img/work3.jpg" alt="" className="skills__img" />
-        </div>
+  <h2 className="section-title">Services</h2>
+  <div className="skills__container bd-grid">
+    <div className="service__container">
+      <div className="service__box">
+        <h2 className="service__title">Premium Quality Products & Customized Solutions</h2>
+        <p className="service__text">
+          At Kaustubh Enterprises Pvt Ltd, we offer a diverse range of high-quality steel sheets that adhere to stringent industry standards, ensuring durability and reliability across various applications. Additionally, our experienced team collaborates closely with clients to understand their unique requirements, providing tailor-made solutions that perfectly align with their needs.
+        </p>
       </div>
-    </section>
+      <div className="service__box">
+        <h2 className="service__title">Timely Delivery & Technical Support</h2>
+        <p className="service__text">
+          Efficiency and reliability are at the core of our operations. We prioritize prompt delivery of orders to minimize downtime for our clients' projects, ensuring timely completion and satisfaction. Moreover, our knowledgeable staff offers comprehensive technical support, guiding clients in selecting the right steel products and addressing any inquiries or concerns they may have.
+        </p>
+      </div>
+      {/* Add more service boxes as needed */}
+    </div>
+  </div>
+</section>
+
     <section className="product section" id="products">
   <h2 className="section-title">Steel Sheets</h2>
   <div className="product__container bd-grid">
