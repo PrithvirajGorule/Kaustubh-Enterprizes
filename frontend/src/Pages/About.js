@@ -36,12 +36,7 @@ function About() {
                exceed expectations.
           </p>
           <br />
-          <a
-            href="https://drive.google.com/drive/folders/1RTY-GgOcoqLQHvfLSIb1qnuPdHsF1B8z?usp=sharing"
-            className="button"
-          >
-            My Achivements
-          </a>
+          
         </div>
       </div>
     </section>
@@ -53,14 +48,18 @@ function About() {
       <div className="service__box">
         <h2 className="service__title">Premium Quality Products & Customized Solutions</h2>
         <p className="service__text">
-          At Kaustubh Enterprises Pvt Ltd, we offer a diverse range of high-quality steel sheets that adhere to stringent industry standards, ensuring durability and reliability across various applications. Additionally, our experienced team collaborates closely with clients to understand their unique requirements, providing tailor-made solutions that perfectly align with their needs.
+        Kaustubh Enterprises Pvt Ltd offers high-quality steel sheets meeting industry standards for durability. Our experienced team provides tailored solutions, aligning with clients' unique needs for satisfaction.
         </p>
       </div>
       <div className="service__box">
         <h2 className="service__title">Timely Delivery & Technical Support</h2>
         <p className="service__text">
-          Efficiency and reliability are at the core of our operations. We prioritize prompt delivery of orders to minimize downtime for our clients' projects, ensuring timely completion and satisfaction. Moreover, our knowledgeable staff offers comprehensive technical support, guiding clients in selecting the right steel products and addressing any inquiries or concerns they may have.
-        </p>
+        We prioritize efficiency and reliability, ensuring timely project completion. Our prompt delivery minimizes downtime, ensuring client satisfaction. Additionally, our knowledgeable staff offers comprehensive technical support, addressing inquiries promptly.        </p>
+      </div>
+      <div className="service__box">
+        <h2 className="service__title">Exceptional Customer Service</h2>
+        <p className="service__text">
+        At Kaustubh Enterprises Pvt Ltd, exceptional customer service is our hallmark. We ensure a seamless and positive experience, fostering long-lasting client relationships built on trust and satisfaction. Our dedication guarantees outstanding support at every stage, surpassing mere product excellence.          </p>
       </div>
       {/* Add more service boxes as needed */}
     </div>
@@ -71,30 +70,27 @@ function About() {
   <h2 className="section-title">Steel Sheets</h2>
   <div className="product__container bd-grid">
     <div className="product__item">
-      <img src="assets/img/steel_sheet1.jpg" alt="Galvanized Steel Sheet" className="product__img" />
+      <img src="https://th.bing.com/th/id/OIP.Zt1mNPLt5MWXSsxT_CGnNwHaHa?rs=1&pid=ImgDetMain"alt="Galvanized Steel Sheet" className="product__img" />
       <div className="product__info">
-        <h3 className="product__title">Galvanized Steel Sheet</h3>
+        <h3 className="product__title">SS Rivit Nut</h3>
         <p className="product__description">
-          Galvanized steel sheets are steel sheets coated with a protective layer of zinc through a process called galvanization. They are highly resistant to corrosion and widely used in construction, automotive, and manufacturing industries.
-        </p>
+        Material Stainless Steel Packaging Type Box Color Silver Usage/Application Construction Temperature Range -20 to 80 Degree C Head Shape Round     </p>
       </div>
     </div>
     <div className="product__item">
-      <img src="assets/img/steel_sheet2.jpg" alt="Cold Rolled Steel Sheet" className="product__img" />
+      <img src="https://5.imimg.com/data5/GN/EH/ED/SELLER-5311164/hot-rolled-sheet.jpg" alt="Cold Rolled Steel Sheet" className="product__img" />
       <div className="product__info">
-        <h3 className="product__title">Cold Rolled Steel Sheet</h3>
+        <h3 className="product__title">E350C Hot Rolled Mild Steel Sheet</h3>
         <p className="product__description">
-          Cold rolled steel sheets are produced by rolling hot rolled coils at room temperature, resulting in a smoother surface finish and tighter dimensional tolerances. They are commonly used in appliances, automotive panels, and furniture manufacturing.
-        </p>
+        1.6 TO 200MMGrade E350CMaterial Mild SteelSurface Treatment PolishedUsage / Application IndustrialColor Metallic GreyTechnique Hot RolledCountry of Origin Made in India    </p>
       </div>
     </div>
     <div className="product__item">
-      <img src="assets/img/steel_sheet3.jpg" alt="Hot Rolled Steel Sheet" className="product__img" />
+      <img src="https://5.imimg.com/data5/SELLER/Default/2023/2/BV/FU/HS/15418268/hsla-320-cr-sheet-500x500.jpg" alt="Hot Rolled Steel Sheet" className="product__img" />
       <div className="product__info">
-        <h3 className="product__title">Hot Rolled Steel Sheet</h3>
+        <h3 className="product__title">HSLA 420 Cold Rolled Mild Steel Sheet</h3>
         <p className="product__description">
-          Hot rolled steel sheets are produced at high temperatures and are less precise in dimension and surface finish compared to cold rolled sheets. They are used in applications such as structural components, pipelines, and railway tracks.
-        </p>
+        Thickness 3 mm Grade HSLA 420 Material Mild Steel Surface Treatment Polished Usage / Application Construction Color Metallic Grey Technique Cold Rolled    </p>
       </div>
     </div>
   </div>

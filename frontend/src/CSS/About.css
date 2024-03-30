@@ -112,29 +112,24 @@ img {
 }
 
 /*===== CLASS CSS ===== */
-.section-title {
-  position: relative;
-  font-size: var(--h2-font-size);
-  color: var(--first-color);
-  margin-top: var(--mb-2);
-  margin-bottom: var(--mb-4);
-  text-align: center;
-}
+
 .section-title::after {
   position: absolute;
   content: "";
-  width: 64px;
+  width: 90px;
   height: 0.18rem;
   left: 0;
   right: 0;
   margin: auto;
   top: 2rem;
-  background-color: var(--first-color);
-}
-
-.section {
-  padding-top: 3rem;
-  padding-bottom: 2rem;
+  background-color: #0e1730;
+}.section-title {
+  position: relative;
+  font-size: var(--h2-font-size);
+  color: #001f3f;
+  margin-top: var(--mb-2);
+  margin-bottom: var(--mb-4);
+  text-align: center;
 }
 
 /*===== LAYOUT =====*/
@@ -145,15 +140,6 @@ img {
   margin-right: var(--mb-2);
 }
 
-.l-header {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: var(--z-fixed);
-  background-color: #fff;
-  box-shadow: 0 1px 4px rgba(146, 161, 176, 0.15);
-}
 
 /*===== NAV =====*/
 
@@ -236,16 +222,7 @@ img {
 }
 
 /* ===== SKILLS =====*/
-.skills__container {
-  row-gap: 2rem;
-  text-align: center;
-}
-.skills__subtitle {
-  margin-bottom: var(--mb-2);
-}
-.skills__text {
-  margin-bottom: var(--mb-4);
-}
+
 .skills__data {
   display: flex;
   justify-content: space-between;
@@ -274,22 +251,41 @@ img {
   height: 0.25rem;
   border-radius: 0.5rem;
   z-index: var(--z-back);
+}.skills__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
-.skills__html {
-  width: 95%;
+
+.service__box {
+  width: calc(33.33% - 20px); /* Adjust the width as needed */
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff; /* Adjust the background color as needed */
+}.section-title {
+  margin-bottom: 20px; /* Adjust the value as needed */
 }
-.skills__css {
-  width: 85%;
+
+.about__img img {
+  width: 100%; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 900px; /* Limit the maximum width if necessary */
+  display: block; /* Ensure the image takes up the entire container */
+  margin: 0 auto; /* Center the image horizontally */
 }
-.skills__js {
-  width: 65%;
+
+.service__box:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
 }
-.skills__ux {
-  width: 85%;
+
+.product__item:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
 }
-.skills__img {
-  border-radius: 0.5rem;
-}
+
 .work__container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
