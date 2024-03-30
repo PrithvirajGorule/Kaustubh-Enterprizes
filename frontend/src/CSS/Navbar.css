@@ -3,7 +3,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #ffffff;
+    /* height: 50px; */
+    /* background-color: #000000; */
     z-index: 99;
     box-shadow: 0px 5px 10px #0000001a; /* Box shadow added to bottom */
     margin-bottom: 50px;
@@ -11,6 +12,7 @@
   
   .content {
     max-width: var(--max-width);
+    background-color: #fafafa45;
     margin: auto;
     padding: 0.2rem 1rem;
     display: flex;
@@ -101,7 +103,7 @@
       height: auto;
       left: 0;
       top: calc(100% + 1rem); /* Adjusted to add some space below the navbar */
-      background-color: #ffff;
+      /* background-color: #ffff; */
       flex-direction: column;
       justify-content: center;
       gap: 3rem;
