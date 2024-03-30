@@ -17,8 +17,10 @@ import AdminProductOprations from "./Components2/AdminProductOprations";
 import AdminDashboard from "./Components2/AdminDashboard";
 function App() {
   return (
-    <div className="App">
+    <div>
       <Navbar></Navbar>
+    <div className="App">
+      
       {/* <Slider></Slider> */}
       <Router>
         <Routes>
@@ -47,6 +49,7 @@ function App() {
         </Routes>
       </Router>
       <Footer></Footer>
+    </div>
     </div>
   );
 }
