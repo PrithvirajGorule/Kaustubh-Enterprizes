@@ -58,15 +58,17 @@ const Homepage = () => {
             <button className='sloganbtn'><Link to={`/sendquotation`}>Apply for Quotation</Link> </button>
           </div>
           <div className="slider">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className={`slider-item ${index === currentIndex ? 'current-slide' : (index === prevIndex ? 'prev-slide' : 'next-slide')}`}
-              >
-                <img src={image} alt={`Slide ${index}`} />
-              </div>
-            ))}
-          </div>
+  {images.map((image, index) => (
+    <div
+      key={index}
+      className={`slider-item ${index === currentIndex ? 'current-slide' : (index === prevIndex ? 'prev-slide' : 'next-slide')}`}
+    >
+      <img src={image} alt={`Slide ${index}`} />
+      <div className="slider-overlay"></div> {/* Overlay */}
+    </div>
+  ))}
+</div>
+
         </div>
       </div>
 
