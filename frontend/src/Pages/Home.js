@@ -5,7 +5,6 @@ import Card from '../Components/Card';
 import { Link } from 'react-router-dom';
 import AdminProductService from '../Services2/AdminProductService'; // Import the AdminProductService
 
-
 const images = [ // Array of image URLs
   './../Assets/image1.jpg',
   './../Assets/image2.jpg',
@@ -14,13 +13,7 @@ const images = [ // Array of image URLs
   // Add more image URLs as needed
 ];
 
-const data = DataService.getAllData();
-
-// const slogan = 'Kaustubh Enterprize Pvt Ltd'; // Single slogan constant
-
 const Homepage = () => {
-
-
   const [currentIndex, setCurrentIndex] = useState(0);
   const [products, setProducts] = useState([]);
 
@@ -38,12 +31,11 @@ const Homepage = () => {
     fetchData();
 
     const intervalId = setInterval(() => {
-      setCurrentIndex(prevIndex => (prevIndex + 1) % products.length);
+      setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
     }, 3000);
 
     return () => clearInterval(intervalId);
   }, []);
- // Run only once on component mount
 
   const prevIndex = (currentIndex - 1 + images.length) % images.length;
   const nextIndex = (currentIndex + 1) % images.length;
@@ -59,45 +51,34 @@ const Homepage = () => {
   return (
     <div className="homepage">
       <div className="hero-section">
-      
         <div className="slider-container">
-        <div className="slogan-box">
-                  <h2 className="slogan">Kaustubh Enterprize Pvt Ltd</h2>
-                  <p>We provide high quality steel with quality and assurance</p>
-                  <button className='sloganbtn'><Link to={`/sendquotation`}>Apply for Quotation</Link> </button>
-                </div>
+          <div className="slogan-box">
+            <h2 className="slogan">Kaustubh Enterprize Pvt Ltd</h2>
+            <p>We provide high quality steel with quality and assurance</p>
+            <button className='sloganbtn'><Link to={`/sendquotation`}>Apply for Quotation</Link> </button>
+          </div>
           <div className="slider">
-         
             {images.map((image, index) => (
               <div
                 key={index}
                 className={`slider-item ${index === currentIndex ? 'current-slide' : (index === prevIndex ? 'prev-slide' : 'next-slide')}`}
               >
                 <img src={image} alt={`Slide ${index}`} />
-               
               </div>
             ))}
-            {/* <button className="slider-prev" onClick={goToPrev}>
-              {'<'}
-            </button>
-            <button className="slider-next" onClick={goToNext}>
-              {'>'}
-            </button> */}
           </div>
         </div>
       </div>
 
-
-
-            {/* cards */}
-            <div>
-      <h1>Image Gallery</h1>
-      <div className="gallery-container">
+      {/* cards */}
+      <div>
+        <h1>Image Gallery</h1>
+        <div className="gallery-container">
           {products.map(item => (
-            <Card key={item.index} data={item} />
+            <Card key={item.id} data={item} />
           ))}
         </div>
-    </div>
+      </div>
       {/* Add more sections/components as needed */}
     </div>
   );
