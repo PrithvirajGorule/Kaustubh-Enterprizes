@@ -21,6 +21,8 @@ const Product = () => {
 
   return (
     <div className="product-page">
+   
+   
       <h1>Products</h1>
       <div className="gallery-container">
         {products.map(item => (

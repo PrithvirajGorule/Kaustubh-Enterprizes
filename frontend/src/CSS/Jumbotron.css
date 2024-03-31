@@ -1,37 +1,38 @@
 .jumbotron {
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-    padding: 100px 0; /* Adjust padding as needed */
-    text-align: center;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .search-form {
-    margin-top: 20px;
-  }
-  
-  .search-form input[type="text"] {
-    width: 300px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px 0 0 5px;
-  }
-  
-  .search-form button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-  }
-  
-  .search-form button:hover {
-    background-color: #0056b3;
-  }
-  
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 100px 0; /* Adjust padding as needed */
+  text-align: center;
+}
+
+.container {
+  max-width: 100%; /* Change max-width to 100% for full width */
+  padding: 0 20px; /* Add padding to avoid content sticking to edges */
+}
+
+.search-form {
+  display: flex; /* Display form items in a row */
+  justify-content: center; /* Center form items horizontally */
+  margin-top: 20px;
+}
+
+.search-form input[type="text"] {
+  width: 70%; /* Set width of input to 70% */
+  padding: 10px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.search-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background-color: #0056b3;
+}
