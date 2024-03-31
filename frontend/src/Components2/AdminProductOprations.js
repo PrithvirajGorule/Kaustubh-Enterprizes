@@ -1,9 +1,12 @@
+// Import statements
 import React, { useState, useEffect } from 'react';
 import AdminProductService from '../Services2/AdminProductService';
 import './../CSS/AdminProductList.css';
+
+// ProductCard component for displaying product details
 function ProductCard({ product }) {
   return (
-    <div style={{ border: '1px solid #ccc', borderRadius: '5px', padding: '10px', margin: '10px', width: '300px' }}>
+    <div className="product-card">
       <h3>{product.name}</h3>
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
@@ -12,17 +15,26 @@ function ProductCard({ product }) {
   );
 }
 
-function AdminProductOprations() {
+// Main component for admin product operations
+function AdminProductOperations() {
+  // State for storing products list
   const [products, setProducts] = useState([]);
+  // State for managing the new product form input
   const [newProduct, setNewProduct] = useState({ name: '', description: '', price: '', url: '' });
+  // State for toggling the add product form visibility
+  const [showAddForm, setShowAddForm] = useState(false);
+  // State for managing the currently selected product for detailed view
   const [selectedProduct, setSelectedProduct] = useState(null);
+  // State for handling search query
   const [searchQuery, setSearchQuery] = useState('');
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
+  // Effect hook for fetching products on component mount
   useEffect(() => {
     fetchProducts();
   }, []);
-  
 
+  // Function to fetch products
   const fetchProducts = async () => {
     try {
       const querySnapshot = await AdminProductService.getAll();
@@ -36,80 +48,73 @@ function AdminProductOprations() {
     }
   };
 
+  // Function to handle adding a new product
   const handleAddProduct = async () => {
     try {
       await AdminProductService.create(newProduct);
-      fetchProducts();
-      setNewProduct({ name: '', description: '', price: '', url: '' });
+      fetchProducts(); // Refresh the products list
+      setNewProduct({ name: '', description: '', price: '', url: '' }); // Reset form
+      setShowAddForm(false); // Hide the form after adding
     } catch (error) {
       console.error('Error adding product:', error);
     }
+    setIsAddModalOpen(false);
   };
 
-  const handleUpdate = async (id, field, value) => {
-    try {
-      await AdminProductService.update(id, { [field]: value });
-      setProducts(products.map(product =>
-        product.id === id ? { ...product, [field]: value } : product
-      ));
-    } catch (error) {
-      console.error('Error updating product:', error);
-    }
+
+  const handleUpdate = async () => {
+
   };
 
-  const handleDelete = async (id) => {
-    try {
-      await AdminProductService.delete(id);
-      setProducts(products.filter(product => product.id !== id));
-    } catch (error) {
-      console.error('Error deleting product:', error);
-    }
+  const handleDelete = async () => {
+
   };
 
-  const handleViewProduct = (product) => {
-    setSelectedProduct(product);
-  };
 
-  const handleCloseView = () => {
-    setSelectedProduct(null);
-  };
+  // Functions to handle update and delete operations go here...
 
+  // Filtering products based on search query
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  return (
-    <div>
-      <h2>Product List</h2>
-      <div>
-        <h3>Add New Product</h3>
-        <input
-          type="text"
-          placeholder="Name"
-          value={newProduct.name}
-          onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="Description"
-          value={newProduct.description}
-          onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
-        />
-        <input
-          type="number"
-          placeholder="Price"
-          value={newProduct.price}
-          onChange={(e) => setNewProduct({ ...newProduct, price: parseFloat(e.target.value) })}
-        />
-        <input
-          type="text"
-          placeholder="URL"
-          value={newProduct.url}
-          onChange={(e) => setNewProduct({ ...newProduct, url: e.target.value })}
-        />
-        <button onClick={handleAddProduct}>Add Product</button>
+  function AddProductModal({ isOpen, onClose, onSubmit, product, setProduct }) {
+    if (!isOpen) return null;
+  
+    return (
+      <div className="modal">
+        <div className="modal-content">
+          <span className="close-button" onClick={onClose}>&times;</span>
+          <h2>Add New Product</h2>
+          <input type="text" placeholder="Name" value={product.name} onChange={(e) => setProduct({ ...product, name: e.target.value })} />
+          <input type="text" placeholder="Description" value={product.description} onChange={(e) => setProduct({ ...product, description: e.target.value })} />
+          <input type="number" placeholder="Price" value={product.price} onChange={(e) => setProduct({ ...product, price: parseFloat(e.target.value) })} />
+          <input type="text" placeholder="URL" value={product.url} onChange={(e) => setProduct({ ...product, url: e.target.value })} />
+          <button onClick={onSubmit}>Add Product</button>
+        </div>
       </div>
-      <div>
+    );
+  }
+
+  return (
+    <div className="admin-product-operations">
+      {/* Main content area */}
+      <aside className="sidebar">
+      <button onClick={() => setIsAddModalOpen(true)}>Add Product</button>
+      {/* Add more buttons as needed for other operations */}
+    </aside>
+    <main className="main-content">
+      {/* Conditional rendering for the Add Product Form */}
+      <AddProductModal 
+          isOpen={isAddModalOpen} 
+          onClose={() => setIsAddModalOpen(false)} 
+          onSubmit={handleAddProduct} 
+          product={newProduct} 
+          setProduct={setNewProduct}
+        />
+
+      {/* Search section */}
+      <div className="search-section">
         <input
           type="text"
           placeholder="Search product"
@@ -117,70 +122,35 @@ function AdminProductOprations() {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
+
+      {/* Products display grid */}
+      <div className="products-grid">
+        {products.filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase())).map((product) => (
+          <div className="product-card" key={product.id} onClick={() => setSelectedProduct(product)}>
+            <img src={product.image} alt={product.name} className="product-image" />
+            <h3>{product.name}</h3>
+            <p>{product.description}</p>
+            <p>Price: ${product.price}</p>
+            <button onClick={(e) => { e.stopPropagation(); handleDelete(product.id); }}>Delete</button>
+          </div>
+        ))}
+      </div>
+
+      {/* Modal for viewing selected product details */}
       {selectedProduct && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={handleCloseView}>&times;</span>
-            <h2>{selectedProduct.name}</h2>
+            <span className="close-button" onClick={() => setSelectedProduct(null)}>&times;</span>
+            <img src={selectedProduct.image} alt={selectedProduct.name} className="product-image-modal" />
+            <h3>{selectedProduct.name}</h3>
             <p>{selectedProduct.description}</p>
             <p>Price: ${selectedProduct.price}</p>
-            <img src={selectedProduct.url} alt={selectedProduct.name} />
+            {/* More details or actions for the selected product can be added here */}
           </div>
         </div>
       )}
-      <table>
-        <thead>
-          <tr>
-            <th>Index</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>URL</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredProducts.map((product, index) => (
-            <tr key={product.id}>
-              <td>{index + 1}</td>
-              <td>
-                <input
-                  type="text"
-                  value={product.name}
-                  onChange={(e) => handleUpdate(product.id, 'name', e.target.value)}
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  value={product.description}
-                  onChange={(e) => handleUpdate(product.id, 'description', e.target.value)}
-                />
-              </td>
-              <td>
-                <input
-                  type="number"
-                  value={product.price}
-                  onChange={(e) => handleUpdate(product.id, 'price', parseFloat(e.target.value))}
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  value={product.url}
-                  onChange={(e) => handleUpdate(product.id, 'url', e.target.value)}
-                />
-              </td>
-              <td>
-                <button onClick={() => handleDelete(product.id)}>Delete</button>
-                <button onClick={() => handleViewProduct(product)}>View</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+    </main>
+  </div>
+);
 }
-
-export default AdminProductOprations;
+export default AdminProductOperations;

@@ -1,21 +1,15 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';// Assuming the file name is ProductList.js
+import { Link } from 'react-router-dom';
+import './../CSS/AdminDashboard.css'
+ // Import the CSS file
+
 
 function AdminDashboard() {
   return (
-    <>
-      <div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <Link to="/adminproductList">Admin Product Dashboard</Link>
-        <br></br>
-        <br></br>
-        <br></br>
-        <Link to="/orderlist">Order List</Link>
-      </div>
-    
-    </>
+    <div className="admin-dashboard-container">
+      <Link to="/adminproductList" className="admin-dashboard-link">Admin Product Dashboard</Link>
+      <Link to="/orderlist" className="admin-dashboard-link">Order List</Link>
+    </div>
   );
 }
 
