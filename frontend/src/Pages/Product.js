@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../Components/Card';
 import AdminProductService from '../Services2/AdminProductService';
-
+import Jumbotron from '../Components/Jumbotron';
 const Product = () => {
   const [products, setProducts] = useState([]);
 
@@ -21,6 +21,7 @@ const Product = () => {
 
   return (
     <div className="product-page">
+        <Jumbotron></Jumbotron>
       <h1>Products</h1>
       <div className="gallery-container">
         {products.map(item => (
