@@ -13,7 +13,8 @@
 
 .footer div {
 
-display: flex;
+
+display:flex;
  margin-right: 0px;
   align-items: center; /* Align items vertically in the middle */
   margin-bottom: 20px;
