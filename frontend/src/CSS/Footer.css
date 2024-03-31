@@ -1,17 +1,19 @@
+
 .footer {
   background-color: #0e1730;
   color: #fff;
   padding: 20px;
-  
-  
+  /* position: fixed; */
+  bottom: 0;
+  width: 100%;
+  left: 0; /* Optional: Set left to 0 to ensure it stretches the entire width */
+  z-index: 1000; /* Optional: Set z-index to ensure it appears above other elements */
 }
 
-
-
 .footer div {
-  display: flex;
+
   flex-direction: row;
-  justify-content: space-between;
+ 
   align-items: center; /* Align items vertically in the middle */
   margin-bottom: 20px;
 }
@@ -59,4 +61,15 @@ font-weight: 1;
 .info{
   text-align: left;
   font-weight: 1;
+}
+.footer__social {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.footer__icon {
+  font-size: 24px;
+  margin-right: 1px; /* Add 1px space between each icon */
 }
