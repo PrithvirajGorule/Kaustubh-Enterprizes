@@ -71,15 +71,6 @@
     top: 50%;
     left: 40%;
     transform: translate(-50%, -50%);
-<<<<<<< HEAD
-   
-    /* background-color: #ffffffb5;  */
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); Add box shadow */
-=======
-
-    background-color: #ffffffb5; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add box shadow */
->>>>>>> 2781807737063ae0463cb28020cb5a681a16fb1e
     padding: 20px;
     border-radius: 5px;
   }

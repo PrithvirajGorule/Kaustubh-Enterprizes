@@ -59,6 +59,7 @@ const Homepage = () => {
 
   const goToPrev = () => {
     setCurrentIndex(prevIndex);
+    
   };
 
   const goToNext = () => {
