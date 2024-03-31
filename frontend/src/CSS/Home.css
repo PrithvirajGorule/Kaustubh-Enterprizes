@@ -58,7 +58,6 @@
   .next-slide {
     transform: translateX(100%);
   }
-  
   .current-slide {
     z-index: 1;
     transform: translateX(0);
