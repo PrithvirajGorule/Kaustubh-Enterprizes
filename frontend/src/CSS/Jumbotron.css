@@ -1,0 +1,37 @@
+.jumbotron {
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 100px 0; /* Adjust padding as needed */
+    text-align: center;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .search-form {
+    margin-top: 20px;
+  }
+  
+  .search-form input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+  }
+  
+  .search-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+  }
+  
+  .search-form button:hover {
+    background-color: #0056b3;
+  }
+  
