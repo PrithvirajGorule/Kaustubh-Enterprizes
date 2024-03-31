@@ -1,43 +1,13 @@
-/*===== GOOGLE FONTS =====*/
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
-
-/*===== VARIABLES CSS =====*/
-:root {
-  --header-height: 3rem;
-  --font-semi: 600;
-  /*===== Colors =====*/
-  --first-color: hsl(var(--hue-color), 89%, 60%);
-  --second-color: hsl(var(--hue-color), 56%, 12%);
-  /*===== Font and Typography =====*/
-  --body-font: "Poppins", sans-serif;
-}
-
-/*===== BASE =====*/
-*, ::before, ::after {
+/* Base Styling */
+* {
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  /* margin: var(--header-height) 0 0 0; */
-  font-family: var(--body-font);
-  font-size: var(--normal-font-size);
-  color: var(--second-color);
-}
-
-h1, h2, p {
-  margin: 0;
-}
-
-ul {
   margin: 0;
   padding: 0;
-  list-style: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+<<<<<<< HEAD
 
 
 img {
@@ -131,65 +101,193 @@ img {
 }
 
 .education__school {
+=======
+body, html {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f3f5;
+  color: #102A43;
+>>>>>>> 2781807737063ae0463cb28020cb5a681a16fb1e
   font-size: 16px;
-  color: #666;
-  margin-bottom: 5px;
-}
-
-.education__date {
-  font-size: 14px;
-  color: #999;
-  margin-bottom: 20px;
-}
-
-.education__description {
-  font-size: 16px;
-  color: #555;
   line-height: 1.6;
 }
 
-/*===== CLASS CSS =====*/
-.section-title {
-  position: relative;
-  font-size: var(--h2-font-size);
-  color: var(--first-color);
-  margin-top: var(--mb-2);
-  margin-bottom: var(--mb-4);
-  text-align: center;
+/* Layout */
+.admin-product-operations {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
-.section-title::after {
+.sidebar {
+  flex-basis: 240px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.sidebar button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 15px;
+  margin-bottom: 10px;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 40px;
+  background-color: #ffffff;
+  overflow-y: auto;
+}
+
+/* Add Product Form & Search Section */
+.add-product-form,
+.search-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+.search-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.search-section input {
+  flex-grow: 1;
+  border: 2px solid #E4E7EB;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Product Cards Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  cursor: pointer;
+  height: 100%; /* New addition */
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px; /* Fixed height for all images */
+  object-fit: cover; /* This ensures the image covers the area, might crop */
+}
+
+/* Ensuring content inside cards is well-aligned */
+.product-card h3,
+.product-card p {
+  padding: 0 15px; /* Padding inside card for text */
+}
+
+.product-card p {
+  margin-bottom: 10px; /* Space at the bottom */
+  color: #667788; /* Slight color adjustment for text */
+}
+
+/* New CSS for ensuring footer of card (price/delete) is always at bottom */
+.product-card-footer {
+  margin-top: auto;
+  padding: 15px;
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-card-footer button {
+  padding: 5px 10px;
+  background-color: #102A43;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-card-footer button:hover {
+  background-color: #667eea;
+}
+
+
+/* Modal Styling */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  z-index: 1050;
+  width: auto;
+  max-width: 600px;
+}
+
+.close-button {
   position: absolute;
-  content: "";
-  width: 64px;
-  height: 0.18rem;
-  left: 0;
-  right: 0;
-  margin: auto;
-  top: 2rem;
-  background-color: var(--first-color);
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 24px;
+  color: #667eea;
 }
 
-.section {
-  padding-top: 3rem;
-  padding-bottom: 2rem;
+.modal-content h3, .modal-content p {
+  margin-top: 20px;
 }
 
-/*===== MEDIA QUERIES=====*/
-@media screen and (min-width: 576px) {
-  .container {
-    padding: 30px;
+/* Responsive Design */
+@media (max-width: 960px) {
+  .admin-product-operations {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-basis: auto;
+    padding: 20px 10px;
+  }
+
+  .main-content {
+    padding: 20px;
   }
 }
 
-@media screen and (min-width: 768px) {
-  .product__container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .product__container {
-    grid-template-columns: repeat(3, 1fr);
-  }
+/* Smooth Scrolling */
+.main-content {
+  scroll-behavior: smooth;
 }
