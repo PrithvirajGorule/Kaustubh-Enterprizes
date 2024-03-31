@@ -6,20 +6,21 @@
   /* position: fixed; */
   bottom: 0;
   width: 100%;
-  left: 0; /* Optional: Set left to 0 to ensure it stretches the entire width */
+  left: 0; 
+  right:0;/* Optional: Set left to 0 to ensure it stretches the entire width */
   z-index: 1000; /* Optional: Set z-index to ensure it appears above other elements */
 }
 
 .footer div {
 
-  flex-direction: row;
- 
+display: flex;
+ margin-right: 0px;
   align-items: center; /* Align items vertically in the middle */
   margin-bottom: 20px;
 }
 
 .footer div span {
-  flex: 1;
+ 
   margin-right: 20px;
 }
 

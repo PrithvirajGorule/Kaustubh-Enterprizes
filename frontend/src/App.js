@@ -15,6 +15,7 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import AdminProductOprations from "./Components2/AdminProductOprations";
 import AdminDashboard from "./Components2/AdminDashboard";
+import Product from "./Pages/Product";
 function App() {
   return (
     <div>
@@ -27,6 +28,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/Contact-us" element={<ContactUs />} />
           <Route path="/About" element={<About />} />
+          <Route path="/Products" element={<Product />} />
           {/* create admin */}
           <Route path="/register" element={<Register></Register>} />
           {/* login admin */}
