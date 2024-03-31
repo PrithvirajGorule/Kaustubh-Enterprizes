@@ -11,7 +11,7 @@
 }
 
 .footer div {
-
+  display: flex;
   flex-direction: row;
  
   align-items: center; /* Align items vertically in the middle */
