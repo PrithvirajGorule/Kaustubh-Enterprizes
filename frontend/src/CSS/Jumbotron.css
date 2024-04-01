@@ -2,6 +2,7 @@
   background-size: cover;
   background-position: center;
   color: #fff;
+  font-size: x-large;
   padding: 100px 0; /* Adjust padding as needed */
   text-align: center;
 }
@@ -22,6 +23,7 @@
   padding: 10px;
   border: none;
   border-radius: 5px 0 0 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow for depth effect */
 }
 
 .search-form button {
@@ -31,8 +33,9 @@
   border: none;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
+  transition: background-color 0.3s ease; /* Add transition effect */
 }
 
 .search-form button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Change background color on hover */
 }

@@ -113,7 +113,10 @@ const Homepage = () => {
 
       {/* cards */}
       <div>
-        <h1>Image Gallery</h1>
+      <br>
+      
+      </br>
+      <br></br>
         <div className="gallery-container">
           {products.map((item) => (
             <Card key={item.id} data={item} />

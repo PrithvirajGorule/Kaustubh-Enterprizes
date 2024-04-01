@@ -31,6 +31,8 @@ function AddProductForm() {
 
   return (
     <div>
+      <br></br>
+      <br></br>
       <h2>Add New Product</h2>
       <form onSubmit={handleSubmit}>
         <div>
