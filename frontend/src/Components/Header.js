@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className='content'>
         <div className="logo">
           <img src={logo} className='logoimg' alt="Logo" />
-          <a href="/">Kaustubh Enterprize</a>
+          <a href="/">Kaustubh Enterprise</a>
         </div>
         <div className="nav__content">
           <button className="menu-toggle" onClick={toggleMenu}>

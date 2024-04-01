@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './../CSS/Home.css'; // Import CSS file for homepage styling
-import { DataService } from '../Services/DataService';
-import Card from '../Components/Card';
 import { Link } from 'react-router-dom';
 import AdminProductService from '../Services2/AdminProductService'; // Import the AdminProductService
+import Card from '../Components/Card';
 
 const images = [ // Array of image URLs
   './../Assets/image1.jpg',
@@ -16,6 +15,24 @@ const images = [ // Array of image URLs
 const Homepage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [products, setProducts] = useState([]);
+  
+  const welcomeMessage = 'Weelcome to\nKaustubh Enterprise'; // Using newline character for line break
+  const [welcomeText, setWelcomeText] = useState('');
+
+  useEffect(() => {
+    let index = 0;
+    const typingInterval = setInterval(() => {
+      if (index < welcomeMessage.length-1) {
+        setWelcomeText(prevText => prevText + welcomeMessage[index]);
+        index++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 50); // Adjust typing speed here
+  
+    return () => clearInterval(typingInterval);
+  }, []);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,6 +59,7 @@ const Homepage = () => {
 
   const goToPrev = () => {
     setCurrentIndex(prevIndex);
+    
   };
 
   const goToNext = () => {
@@ -53,22 +71,43 @@ const Homepage = () => {
       <div className="hero-section">
         <div className="slider-container">
           <div className="slogan-box">
-            <h2 className="slogan">Kaustubh Enterprize Pvt Ltd</h2>
-            <p>We provide high quality steel with quality and assurance</p>
-            <button className='sloganbtn'><Link to={`/sendquotation`}>Apply for Quotation</Link> </button>
+            <h2 className="slogan">
+              {welcomeText.split('\n').map((line, index) => (
+                <React.Fragment key={index}>
+                  {line}
+                  <br />
+                </React.Fragment>
+              ))}
+            </h2>
+            <h1 className="slogan"></h1>
+            <p className="sloganpara">
+              We provide all types of sheet metal at wholesale rates CR, HR, GR
+              SS, Aluminum, etc. Specialist in cut to size and High Strength
+              Alloy Sheets. We deliver around the globe.
+            </p>
+            <button className="sloganbtn">
+              <Link to={`/sendquotation`} className="sloganlink">
+                Apply for Quotation
+              </Link>{" "}
+            </button>
           </div>
           <div className="slider">
-  {images.map((image, index) => (
-    <div
-      key={index}
-      className={`slider-item ${index === currentIndex ? 'current-slide' : (index === prevIndex ? 'prev-slide' : 'next-slide')}`}
-    >
-      <img src={image} alt={`Slide ${index}`} />
-      <div className="slider-overlay"></div> {/* Overlay */}
-    </div>
-  ))}
-</div>
-
+            {images.map((image, index) => (
+              <div
+                key={index}
+                className={`slider-item ${
+                  index === currentIndex
+                    ? 'current-slide'
+                    : index === prevIndex
+                    ? 'prev-slide'
+                    : 'next-slide'
+                }`}
+              >
+                <img src={image} alt={`Slide ${index}`} />
+                <div className="slider-overlay"></div> {/* Overlay */}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -76,7 +115,7 @@ const Homepage = () => {
       <div>
         <h1>Image Gallery</h1>
         <div className="gallery-container">
-          {products.map(item => (
+          {products.map((item) => (
             <Card key={item.id} data={item} />
           ))}
         </div>

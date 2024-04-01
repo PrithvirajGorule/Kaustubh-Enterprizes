@@ -11,9 +11,9 @@
   
   .slider-container {
     margin-top: 0px;
-    align-content: center;
+    align-content: left;
     position: relative;
-    height: 600px; /* Adjust base height as needed */
+    height: 800px; /* Adjust base height as needed */
     overflow: hidden; /* Hide overflowing content */
     
   }
@@ -58,32 +58,34 @@
   .next-slide {
     transform: translateX(100%);
   }
-  
   .current-slide {
     z-index: 1;
     transform: translateX(0);
   }
   
   .slogan-box {
+    
+    color:#fff;
     position: absolute;
-    z-index: 101; 
+    z-index: 10; 
     top: 50%;
-    left: 50%;
+    left: 40%;
     transform: translate(-50%, -50%);
    
-    background-color: #ffffffb5; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add box shadow */
+    /* background-color: #ffffffb5;  */
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); Add box shadow */ 
     padding: 20px;
     border-radius: 5px;
   }
   
   .sloganbtn{
     padding: 10px;
+    
     width: 200px;
     margin:10px;
     border-radius: 10px;
-    background-color: rgb(14, 48, 117);
-    color: #ffff;
+    background-color: rgb(141, 19, 38);
+    color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     border: navy;
 
@@ -92,25 +94,38 @@
     scale: 1.05;
     background-color: rgb(17, 72, 154);
   }
+
+  
   .slogan {
     z-index: 101;
     margin: 10px;
-    text-align: center;
-    font-size: 24px;
+    text-align: left;
+    font-size: 3rem;
     /* Set text color for better contrast */
-    color: black;
+    color: rgb(255, 255, 255);
   }
-
+  .sloganlink{
+    font-size: 15px;
+    color: #fff;
+  }
+ .sloganpara p{
+  font-size: 2rem;
+ }
   @media screen and (max-width: 768px) {
     .slogan-box {
       padding: 10px;
       max-width: 80%;
       display: flex;
       flex-direction: column;
+      text-align: left;
+      top: 50%;
+      left: 40%;
+      transform: translate(-50%, -50%);
     }
   
     .slogan {
-      font-size: 20px;
+      font-size: 25px;
+      margin: 10px 10px;
     }
   
     .button {
@@ -118,27 +133,60 @@
       font-size: 14px;
     }
   }
+  .sloganpara{
+    font-size: 1rem;
+    margin: 10px 10px;
+   }
   
-  @media screen and (max-width: 480px) {
-    .slogan-box {
-        margin-top: 10px;
-        width: 250px;
-      padding: 5px;
-      max-width: 90%;
-    }
   
-    .slogan {
-        margin: 0px;
-      font-size: 16px;
-    }
-  
-    .sloganbtn {
-      padding: 8px 5px;
-      font-size: 12px;
-      width: 150px;
-    }
+@media screen and (max-width: 480px) {
+  .slogan-box {
+    margin-top: 10px;
+    width: 250px;
+    padding: 5px;
+    max-width: 90%;
+   
+    
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%) translateY(-50%);
   }
   
+
+  .slogan {
+    margin: 0px 10px;
+    font-size: 16px;
+   /* Center align text */
+  }
+
+  .sloganbtn {
+    width: 150px;
+    display: flex;
+    height:35px;
+    align-items: center;
+    justify-content: center;
+    
+    padding: 3px 3px;
+    margin: 10px; /* Center button horizontally */
+  }
+
+  .sloganlink{
+    font-size: 11px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin :0px;
+    color: #fff;
+  }
+
+  .sloganpara {
+     /* Center align paragraph */
+  }
+  .sloganpara{
+    font-size: 11px;
+    margin: 5px 10px;
+   }
+   .slogan p{
+    font-size: 5px;
+   }
+}
   
   .slider-prev,
   .slider-next {
