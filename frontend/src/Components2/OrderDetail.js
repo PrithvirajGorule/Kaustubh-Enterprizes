@@ -103,6 +103,7 @@ function OrderDetail() {
           {order.products.map((product, index) => (
             <tr key={index}>
               <td>{product.name}</td>
+              
               <td>${product.price}</td>
               <td>{product.quantity}</td>
               <td>
