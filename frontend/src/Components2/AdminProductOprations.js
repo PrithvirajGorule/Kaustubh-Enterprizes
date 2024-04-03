@@ -187,7 +187,7 @@ function AdminProductOperations() {
       <div className="products-grid">
           {products.filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase())).map((product) => (
             <div className="product-card" key={product.id} onClick={() => setSelectedProduct(product)}>
-              <img src={product.image} alt={product.name} className="product-image" />
+              <img src={product.url} alt={product.name} className="product-image" />
               <h3>{product.name}</h3>
               <p>{product.description}</p>
               <p>Price: ${product.price}</p>
