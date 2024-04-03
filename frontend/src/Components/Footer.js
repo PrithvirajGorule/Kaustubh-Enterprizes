@@ -31,7 +31,7 @@ const Footer = () => {
 
         <section className="FollowUs">
           <h3>Follow us</h3>
-          <div className="footer__social">
+          
             <a href="https://www.instagram.com/vasubiradar" className="footer__icon">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
@@ -41,7 +41,8 @@ const Footer = () => {
             <a href="#" className="footer__icon">
               <FontAwesomeIcon icon={faFacebook} />
             </a>
-          </div>
+            
+          
         </section>
       </div>
       

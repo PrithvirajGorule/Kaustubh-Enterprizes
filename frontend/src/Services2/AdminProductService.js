@@ -11,10 +11,15 @@ class AdminProductService {
     return db.add(product);
   }
 
-  update(id, value) {
-    return db.doc(id).update(value);
-  }
+  // update(id, value) {
+  //   return db.doc(id).update(value);
+  // }
 
+  update(id, order) {
+    // Remove the ID from the order object as it's already provided separately
+    const { id: orderId, ...orderData } = order;
+    return db.doc(id).set(orderData, { merge: true });
+  }
   delete(id) {
     return db.doc(id).delete();
   }

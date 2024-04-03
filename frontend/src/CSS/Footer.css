@@ -1,13 +1,10 @@
 .footer {
-  background-image: url('./../../public/Assets/footer.png');
-  background-size: cover;
+  margin-top: 50px;
   background-color: #0e1730;
-
   color: #fff;
   padding: 20px;
   width: 100%;
   z-index: 1000;
-  color: #777;
 }
 
 .footer-content {
@@ -47,6 +44,7 @@
 }
 
 .footer__icon {
+ 
   font-size: 24px;
   margin-right: 10px;
 }
@@ -54,8 +52,31 @@
 @media only screen and (max-width: 768px) {
   .footer-content {
     flex-direction: column;
-    
-   
+    align-items: left;
+  }
+  .footer h2,
+  .footer h3,
+  .footer a,
+  .footer p {
+    font-size: 14px; /* Adjust font size for smaller screens */
   }
 }
 
+@media only screen and (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: left;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .footer-content {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .footer-content section {
+    width: 100%;
+  }
+}

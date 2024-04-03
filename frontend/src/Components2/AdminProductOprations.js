@@ -4,6 +4,8 @@ import AdminProductService from '../Services2/AdminProductService';
 import './../CSS/AdminProductList.css';
 
 // ProductCard component for displaying product details
+
+
 function ProductCard({ product }) {
   return (
     <div className="product-card">
@@ -14,6 +16,12 @@ function ProductCard({ product }) {
     </div>
   );
 }
+
+
+
+
+
+
 
 // Main component for admin product operations
 function AdminProductOperations() {
@@ -28,11 +36,39 @@ function AdminProductOperations() {
   // State for handling search query
   const [searchQuery, setSearchQuery] = useState('');
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
+   // State for managing the updated product details
+   const [updatedProduct, setUpdatedProduct] = useState({ id: '', name: '', description: '', price: '', url: '' });
 
   // Effect hook for fetching products on component mount
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  const handleDelete = async (productId) => {
+    try {
+      await AdminProductService.delete(productId);
+      // After deletion, fetch the updated list of products
+      fetchProducts();
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
+  };
+
+  const handleUpdateProduct = async (id) => {
+    try {
+      await AdminProductService.update(id,updatedProduct);
+      fetchProducts(); // Refresh the products list
+      setUpdatedProduct({ id: '', name: '', description: '', price: '', url: '' }); // Reset form
+      setShowUpdateForm(false); // Hide the form after updating
+    } catch (error) {
+      console.error('Error updating product:', error);
+    }
+  };
+  const setProductForUpdate = (product) => {
+    setUpdatedProduct(product);
+    setShowUpdateForm(true);
+  };
 
   // Function to fetch products
   const fetchProducts = async () => {
@@ -66,10 +102,7 @@ function AdminProductOperations() {
 
   };
 
-  const handleDelete = async () => {
-
-  };
-
+  
 
   // Functions to handle update and delete operations go here...
 
@@ -96,6 +129,24 @@ function AdminProductOperations() {
     );
   }
 
+  function UpdateProductModal({ isOpen, onClose, onSubmit, product, setProduct }) {
+    if (!isOpen) return null;
+
+    return (
+      <div className="modal">
+        <div className="modal-content">
+          <span className="close-button" onClick={onClose}>&times;</span>
+          <h2>Update Product</h2>
+          <input type="text" placeholder="Name" value={product.name} onChange={(e) => setProduct({ ...product, name: e.target.value })} />
+          <input type="text" placeholder="Description" value={product.description} onChange={(e) => setProduct({ ...product, description: e.target.value })} />
+          <input type="number" placeholder="Price" value={product.price} onChange={(e) => setProduct({ ...product, price: parseFloat(e.target.value) })} />
+          <input type="text" placeholder="URL" value={product.url} onChange={(e) => setProduct({ ...product, url: e.target.value })} />
+          <button onClick={onSubmit}>Update Product</button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="admin-product-operations">
       {/* Main content area */}
@@ -113,6 +164,14 @@ function AdminProductOperations() {
           setProduct={setNewProduct}
         />
 
+<UpdateProductModal
+          isOpen={showUpdateForm}
+          onClose={() => setShowUpdateForm(false)}
+          onSubmit={handleUpdateProduct}
+          product={updatedProduct}
+          setProduct={setUpdatedProduct}
+        />
+
       {/* Search section */}
       <div className="search-section">
         <input
@@ -124,31 +183,33 @@ function AdminProductOperations() {
       </div>
 
       {/* Products display grid */}
+      {/* Products display grid */}
       <div className="products-grid">
-        {products.filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase())).map((product) => (
-          <div className="product-card" key={product.id} onClick={() => setSelectedProduct(product)}>
-            <img src={product.image} alt={product.name} className="product-image" />
-            <h3>{product.name}</h3>
-            <p>{product.description}</p>
-            <p>Price: ${product.price}</p>
-            <button onClick={(e) => { e.stopPropagation(); handleDelete(product.id); }}>Delete</button>
-          </div>
-        ))}
-      </div>
+          {products.filter(product => product.name.toLowerCase().includes(searchQuery.toLowerCase())).map((product) => (
+            <div className="product-card" key={product.id} onClick={() => setSelectedProduct(product)}>
+              <img src={product.image} alt={product.name} className="product-image" />
+              <h3>{product.name}</h3>
+              <p>{product.description}</p>
+              <p>Price: ${product.price}</p>
+              <button onClick={(e) => { e.stopPropagation(); handleDelete(product.id); }}>Delete</button>
+              <button onClick={(e) => { e.stopPropagation(); setProductForUpdate(product.id,product); }}>Update</button>
+            </div>
+          ))}
+        </div>
 
       {/* Modal for viewing selected product details */}
       {selectedProduct && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close-button" onClick={() => setSelectedProduct(null)}>&times;</span>
-            <img src={selectedProduct.image} alt={selectedProduct.name} className="product-image-modal" />
-            <h3>{selectedProduct.name}</h3>
-            <p>{selectedProduct.description}</p>
-            <p>Price: ${selectedProduct.price}</p>
-            {/* More details or actions for the selected product can be added here */}
+          <div className="modal">
+            <div className="modal-content">
+              <span className="close-button" onClick={() => setSelectedProduct(null)}>&times;</span>
+              <img src={selectedProduct.image} alt={selectedProduct.name} className="product-image-modal" />
+              <h3>{selectedProduct.name}</h3>
+              <p>{selectedProduct.description}</p>
+              <p>Price: ${selectedProduct.price}</p>
+              {/* More details or actions for the selected product can be added here */}
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </main>
   </div>
 );
