@@ -38,24 +38,49 @@ function RegistrationForm() {
       setError(error.message);
     }
   };
-
   return (
-    <div>
-      <h2>Registration Form</h2>
-      <form onSubmit={handleRegister}>
-        <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+    <div className="container">
+      <div className="screen">
+        <div className="screen__content">
+          <h2 className="sign-in-heading">Sign Up</h2>
+          <form className="login" onSubmit={handleRegister}>
+            <div className="login__field">
+              <i className="login__icon fas fa-user"></i>
+              <input
+                type="email"
+                className="login__input"
+                placeholder="User name / Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="login__field">
+              <i className="login__icon fas fa-lock"></i>
+              <input
+                type="password"
+                className="login__input"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" className="button login__submit">
+              <span className="button__text">Register Now</span>
+              <i className="button__icon fas fa-chevron-right"></i>
+            </button>
+            {error && <p className="error-message">{error}</p>}
+          </form>
         </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <div className="screen__background">
+          <span className="screen__background__shape screen__background__shape4"></span>
+          <span className="screen__background__shape screen__background__shape3"></span>
+          <span className="screen__background__shape screen__background__shape2"></span>
+          <span className="screen__background__shape screen__background__shape1"></span>
         </div>
-        <button type="submit">Register</button>
-        {error && <p>{error}</p>}
-      </form>
+      </div>
     </div>
   );
 }
-
 export default RegistrationForm;

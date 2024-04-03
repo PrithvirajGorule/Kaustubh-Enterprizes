@@ -1,13 +1,24 @@
 .jumbotron {
+  position: relative; /* Make position relative to allow absolute positioning of overlay */
   background-size: cover;
   background-position: center;
-  color: #fff;
-  font-size: x-large;
-  padding: 100px 0; /* Adjust padding as needed */
+  color: #dddddd;
+  font-size: xx-large;
+  padding: 60px 0; /* Adjust padding as needed */
   text-align: center;
 }
 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.622); /* Add black overlay with 50% opacity */
+}
+
 .container {
+  position: relative; /* Ensure container stays on top of overlay */
   max-width: 100%; /* Change max-width to 100% for full width */
   padding: 0 20px; /* Add padding to avoid content sticking to edges */
 }
