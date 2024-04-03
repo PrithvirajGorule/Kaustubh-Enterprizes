@@ -450,7 +450,7 @@ img {
 
 
 /* ===== FOOTER =====*/
-.footer {
+/* .footer {
   background-color: var(--second-color);
   color: #fff;
   text-align: center;
@@ -471,7 +471,7 @@ img {
 }
 .footer__copy {
   font-size: var(--smaller-font-size);
-}
+} */
 
 /* ===== MEDIA QUERIES=====*/
 @media screen and (max-width: 320px) {

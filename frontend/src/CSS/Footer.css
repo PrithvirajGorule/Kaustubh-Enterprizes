@@ -1,70 +1,61 @@
-
 .footer {
+  background-image: url('./../../public/Assets/footer.png');
+  background-size: cover;
   background-color: #0e1730;
+
   color: #fff;
   padding: 20px;
-  /* position: fixed; */
-  bottom: 0;
   width: 100%;
-  left: 0; 
-  right:0;/* Optional: Set left to 0 to ensure it stretches the entire width */
-  z-index: 1000; /* Optional: Set z-index to ensure it appears above other elements */
+  z-index: 1000;
+  color: #777;
 }
 
-
-
-.footer div span {
- 
-  margin-right: 20px;
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.footer div span:last-child {
-  margin-right: 0;
+.footer section {
+  flex: 1;
+  padding: 0 10px;
 }
 
 .footer h2,
 .footer h3 {
   margin-top: 0;
-  font-weight: bold; /* Make headings bold */
+  font-weight: bold;
 }
 
 .footer a {
-  display: block; /* Display links as block elements */
+  display: block;
   color: #fff;
   text-decoration: none;
-  margin-bottom: 5px; /* Add space between links */
+  margin-bottom: 5px;
 }
 
 .footer img {
   width: 50px;
   height: auto;
-  margin-right: 10px; /* Add margin between image and text */
-  border-radius: 50%; /* Make the image circular */
+  margin-right: 10px;
+  border-radius: 50%;
 }
 
-.Contactfooter{
-text-align: left;
-text-decoration: none;
-font-weight: 1;
-}
-
-.QuickLinks{
-  text-align: left;
-  font-weight: 1;
-}
-
-.info{
-  text-align: left;
-  font-weight: 1;
-}
 .footer__social {
   display: flex;
   justify-content: center;
 }
 
-
-
 .footer__icon {
   font-size: 24px;
-  margin-right: 1px; /* Add 1px space between each icon */
+  margin-right: 10px;
 }
+
+@media only screen and (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    
+   
+  }
+}
+

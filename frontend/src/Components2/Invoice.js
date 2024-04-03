@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import orderService from "../Services2/order.service";
 import { Link } from 'react-router-dom';
-import "./Invoice.css"; // Import CSS file for styling
+import "./../CSS/Invoice.css"; // Import CSS file for styling
 
 function Invoice() {
   const { id } = useParams();
@@ -93,7 +93,7 @@ function Invoice() {
         <p>Total: ${total}</p>
         <p>Total in Words: {totalInWords}</p>
       </div>
-      <div className="footer">
+      <div className="invoicefooter">
         <p>Terms & Conditions:</p>
         <p>Additional Notes:</p>
         <p>For any queries, email us at: example@example.com</p>

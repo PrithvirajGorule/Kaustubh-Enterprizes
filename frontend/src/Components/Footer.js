@@ -3,33 +3,33 @@ import './../CSS/Footer.css';
 import logo from './../Assects/logo.jpeg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faBriefcase, faInfoCircle, faEnvelope, faLocation, faPhone, faLocationPin } from '@fortawesome/free-solid-svg-icons';
-import { faInstagram,faLinkedin,faFacebook } from '@fortawesome/free-brands-svg-icons'; // Import the Instagram icon
+import { faInstagram, faLinkedin, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <span className='info'>
+        <section className='info'>
           <img src={logo} alt="Logo" />
           <h2>Kaustubh Enterprise</h2>
           <p>We provide high-quality steel</p>
-        </span>
+        </section>
 
-        <span className='QuickLinks'>
+        <section className='QuickLinks'>
           <h3>Quick Links</h3>
           <a href="/About"><FontAwesomeIcon icon={faHome} /> About</a>
           <a href="/Contact-us"><FontAwesomeIcon icon={faEnvelope} /> Contact</a>
           <a href="#"><FontAwesomeIcon icon={faBriefcase} /> Services</a>
-        </span>
+        </section>
 
-        <span className='Contactfooter'>
+        <section className='Contactfooter'>
           <h3>Contact us</h3>
           <p><FontAwesomeIcon icon={faLocationPin}></FontAwesomeIcon> MIDC Bhosari, Pimpri Chinchwad, Pune 411026</p>
           <p><FontAwesomeIcon icon={faEnvelope} />  kaustubh.km@gmail.com</p>
           <p><FontAwesomeIcon icon={faPhone} /> +91 9970745450</p>
-        </span>
+        </section>
 
-        <span className="FollowUs">
+        <section className="FollowUs">
           <h3>Follow us</h3>
           <div className="footer__social">
             <a href="https://www.instagram.com/vasubiradar" className="footer__icon">
@@ -42,7 +42,7 @@ const Footer = () => {
               <FontAwesomeIcon icon={faFacebook} />
             </a>
           </div>
-        </span>
+        </section>
       </div>
       
       <p>&copy; Kaustubh Enterprises Pvt Ltd. All rights reserved.</p>
