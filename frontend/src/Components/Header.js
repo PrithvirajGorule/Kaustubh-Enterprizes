@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './../CSS/Navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faBriefcase, faInfoCircle, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faBriefcase, faInfoCircle, faEnvelope, faColonSign, faSignIn } from '@fortawesome/free-solid-svg-icons';
 import logo from'./../Assects/logo.jpeg';
 
 const Navbar = () => {
@@ -42,6 +42,10 @@ const Navbar = () => {
             <li>
               <FontAwesomeIcon icon={faEnvelope} />
               <a href="Contact-us">Contact Us</a>
+            </li>
+            <li>
+              <FontAwesomeIcon icon={faSignIn} />
+              <a href="Login">Login</a>
             </li>
           </ul>
         </div>

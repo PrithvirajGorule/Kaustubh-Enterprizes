@@ -61,25 +61,13 @@ function LoginForm() {
               />
             </div>
             <button type="submit" className="button login__submit">
-              <span className="button__text">Log In Now</span>
+              <span className="button__text">Sign In </span>
               <i className="button__icon fas fa-chevron-right"></i>
             </button>
+            
             {error && <p className="error-message">{error}</p>}
           </form>
-          <div className="social-login">
-            <h3>log in via</h3>
-            <div className="social-icons">
-            <a href="https://www.instagram.com/vasubiradar" className="footer__icon">
-              <FontAwesomeIcon icon={faInstagram} />
-            </a>
-            <a href="https://in.linkedin.com/company/kaustubh-enterprises" className="footer__icon">
-              <FontAwesomeIcon icon={faLinkedin} />
-            </a>
-            <a href="#" className="footer__icon">
-              <FontAwesomeIcon icon={faFacebook} />
-            </a>
-            </div>
-          </div>
+       
           {/* Link to dashboard */}
           <Link to="/admindashboard" style={{ display: "none" }} ref={navigationRef} />
         </div>

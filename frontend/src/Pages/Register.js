@@ -2,7 +2,8 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js'
 import { getAuth ,createUserWithEmailAndPassword} from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js';
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"
-
+import { faInstagram,faLinkedin,faFacebook } from '@fortawesome/free-brands-svg-icons'; // Import the Instagram icon
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // Register.js
 import React, { useState } from 'react';
  // Import the createUserWithEmailAndPassword function from firebase/auth
@@ -67,11 +68,20 @@ function RegistrationForm() {
               />
             </div>
             <button type="submit" className="button login__submit">
-              <span className="button__text">Register Now</span>
+              <span className="button__text">Sign Up</span>
               <i className="button__icon fas fa-chevron-right"></i>
             </button>
+            <br>
+            </br>
+            <a href="/login" className="button">
+              <span className="button__text">Sign In</span>
+              <i className="button__icon fas fa-chevron-right"></i>
+            </a>
             {error && <p className="error-message">{error}</p>}
           </form>
+          
+          {/* Link to dashboard */}
+        
         </div>
         <div className="screen__background">
           <span className="screen__background__shape screen__background__shape4"></span>
