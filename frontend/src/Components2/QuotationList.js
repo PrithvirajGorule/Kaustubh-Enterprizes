@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import orderService from '../Services2/order.service';
+import'./../CSS/QuotationList.css';
+import Jumbotron from '../Components/Jumbotron';
 
 function QuotationList() {
   const [ordersWithCheckMark, setOrdersWithCheckMark] = useState([]);
@@ -24,35 +26,44 @@ function QuotationList() {
   useEffect(() => {
     fetchData();
   }, []);
-
   const handleCheckMarkClick = async (orderId) => {
-    try {
-      // Update the check mark status in the database
-      await orderService.update(orderId, { checkMark: true });
-  
-      // Refetch data to update the tables
-      fetchData();
-    } catch (error) {
-      console.error('Error updating check mark status:', error);
+    const confirmed = window.confirm("Are you sure you want to mark this order?");
+    if (confirmed) {
+      try {
+        // Update the check mark status in the database
+        await orderService.update(orderId, { checkMark: true });
+    
+        // Refetch data to update the tables
+        fetchData();
+      } catch (error) {
+        console.error('Error updating check mark status:', error);
+      }
     }
   };
-
+  
   const handleUncheckMarkClick = async (orderId) => {
-    try {
-      // Update the check mark status in the database
-      await orderService.update(orderId, { checkMark: false });
-  
-      // Refetch data to update the tables
-      fetchData();
-    } catch (error) {
-      console.error('Error updating check mark status:', error);
+    const confirmed = window.confirm("Are you sure you want to uncheck this order?");
+    if (confirmed) {
+      try {
+        // Update the check mark status in the database
+        await orderService.update(orderId, { checkMark: false });
+    
+        // Refetch data to update the tables
+        fetchData();
+      } catch (error) {
+        console.error('Error updating check mark status:', error);
+      }
     }
   };
+  
   
   return (
+  
     <div>
-      <h1>Orders List</h1>
+        <Jumbotron></Jumbotron>
+      
       <h2>With Check Mark</h2>
+      <br></br>
       <table>
         <thead>
           <tr>
@@ -74,8 +85,9 @@ function QuotationList() {
           ))}
         </tbody>
       </table>
-      
+      <br></br>
       <h2>Without Check Mark</h2>
+      <br></br>
       <table>
         <thead>
           <tr>
