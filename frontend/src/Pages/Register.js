@@ -27,10 +27,12 @@ const auth = getAuth(app);
 function RegistrationForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, SetConfirmPassword] = useState('');
   const [error, setError] = useState(null);
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    if(password === confirmPassword){
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       console.log('User registered:', userCredential.user);
@@ -38,6 +40,10 @@ function RegistrationForm() {
     } catch (error) {
       setError(error.message);
     }
+  }
+  else{
+    return
+  }
   };
   return (
     <div className="container">
@@ -65,6 +71,17 @@ function RegistrationForm() {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="login__field">
+              
+              <input
+                type="password"
+                className="login__input"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => SetConfirmPassword(e.target.value)}
                 required
               />
             </div>
