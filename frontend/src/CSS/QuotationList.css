@@ -30,14 +30,14 @@ h2 {
   /* Jumbotron styles */
   
   /* Button styles */
-  button {
+  /* button {
     background-color: #4CAF50;
     color: white;
     border: none;
     padding: 8px 16px;
     cursor: pointer;
     border-radius: 4px;
-  }
+  } */
   
   button:hover {
     background-color: #45a049;
