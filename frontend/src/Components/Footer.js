@@ -7,31 +7,55 @@ import { faInstagram, faLinkedin, faFacebook } from '@fortawesome/free-brands-sv
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <section className='info'>
-          <img src={logo} alt="Logo" />
-          <h2>Kaustubh Enterprise</h2>
-          <p>We provide high-quality steel</p>
-        </section>
 
-        <section className='QuickLinks'>
-          <h3>Quick Links</h3>
-          <a href="/About"><FontAwesomeIcon icon={faHome} /> About</a>
-          <a href="/Contact-us"><FontAwesomeIcon icon={faEnvelope} /> Contact</a>
-          <a href="#"><FontAwesomeIcon icon={faBriefcase} /> Services</a>
-        </section>
 
-        <section className='Contactfooter'>
-          <h3>Contact us</h3>
-          <p><FontAwesomeIcon icon={faLocationPin}></FontAwesomeIcon> MIDC Bhosari, Pimpri Chinchwad, Pune 411026</p>
-          <p><FontAwesomeIcon icon={faEnvelope} />  kaustubh.km@gmail.com</p>
-          <p><FontAwesomeIcon icon={faPhone} /> +91 9970745450</p>
-        </section>
+< footerbody>
+   
+    <footer class="footer-distributed">
 
-        <section className="FollowUs">
-          <h3>Follow us</h3>
-          
+        <div class="footer-left">
+            <h3>Kaustubh<span><br></br>Enterprise</span></h3>
+
+            <p class="footer-links">
+                <a href="/">Home</a>
+                |
+                <a href="/About">About</a>
+                |
+                <a href="Contact-us">Contact</a>
+                |
+                <a href="/Products">Products</a>
+            </p>
+
+            <p class="footer-company-name">Copyright © <strong>Kaustubh Enterprise</strong> All rights reserved</p>
+        </div>
+
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p>W-265, MIDC, Bhosari, Pimpri-Chinchwad,<br></br>
+Maharashtra 411026, India</p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+91 9970745450</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="kaustubh.km@gmail.com">kaustubh.km@gmail.com</a></p>
+            </div>
+        </div>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>About the company</span>
+                <strong>Kaustubh Enterprise</strong> provide all types of sheet metal
+at wholesale rates CR, HR GR SS,
+Aluminum, etc. Specialist in cut to size
+and High Strength Alloy Sheets. We
+deliver around the globe.
+                
+            </p>
+            <div class="footer-icons">
             <a href="https://www.instagram.com/vasubiradar" className="footer__icon">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
@@ -41,13 +65,13 @@ const Footer = () => {
             <a href="#" className="footer__icon">
               <FontAwesomeIcon icon={faFacebook} />
             </a>
-            
-          
-        </section>
-      </div>
-      
-      <p>&copy; Kaustubh Enterprises Pvt Ltd. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
+</footerbody>
+
+
+        
   );
 };
 
