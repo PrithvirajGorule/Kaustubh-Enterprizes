@@ -115,8 +115,8 @@ button[type="submit"] {
         font-size: 14px;
     }
 
-    input[type="text"],
-    input[type="email"],
+    input,
+    input,
     textarea {
         padding: 8px;
     }

@@ -2,10 +2,10 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js'
 import { getAuth ,createUserWithEmailAndPassword} from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js';
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"
-import { faInstagram,faLinkedin,faFacebook } from '@fortawesome/free-brands-svg-icons'; // Import the Instagram icon
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 // Register.js
 import React, { useState } from 'react';
+import logo from'./../Assects/logo.jpeg';
  // Import the createUserWithEmailAndPassword function from firebase/auth
 
 // Firebase project configuration
@@ -43,10 +43,11 @@ function RegistrationForm() {
     <div className="container">
       <div className="screen">
         <div className="screen__content">
-          <h2 className="sign-in-heading">Sign Up</h2>
+          <img className="login_img" src={logo}></img>
+          
           <form className="login" onSubmit={handleRegister}>
             <div className="login__field">
-              <i className="login__icon fas fa-user"></i>
+              
               <input
                 type="email"
                 className="login__input"
@@ -57,7 +58,7 @@ function RegistrationForm() {
               />
             </div>
             <div className="login__field">
-              <i className="login__icon fas fa-lock"></i>
+              
               <input
                 type="password"
                 className="login__input"
@@ -67,16 +68,18 @@ function RegistrationForm() {
                 required
               />
             </div>
-            <button type="submit" className="button login__submit">
-              <span className="button__text">Sign Up</span>
-              <i className="button__icon fas fa-chevron-right"></i>
+            <button type="submit" className="login__submit">
+              <span className="button__text">Register</span>
+              
             </button>
             <br>
             </br>
             <a href="/login" className="button">
-              <span className="button__text">Sign In</span>
-              <i className="button__icon fas fa-chevron-right"></i>
+
+              
             </a>
+            <br></br>
+            already a user ? <a href='/login'>login</a>
             {error && <p className="error-message">{error}</p>}
           </form>
           
