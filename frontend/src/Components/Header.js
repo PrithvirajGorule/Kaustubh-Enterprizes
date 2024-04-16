@@ -43,10 +43,7 @@ const Navbar = () => {
               <FontAwesomeIcon icon={faEnvelope} />
               <a href="Contact-us">Contact Us</a>
             </li>
-            <li>
-              <FontAwesomeIcon icon={faSignIn} />
-              <a href="Login">Login</a>
-            </li>
+           
           </ul>
         </div>
       </div>
