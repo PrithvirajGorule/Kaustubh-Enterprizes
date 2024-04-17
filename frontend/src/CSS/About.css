@@ -192,7 +192,7 @@ img {
 }
 
 /*BUTTONS*/
-.button {
+.aboutbutton {
   display: inline-block;
   background-color: var(--first-color);
   color: #fff;
@@ -201,26 +201,35 @@ img {
   border-radius: 0.5rem;
   transition: 0.3s;
 }
-.button:hover {
+.aboutbutton:hover {
   box-shadow: 0px 10px 36px rgba(0, 0, 0, 0.15);
 }
 
 /* ===== ABOUT =====*/
+.about.section {
+  padding: 80px 0;
+  justify-content: center; /* Center everything horizontally */
+}
+
 .about__container {
-  row-gap: 2rem;
-  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  justify-content: center; /* Center everything horizontally */
 }
-.about__subtitle {
-  margin-bottom: var(--mb-2);
-}
+
 .about__img {
   justify-self: center;
 }
+
 .about__img img {
   width: 200px;
   border-radius: 0.5rem;
 }
 
+.about__subtitle {
+  margin-bottom: var(--mb-2);
+}
 /* ===== SKILLS =====*/
 
 .skills__data {
@@ -243,6 +252,7 @@ img {
   display: flex;
   align-items: center;
 }
+
 .skills__bar {
   position: absolute;
   left: 0;
@@ -266,14 +276,6 @@ img {
   background-color: #ffffff; /* Adjust the background color as needed */
 }.section-title {
   margin-bottom: 20px; /* Adjust the value as needed */
-}
-
-.about__img img {
-  width: 100%; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
-  max-width: 900px; /* Limit the maximum width if necessary */
-  display: block; /* Ensure the image takes up the entire container */
-  margin: 0 auto; /* Center the image horizontally */
 }
 
 .service__box:hover {

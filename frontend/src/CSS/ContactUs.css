@@ -32,8 +32,8 @@ label {
     font-family: 'Arial', sans-serif; /* Change the font family */
 }
 
-input[type="text"],
-input[type="email"],
+input,
+input,
 textarea {
     width: 100%;
     padding: 10px;
@@ -47,7 +47,7 @@ textarea {
     resize: vertical;
 }
 
-button[type="submit"] {
+.conntact-button {
     display: block;
     width: 100%;
     padding: 10px;
@@ -61,7 +61,7 @@ button[type="submit"] {
     font-family: 'Arial', sans-serif; /* Change the font family */
 }
 
-button[type="submit"]:hover {
+.conntact-button:hover {
     background-color: #0056b3;
 }
 
@@ -115,8 +115,8 @@ button[type="submit"] {
         font-size: 14px;
     }
 
-    input[type="text"],
-    input[type="email"],
+    input,
+    input,
     textarea {
         padding: 8px;
     }
