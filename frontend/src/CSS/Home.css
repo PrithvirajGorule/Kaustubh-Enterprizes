@@ -13,13 +13,13 @@
     margin-top: 0px;
     align-content: left;
     position: relative;
-    height: 800px; /* Adjust base height as needed */
+    height: 600px; /* Adjust base height as needed */
     overflow: hidden; /* Hide overflowing content */
     
   }
   
   .slider img {
-    height: 900px;
+    height: 600px;
     width: 100%;
     object-fit: cover;
     
