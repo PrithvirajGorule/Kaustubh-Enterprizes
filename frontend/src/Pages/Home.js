@@ -5,10 +5,10 @@ import AdminProductService from '../Services2/AdminProductService'; // Import th
 import Card from '../Components/Card';
 
 const images = [ // Array of image URLs
-  './../Assets/image1.jpg',
-  './../Assets/image2.jpg',
-  './../Assets/image3.jpg',
-  './../Assets/image4.jpg',
+  './../Assets/image1.png',
+  './../Assets/image2.png',
+  './../Assets/image3.png',
+  './../Assets/image4.png',
   // Add more image URLs as needed
 ];
 
