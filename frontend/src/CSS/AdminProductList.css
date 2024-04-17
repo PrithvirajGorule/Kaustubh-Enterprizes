@@ -1,8 +1,5 @@
 /* Base Styling */
 
-
-
-
 /* Layout */
 .admin-product-operations {
   display: flex;
@@ -31,6 +28,15 @@
   transition: all 0.2s ease-in-out;
 }
 
+/* Separate button colors for delete and update */
+.sidebar button.delete-button {
+  background-color: #ff6b6b; /* Red color for delete button */
+}
+
+.sidebar button.update-button {
+  background-color: #667eea; /* Blue color for update button */
+}
+
 .sidebar button:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
@@ -41,6 +47,11 @@
   padding: 40px;
   background-color: #ffffff;
   overflow-y: auto;
+}
+
+/* Add some top margin and adjust right side slot */
+.main-content {
+  margin-top: 20px;
 }
 
 /* Add Product Form & Search Section */
@@ -119,9 +130,17 @@
   align-items: center;
 }
 
+/* Separate button colors for delete and update */
+.product-card-footer button.delete-button {
+  background-color: #ff6b6b; /* Red color for delete button */
+}
+
+.product-card-footer button.update-button {
+  background-color: #667eea; /* Blue color for update button */
+}
+
 .product-card-footer button {
   padding: 5px 10px;
-  background-color: #102A43;
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -130,9 +149,8 @@
 }
 
 .product-card-footer button:hover {
-  background-color: #667eea;
+  filter: brightness(90%); /* Slight dim effect on hover */
 }
-
 
 /* Modal Styling */
 .modal {

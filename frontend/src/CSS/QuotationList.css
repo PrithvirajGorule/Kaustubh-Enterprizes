@@ -1,55 +1,91 @@
-/* QuotationList.css */
-
 /* Center h2 */
 h2 {
-    text-align: center;
-    font-weight: bold;
+  text-align: center;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+/* Style tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto; /* Center the table */
+  margin-left: 20px; /* Add left margin */
+  margin-right: 20px; /* Add right margin */
+  margin-bottom: 20px; /* Add margin at the bottom */
+}
+
+th, td {
+  border: 1px solid #000000;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Button styles */
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Link styles */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  /* Center h2 */
+  h2 {
+    font-size: large; /* Adjust font size for smaller screens */
   }
-  
+
   /* Style tables */
   table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 0 auto; /* Center the table */
-    margin-left: 20px; /* Add left margin */
-    margin-right: 20px; /* Add right margin */
-    margin-bottom: 20px; /* Add margin at the bottom */
+    margin-left: 10px; /* Reduce left margin for smaller screens */
+    margin-right: 10px; /* Reduce right margin for smaller screens */
   }
-  
-  th, td {
-    border: 1px solid #000000;
-    padding: 8px;
-    text-align: left;
+}
+
+@media (max-width: 576px) {
+  /* Center h2 */
+  h2 {
+    font-size: medium; /* Further adjust font size for even smaller screens */
   }
-  
-  th {
-    background-color: #f2f2f2;
+
+  /* Style tables */
+  table {
+    margin-left: 5px; /* Reduce left margin further for smallest screens */
+    margin-right: 5px; /* Reduce right margin further for smallest screens */
   }
-  
-  
-  /* Jumbotron styles */
-  
-  /* Button styles */
-  button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    cursor: pointer;
-    border-radius: 4px;
+}
+
+/* Additional adjustment for screens up to 400px wide */
+@media (max-width: 400px) {
+  /* Center h2 */
+  h2 {
+    font-size: small; /* Adjust font size for screens up to 400px */
   }
-  
-  button:hover {
-    background-color: #45a049;
+
+  /* Style tables */
+  table {
+    margin-left: 3px; /* Reduce left margin for screens up to 400px */
+    margin-right: 3px; /* Reduce right margin for screens up to 400px */
   }
-  
-  /* Link styles */
-  a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
+}

@@ -125,6 +125,7 @@ function AdminProductOperations() {
           <input type="text" placeholder="URL" value={product.url} onChange={(e) => setProduct({ ...product, url: e.target.value })} />
           <button onClick={onSubmit}>Add Product</button>
         </div>
+       
       </div>
     );
   }
