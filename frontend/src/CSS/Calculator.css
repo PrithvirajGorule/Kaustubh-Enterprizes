@@ -1,66 +1,70 @@
-/* HardnessConverter.css */
+/* HardnessConversion.css */
 
+#conversiondurete {
+  
+  max-width: 350px;
+  margin: 0 auto;
+  border: 1px solid rgba(128, 127, 127, 0.584);
+  padding:  20px 40px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(119, 119, 119, 0.79);
+}
 
-.container {
-    display: flex;
+.input-group {
+  margin-bottom: 5px;
+}
+
+.input-group-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+}
+
+.action-bouton {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.submit,
+.reset {
+  display: inline-block; /* Adjusted display property */
+  padding: 10px 20px;
+  width: 100px;
+  margin: 0 5px; /* Adjusted margin */
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  
+}
+
+.submit {
+  background-color: #092368;
+  color: #fff;
+}
+
+.reset {
+  background-color: #19c6af;
+  color: #fff;
+}
+.calc_head{
+  margin-bottom: 20px;
+}
+
+.submit:hover
+ {
+  background-color: #0b427c;
+}
+
+.reset:hover{
+  background-color: #178f7f;
+  
+}
+
+@media screen and (max-width: 600px) {
+  #conversiondurete {
+    max-width: 250px; /* Further reduced max-width for smaller screens */
+    padding: 10px; /* Further reduced padding for smaller screens */
   }
-  
-  .input-output {
-    width: 30%;
-    padding: 20px;
-  }
-  
-  .reference-table {
-    width: 70%;
-    overflow-y: auto;
-    max-height: calc(100vh - 80px); /* Adjust height as needed */
-  }
-  
-  /* Add any additional styling as needed */
-  
-.hardness-converter-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px;
-  }
-  
-  .calculator {
-    width: 30%;
-    padding: 20px;
-  }
-  
-  .input-fields {
-    margin-bottom: 20px;
-  }
-  
-  .input-fields div {
-    margin-bottom: 10px;
-  }
-  
-  .buttons button {
-    margin-right: 10px;
-  }
-  
-  .table-container {
-    flex: 0 0 50%;
-    overflow-y: auto;
-    
-  }
-  
-  .hardness-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .hardness-table th,
-  .hardness-table td {
-    padding: 8px;
-    border: 1px solid #ddd;
-  }
-  
-  .hardness-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
+}

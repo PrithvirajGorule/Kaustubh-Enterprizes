@@ -3,8 +3,9 @@ import './../CSS/Home.css'; // Import CSS file for homepage styling
 import { Link } from 'react-router-dom';
 import AdminProductService from '../Services2/AdminProductService'; // Import the AdminProductService
 import Card from '../Components/Card';
+import HardnessConversion from './Calculator';
 
-const images = [ // Array of image URLs
+const images = [ /* Array of image URLs */
   './../Assets/image1.png',
   './../Assets/image2.png',
   './../Assets/image3.png',
@@ -91,6 +92,10 @@ const Homepage = () => {
               </Link>{" "}
             </button>
           </div>
+          
+          {/* Conditionally render HardnessConversion component */}
+          
+          
           <div className="slider">
             {images.map((image, index) => (
               <div
@@ -109,14 +114,17 @@ const Homepage = () => {
             ))}
           </div>
         </div>
+        <div className='hardness_calc'>
+            {/* Only render HardnessConversion component on large screens */}
+            <HardnessConversion />
+          </div> 
+        
       </div>
 
       {/* cards */}
       <div>
-      <br>
-      
-      </br>
-      <br></br>
+        <br></br>
+        <br></br>
         <div className="gallery-container">
           {products.map((item) => (
             <Card key={item.id} data={item} />
