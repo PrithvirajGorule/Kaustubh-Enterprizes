@@ -30,3 +30,11 @@
   grid-gap: 20px;
   justify-items: center;
 }
+@media screen and (max-width: 768px) {
+  .search-input {
+    width: calc(100% - 20px); /* Adjusted width for smaller screens */
+    max-width: 400px; /* Adjusted max-width for smaller screens */
+    margin-left: auto; /* Centered the search input */
+    margin-right: auto; /* Centered the search input */
+  }
+}
