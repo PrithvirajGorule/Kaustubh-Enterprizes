@@ -130,7 +130,7 @@ function About() {
 </div>
         <div className="contact__info">
           <i className="bx bxl-linkedin-square contact__icon" />
-          <h3 className="contact__subtitle">Instagram</h3>
+          <h3 className="contact__subtitle">Linkedin</h3>
           <p className="contact__text">
             <a href="https://in.linkedin.com/company/kaustubh-enterprises">
               Our linkedin Profile

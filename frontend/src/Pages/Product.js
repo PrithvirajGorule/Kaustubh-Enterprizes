@@ -32,8 +32,10 @@ const Product = () => {
   };
 
   return (
+    <div className='hello'>
+      <Jumbotron></Jumbotron>
     <div className="product-page">
-      <Jumbotron />
+     
      
       <div className="search-form">
   <input
@@ -43,9 +45,11 @@ const Product = () => {
     value={searchQuery}
     onChange={handleSearchInputChange}
   />
+  <br></br>
+  <br></br>
   <i className="fas fa-search search-icon"></i> {/* Search icon */}
 </div>
-
+</div>
       <div className="gallery-container">
         {filteredProducts.map(item => (
           <Card key={item.id} data={item} />
