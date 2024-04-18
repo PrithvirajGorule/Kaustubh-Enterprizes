@@ -13,13 +13,13 @@
     margin-top: 0px;
     align-content: left;
     position: relative;
-    height: 800px; /* Adjust base height as needed */
+    height: 600px; /* Adjust base height as needed */
     overflow: hidden; /* Hide overflowing content */
     
   }
   
   .slider img {
-    height: 900px;
+    height: 600px;
     width: 100%;
     object-fit: cover;
     
@@ -285,4 +285,26 @@
 /* Style form button on hover */
 .form-button:hover {
   background-color: #0056b3;
+}
+
+
+/* Add this to your existing CSS file */
+
+.hardness_calc {
+  
+  display: flex;
+  position: absolute;
+  top: 90px; /* Adjust top position */
+  right: 50px; /* Adjust right position */
+  z-index: 70;
+}
+
+@media screen and (max-width: 768px) {
+  /* Adjustments for medium-sized screens */
+  .hardness_calc {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-top: 20px; /* Adjust margin-top for medium screens */
+  }
 }
