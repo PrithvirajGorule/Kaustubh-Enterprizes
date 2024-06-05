@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar ${isOpen ? 'active' : ''}`}>
+    <nav className={`navbar ${isOpen ? 'active' : ''}` }>
       <div className='content'>
         <div className="logo">
           <img src={logo} className='logoimg' alt="Logo" />

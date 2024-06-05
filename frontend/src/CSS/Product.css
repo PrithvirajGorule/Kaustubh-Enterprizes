@@ -1,66 +1,78 @@
+/* Product Page */
+.product-page {
+  padding: 20px;
+}
+
+/* Jumbotron */
+.jumbotron {
+  margin-bottom: 20px;
+}
+
+/* Search Form */
 .search-form {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+/* Gallery Container */
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 20px;
+}
+
+/* Card */
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.card-price {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .search-input {
-    width: 700px; /* Adjusted width */
-    padding: 20px;
-    border: 1px solid black; /* Black border */
-    border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
   }
-  
-  
-  .search-icon {
-    margin-right: 10px;
-  }
-  
-  .search-button {
-    padding: 15px 20px; /* Adjust button padding */
-    background-color: #6b3e08; /* Dark brown background */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .search-button:hover {
-    background-color: #4a2a05; /* Darken the background color on hover */
-  }
-  
-  .product-page {
-    padding-top: 20px; /* Add some space at the top */
-  }
-  
-  .gallery-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust grid layout */
-    grid-gap: 20px; /* Add gap between grid items */
-    justify-items: center; /* Center grid items */
-  }
-  
-  /* Style for each card */
+
   .card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 15px;
   }
-  
-  .card h2 {
-    font-size: 18px;
-    margin-top: 0;
-  }
-  
-  .card p {
-    margin: 10px 0;
-  }
-  
-  .card img {
-    max-width: 100%;
-    height: auto;
-  }
-  
+}

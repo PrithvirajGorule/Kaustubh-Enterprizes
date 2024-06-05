@@ -5,13 +5,13 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAIFFWS3pEIoREIr7UVnfHKQZiMho92KFI",
-  authDomain: "kaustubh-enterprize.firebaseapp.com",
-  projectId: "kaustubh-enterprize",
-  storageBucket: "kaustubh-enterprize.appspot.com",
-  messagingSenderId: "894217909816",
-  appId: "1:894217909816:web:5b2d901661d35beafc58cd",
-  databaseURL: "https://kaustubh-enterprize-default-rtdb.firebaseio.com"
+  apiKey: "AIzaSyB-wqG9suUrPXXaZbMmXC5tRsOrwj__7vU",
+  authDomain: "kaustubhdev-13dc6.firebaseapp.com",
+  projectId: "kaustubhdev-13dc6",
+  storageBucket: "kaustubhdev-13dc6.appspot.com",
+  messagingSenderId: "228238165299",
+  appId: "1:228238165299:web:870f387bf01e6e2bd62a46",
+  measurementId: "G-RBDX2GVHKC"
 };
 
 // Initialize Firebase

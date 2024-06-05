@@ -3,7 +3,7 @@ import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/fir
 import { Link } from "react-router-dom";
 import { faInstagram,faLinkedin,faFacebook } from '@fortawesome/free-brands-svg-icons'; // Import the Instagram icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './../CSS/Comman.css';
+import './../CSS/login.css';
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -39,7 +39,7 @@ function LoginForm() {
         <h2 className="sign-in-heading">Sign In</h2>
           <form className="login" onSubmit={handleLogin}>
             <div className="login__field">
-              <i className="login__icon fas fa-user"></i>
+              {/* <i className="login__icon fas fa-user"></i> */}
               <input
                 type="text"
                 className="login__input"
@@ -50,7 +50,7 @@ function LoginForm() {
               />
             </div>
             <div className="login__field">
-              <i className="login__icon fas fa-lock"></i>
+              {/* <i className="login__icon fas fa-lock"></i> */}
               <input
                 type="password"
                 className="login__input"
@@ -62,11 +62,11 @@ function LoginForm() {
             </div>
             <button type="submit" className="button login__submit">
               <span className="button__text">Log In Now</span>
-              <i className="button__icon fas fa-chevron-right"></i>
+              {/* <i className="button__icon fas fa-chevron-right"></i> */}
             </button>
             {error && <p className="error-message">{error}</p>}
           </form>
-          <div className="social-login">
+          {/* <div className="social-login">
             <h3>log in via</h3>
             <div className="social-icons">
             <a href="https://www.instagram.com/vasubiradar" className="footer__icon">
@@ -79,16 +79,16 @@ function LoginForm() {
               <FontAwesomeIcon icon={faFacebook} />
             </a>
             </div>
-          </div>
+          </div> */}
           {/* Link to dashboard */}
           <Link to="/admindashboard" style={{ display: "none" }} ref={navigationRef} />
         </div>
-        <div className="screen__background">
+        {/* <div className="screen__background">
           <span className="screen__background__shape screen__background__shape4"></span>
           <span className="screen__background__shape screen__background__shape3"></span>
           <span className="screen__background__shape screen__background__shape2"></span>
           <span className="screen__background__shape screen__background__shape1"></span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

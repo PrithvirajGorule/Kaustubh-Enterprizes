@@ -3,7 +3,7 @@ import './../CSS/Home.css'; // Import CSS file for homepage styling
 import { Link } from 'react-router-dom';
 import AdminProductService from '../Services2/AdminProductService'; // Import the AdminProductService
 import Card from '../Components/Card';
-
+// import Images from './Images';
 const images = [ // Array of image URLs
   './../Assets/image1.jpg',
   './../Assets/image2.jpg',
@@ -116,6 +116,7 @@ const Homepage = () => {
       <br>
       
       </br>
+      <images></images>
       <br></br>
         <div className="gallery-container">
           {products.map((item) => (

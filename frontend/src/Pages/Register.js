@@ -9,13 +9,13 @@ import React, { useState } from 'react';
 
 // Firebase project configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDAWI_JUBwT51ZzFpJnJpt6JU6BbGUC8mc",
-  authDomain: "kaustubh-c70b0.firebaseapp.com",
-  projectId: "kaustubh-c70b0",
-  storageBucket: "kaustubh-c70b0.appspot.com",
-  messagingSenderId: "203431264462",
-  appId: "1:203431264462:web:301b97879fca1fee8c109f",
-  measurementId: "G-6DDQ7GLLRC"
+  apiKey: "AIzaSyB-wqG9suUrPXXaZbMmXC5tRsOrwj__7vU",
+  authDomain: "kaustubhdev-13dc6.firebaseapp.com",
+  projectId: "kaustubhdev-13dc6",
+  storageBucket: "kaustubhdev-13dc6.appspot.com",
+  messagingSenderId: "228238165299",
+  appId: "1:228238165299:web:870f387bf01e6e2bd62a46",
+  measurementId: "G-RBDX2GVHKC"
 };
 
 // Initialize Firebase

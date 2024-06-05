@@ -1,0 +1,91 @@
+/* Container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Screen */
+  .screen {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Screen Content */
+  .screen__content {
+    text-align: center;
+  }
+  
+  /* Sign-in heading */
+  .sign-in-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Login Form */
+  .login {
+    width: 100%;
+  }
+  
+  /* Login Field */
+  .login__field {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  /* Login Icon */
+  .login__icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #999;
+  }
+  
+  /* Login Input */
+  .login__input {
+    width: calc(100% - 40px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Button */
+  .button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Button Icon */
+  .button__icon {
+    margin-left: 10px;
+  }
+  
+  /* Error Message */
+  .error-message {
+    color: #ff0000;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
