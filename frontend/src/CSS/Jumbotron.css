@@ -35,6 +35,7 @@
   background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity to your liking */
 }
 
+/* Container */
 .container {
   z-index: 1; /* Ensure content is above the overlay */
 }
@@ -64,5 +65,26 @@
 
   .jumbotron h2 {
     font-size: 2rem; /* Further adjust font size for screens up to 400px */
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  /* Jumbotron */
+  .jumbotron {
+    padding: 40px 0; /* Adjust padding for smaller screens */
+    font-size: large; /* Adjust font size for smaller screens */
+  }
+
+  /* Search Form */
+  .search-form input[type="text"] {
+    width: 100%; /* Set width of input to 100% for smaller screens */
+    border-radius: 5px; /* Remove specific border-radius for smaller screens */
+    margin-right: 0; /* Remove margin-right for smaller screens */
+  }
+
+  .search-form button {
+    border-radius: 5px; /* Adjust border-radius for smaller screens */
+    margin-left: 0; /* Remove margin-left for smaller screens */
   }
 }

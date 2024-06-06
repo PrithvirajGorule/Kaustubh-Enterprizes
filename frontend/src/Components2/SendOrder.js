@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import orderService from "../Services2/order.service";
 import AdminProductService from "../Services2/AdminProductService";
-import './../CSS/SendOrder.css'
+import "./../CSS/SendOrder.css";
 
 export default class AddCustomer extends Component {
   constructor(props) {
@@ -11,6 +11,8 @@ export default class AddCustomer extends Component {
     this.onChangeContact = this.onChangeContact.bind(this);
     this.onChangeProduct = this.onChangeProduct.bind(this);
     this.onChangeQuantity = this.onChangeQuantity.bind(this);
+    this.onChangeThickness = this.onChangeThickness.bind(this);
+    this.onChangeWidth = this.onChangeWidth.bind(this);
     this.addProduct = this.addProduct.bind(this);
     this.calculateTotal = this.calculateTotal.bind(this);
     this.saveCustomer = this.saveCustomer.bind(this);
@@ -21,22 +23,24 @@ export default class AddCustomer extends Component {
       email: "",
       contact: "",
       products: [],
-      productOptions: [], // Options for the dropdown menu
+      productOptions: [],
       totalPrize: 0,
-      submitted: false
+      submitted: false,
     };
   }
 
   componentDidMount() {
     // Fetch product options from AdminProductService
-    AdminProductService.getAll().then(querySnapshot => {
+    AdminProductService.getAll().then((querySnapshot) => {
       const productOptions = [];
-      querySnapshot.forEach(doc => {
+      querySnapshot.forEach((doc) => {
         // Assuming you have a field called url in your product document for the image URL
         const productData = {
           id: doc.id,
           name: doc.data().name,
-          imageUrl: doc.data().url // Adjust according to your data structure
+          imageUrl: doc.data().url, // Adjust according to your data structure
+          thickness: doc.data().thickness || "",
+          width: doc.data().width || "",
         };
         productOptions.push(productData);
       });
@@ -44,28 +48,27 @@ export default class AddCustomer extends Component {
     });
   }
 
-
   onChangeName(e) {
     this.setState({
-      name: e.target.value
+      name: e.target.value,
     });
   }
 
   onChangeEmail(e) {
     this.setState({
-      email: e.target.value
+      email: e.target.value,
     });
   }
 
   onChangeContact(e) {
     this.setState({
-      contact: e.target.value
+      contact: e.target.value,
     });
   }
 
   onChangeProduct(e, index) {
     const { value } = e.target;
-    this.setState(prevState => {
+    this.setState((prevState) => {
       const products = [...prevState.products];
       products[index] = { ...products[index], name: value };
       return { products };
@@ -74,16 +77,37 @@ export default class AddCustomer extends Component {
 
   onChangeQuantity(e, index) {
     const { value } = e.target;
-    this.setState(prevState => {
+    this.setState((prevState) => {
       const products = [...prevState.products];
       products[index] = { ...products[index], quantity: parseInt(value) };
       return { products };
     });
   }
 
+  onChangeThickness(e, index) {
+    const { value } = e.target;
+    this.setState((prevState) => {
+      const products = [...prevState.products];
+      products[index] = { ...products[index], thickness: value };
+      return { products };
+    });
+  }
+
+  onChangeWidth(e, index) {
+    const { value } = e.target;
+    this.setState((prevState) => {
+      const products = [...prevState.products];
+      products[index] = { ...products[index], width: value };
+      return { products };
+    });
+  }
+
   addProduct() {
-    this.setState(prevState => ({
-      products: [...prevState.products, { name: "", price: 0, quantity: 1 }]
+    this.setState((prevState) => ({
+      products: [
+        ...prevState.products,
+        { name: "", price: 0, quantity: 1, thickness: "", width: "" },
+      ],
     }));
   }
 
@@ -96,24 +120,34 @@ export default class AddCustomer extends Component {
   }
 
   saveCustomer() {
-    const data = {
-      name: this.state.name,
-      email: this.state.email,
-      contact: this.state.contact,
-      products: this.state.products,
-      totalPrize: this.state.totalPrize
-    };
+    // Check if any required field is empty for any product
+    const hasEmptyField = this.state.products.some(product =>
+      !product.name || !product.thickness || !product.width || !product.quantity
+    );
 
-    orderService
-      .create(data)
-      .then(() => {
-        console.log("Customer data saved successfully!");
-        this.setState({ submitted: true });
-      })
-      .catch(error => {
-        console.error("Error saving customer data:", error);
-      });
+    if (this.state.name && this.state.email && this.state.contact && !hasEmptyField) {
+      const data = {
+        name: this.state.name,
+        email: this.state.email,
+        contact: this.state.contact,
+        products: this.state.products,
+        totalPrize: this.state.totalPrize
+      };
+
+      orderService
+        .create(data)
+        .then(() => {
+          console.log("Customer data saved successfully!");
+          this.setState({ submitted: true });
+        })
+        .catch(error => {
+          console.error("Error saving customer data:", error);
+        });
+    } else {
+      alert("Please fill in all required fields.");
+    }
   }
+
 
   newCustomer() {
     this.setState({
@@ -122,7 +156,7 @@ export default class AddCustomer extends Component {
       contact: "",
       products: [],
       totalPrize: 0,
-      submitted: false
+      submitted: false,
     });
   }
 
@@ -178,56 +212,95 @@ export default class AddCustomer extends Component {
             </div>
 
             <div className="form-group">
+            <br></br>
               <label htmlFor="products">Products</label>
               <div>
+              <br></br>
                 {this.state.products.map((product, index) => (
                   <div key={index}>
                     <select
                       className="form-control mb-2"
                       value={product.name}
-                      onChange={e => this.onChangeProduct(e, index)}
+                      onChange={(e) => this.onChangeProduct(e, index)}
+                      required
+
+                      
                     >
+                      <br></br><br></br>
                       <option value="">Select Product</option>
-                      {this.state.productOptions.map(option => (
+                      {this.state.productOptions.map((option) => (
                         <option key={option.id} value={option.name}>
                           {option.name}
                         </option>
                       ))}
                     </select>
                     {product.name && (
-                      <img
-                        src={this.state.productOptions.find(
-                          option => option.name === product.name
-                        ).imageUrl}
-                        alt={product.name}
-                        style={{ width: "100px", height: "100px" }}
-                      />
+                      <div>
+                        <img
+                          src={
+                            this.state.productOptions.find(
+                              (option) => option.name === product.name
+                            ).imageUrl
+                          }
+                          alt={product.name}
+                          style={{ width: "100px", height: "100px" }}
+                        />
+                        <div>
+                          <br></br>
+                          
+                          <label htmlFor="thickness">Thickness (mm)</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="thickness"
+                            value={product.thickness}
+                            onChange={(e) => this.onChangeThickness(e, index)}
+                            name="thickness"
+                            required
+                          />
+                        </div>
+                        <br></br>
+                        <div>
+                          <label htmlFor="width">Width (mm)</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="width"
+                            value={product.width}
+                            onChange={(e) => this.onChangeWidth(e, index)}
+                            name="width"
+                            required
+                          />
+                        </div>
+                      </div>
                     )}
+                    <br></br>
+                    <br></br>
                     <input
                       type="number"
                       className="form-control"
                       placeholder="Quantity"
                       value={product.quantity}
-                      onChange={e => this.onChangeQuantity(e, index)}
+                      onChange={(e) => this.onChangeQuantity(e, index)}
+                      required
                     />
+                    <br></br>
+                    <br></br>
+                    <hr></hr>
+                    <hr></hr>
+                    <br></br>
                   </div>
+                  
                 ))}
               </div>
-              <button className="btn btn-primary mt-2" onClick={this.addProduct}>
-                Add Product
+              <br></br>
+              <button
+                className="btn btn-primary mt-2"
+                onClick={this.addProduct}
+              >
+                Add another Product
               </button>
             </div>
-
-            {/* <div className="form-group">
-              <label htmlFor="totalPrize">Total Prize</label>
-              <input
-                type="text"
-                className="form-control"
-                id="totalPrize"
-                value={this.state.totalPrize}
-                readOnly
-              />
-            </div> */}
 
             <button onClick={this.saveCustomer} className="btn btn-success">
               Submit
