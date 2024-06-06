@@ -5,11 +5,17 @@
   display: flex;
   min-height: 100vh;
   overflow: hidden;
+  margin-top: 4%;
 }
 
 .sidebar {
   flex-basis: 240px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #002a65 0%, #001b5e 100%);
+
+
+
+
+
   color: #fff;
   padding: 40px 20px;
   display: flex;
