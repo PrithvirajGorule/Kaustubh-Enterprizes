@@ -1,6 +1,7 @@
 .jumbotron-container {
   position: relative;
-  height: 40vh; /* Increase the height as desired */
+  height: 60vh; /* Increase the height as desired */
+  margin-top: 0%;
 }
 
 .dark-heading {
