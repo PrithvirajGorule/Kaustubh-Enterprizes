@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import AdminProductService from '../Services2/AdminProductService'; // Import the AdminProductService
 import Card from '../Components/Card';
 import HardnessConversion from './Calculator';
+import OurServices from '../Components/OurServices';
 
 const images = [ /* Array of image URLs */
   './../Assets/image1.png',
@@ -132,6 +133,7 @@ const Homepage = () => {
         </div>
       </div>
       {/* Add more sections/components as needed */}
+      <OurServices/>
     </div>
   );
 };
