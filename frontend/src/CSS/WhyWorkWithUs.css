@@ -1,0 +1,26 @@
+.why-work-with-us-container {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+  
+  .why-work-with-us-container h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .features-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
