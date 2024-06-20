@@ -5,6 +5,8 @@ import AdminProductService from '../Services2/AdminProductService'; // Import th
 import Card from '../Components/Card';
 import HardnessConversion from './Calculator';
 import OurServices from '../Components/OurServices';
+import WhyWorkWithUs from '../Components/WhyWorkWithUs';
+import LogoSlider from '../Components/LogoSlider';
 
 const images = [ /* Array of image URLs */
   './../Assets/image1.png',
@@ -134,6 +136,9 @@ const Homepage = () => {
       </div>
       {/* Add more sections/components as needed */}
       <OurServices/>
+      <WhyWorkWithUs/>
+      {/* <LogoSlider/> */}
+      
     </div>
   );
 };
