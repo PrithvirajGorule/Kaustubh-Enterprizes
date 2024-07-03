@@ -2,7 +2,7 @@ import React from 'react';
 import './../CSS/Footer.css';
 import logo from './../Assects/logo.jpeg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faBriefcase, faInfoCircle, faEnvelope, faLocation, faPhone, faLocationPin } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faBriefcase, faInfoCircle, faEnvelope, faLocation, faPhone, faLocationPin, faMapMarked, faMapLocation } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faLinkedin, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
@@ -31,9 +31,9 @@ const Footer = () => {
 
         <div class="footer-center">
             <div>
-                <i class="fa fa-map-marker"></i>
-                <p>W-265, MIDC, Bhosari, Pimpri-Chinchwad,<br></br>
-Maharashtra 411026, India</p>
+                <i class="fa-map-marker"><FontAwesomeIcon icon={faLocationPin}  /></i>
+                <p><a href="https://www.google.com/maps/place/Kaustubh+Enterprises/@18.635874,73.839027,14z/data=!4m6!3m5!1s0x3bc2b8718f966ba1:0xd59bcd99f4e4c98!8m2!3d18.6359145!4d73.8390702!16s%2Fg%2F1pp2x5_f5?hl=en&entry=ttu">  W-265, MIDC, Bhosari, Pimpri-Chinchwad,<br></br>
+Maharashtra 411026, India</a></p>
             </div>
 
             <div>

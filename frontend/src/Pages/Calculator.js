@@ -178,12 +178,12 @@ const HardnessConversion = () => {
           <input className="input-group-field" placeholder="-" name="hrc" type="text" id="hrc" size="5" maxLength="5" onBlur={() => calculateHardness('hrc')} onChange={handleChange} value={values.hrc} />
         </div>
       </div>
-      <div>
+      {/* <div>
         MPA
         <div className="input-group">
           <input className="input-group-field" placeholder="-" name="mpa" type="text" id="mpa" size="5" maxLength="5" onBlur={() => calculateHardness('mpa')} onChange={handleChange} value={values.mpa} />
         </div>
-      </div>
+      </div> */}
       <p className="action-bouton">
         <input type="button" className="submit button blue" id="calcul" value="Calculate" />
         <input type="reset" className="reset button green" onClick={() => setValues({ hv: '', hb: '', hrb: '', hrc: '', mpa: '' })} value="Reset" />
