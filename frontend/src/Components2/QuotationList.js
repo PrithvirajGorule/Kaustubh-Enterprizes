@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import orderService from '../Services2/order.service';
-import'./../CSS/QuotationList.css';
+import './../CSS/QuotationList.css';
 import Jumbotron from '../Components/Jumbotron';
 
 function QuotationList() {
@@ -26,13 +26,14 @@ function QuotationList() {
   useEffect(() => {
     fetchData();
   }, []);
+
   const handleCheckMarkClick = async (orderId) => {
     const confirmed = window.confirm("Are you sure you want to mark this order?");
     if (confirmed) {
       try {
         // Update the check mark status in the database
         await orderService.update(orderId, { checkMark: true });
-    
+
         // Refetch data to update the tables
         fetchData();
       } catch (error) {
@@ -40,14 +41,14 @@ function QuotationList() {
       }
     }
   };
-  
+
   const handleUncheckMarkClick = async (orderId) => {
     const confirmed = window.confirm("Are you sure you want to uncheck this order?");
     if (confirmed) {
       try {
         // Update the check mark status in the database
         await orderService.update(orderId, { checkMark: false });
-    
+
         // Refetch data to update the tables
         fetchData();
       } catch (error) {
@@ -55,15 +56,12 @@ function QuotationList() {
       }
     }
   };
-  
-  
+
   return (
-  
-    <div>
-        <Jumbotron></Jumbotron>
+    <div className="quotation-list-container">
+      <Jumbotron />
       
       <h2>With Check Mark</h2>
-      <br></br>
       <table>
         <thead>
           <tr>
@@ -80,14 +78,13 @@ function QuotationList() {
               <td>{order.name}</td>
               <td>{order.email}</td>
               <td>✓</td>
-              <button className="listbtn" onClick={() => handleUncheckMarkClick(order.id)}>Uncheck</button>
+              <td><button className="check-btn" onClick={() => handleUncheckMarkClick(order.id)}>Uncheck</button></td>
             </tr>
           ))}
         </tbody>
       </table>
-      <br></br>
+
       <h2>Without Check Mark</h2>
-      <br></br>
       <table>
         <thead>
           <tr>
@@ -103,10 +100,7 @@ function QuotationList() {
               <td><Link to={`/orders/${order.id}`}>{order.id}</Link></td>
               <td>{order.name}</td>
               <td>{order.email}</td>
-              <td>
-                <button className="listbtn" onClick={() => handleCheckMarkClick(order.id)}>Check</button>
-               
-              </td>
+              <td><button className="uncheck-btn" onClick={() => handleCheckMarkClick(order.id)}>Check</button></td>
             </tr>
           ))}
         </tbody>
