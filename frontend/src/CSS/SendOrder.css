@@ -1,11 +1,27 @@
 /* Base Styling */
+.orderbg{
+  /* display: flex; */
+  /* height: 900px; */
+  padding-top:2% ;
+  padding-bottom:5% ;
+  /*background-position: 50% 80%;
+  background-image: url(../../public/Assets/image2.png);
+  background-repeat: no-repeat;
+  background-size: cover;*/
+  /* justify-content: 50% 10%; */
+  margin-bottom: -5%;
+  margin-top: -5%;
+  /* margin-bottom: -1%;  */
+  background-color: rgb(239, 238, 252);
+}
 .submit-form {
-  margin-top: 200px;
+  /* margin-top: 200px; */
     max-width: 600px;
     margin: auto;
-    margin-top: 6%;
+    margin-top: 10%;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
   }
   
   .form-group {
