@@ -162,6 +162,8 @@ export default class AddCustomer extends Component {
 
   render() {
     return (
+      <div className="orderbg" href={"../../public/Assets/image2.png"} >
+    
       <div className="submit-form">
         {this.state.submitted ? (
           <div>
@@ -307,6 +309,7 @@ export default class AddCustomer extends Component {
             </button>
           </div>
         )}
+      </div>
       </div>
     );
   }

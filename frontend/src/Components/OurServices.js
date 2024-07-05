@@ -13,18 +13,22 @@ const OurServices = () => {
       </div>
       <div className="services-right">
         <div className="service-card">
-          <h3>Next.js Development</h3>
+          <h3>Premium Quality Products & Customized Solutions</h3>
           <p>
-            Whether it's crafting Next.js web applications, conducting code audits, enterprise software development, or even providing professional training, we're here to help you achieve your business goals!
-          </p>
+          Kaustubh Enterprises Pvt Ltd offers high-quality steel sheets meeting industry standards for durability. Our experienced team provides tailored solutions, aligning with clients' unique needs for satisfaction.          </p>
           <button>Read More</button>
         </div>
         <div className="service-card">
-          <h3>React development</h3>
+          <h3>Timely Delivery & Technical Support</h3>
           <p>
-            Whether you need help with developing React web apps, code reviews, enterprise software creation, or just need some specialized training, we're here for you every step of the way!
-          </p>
+          We prioritize efficiency and reliability, ensuring timely project completion. Our prompt delivery minimizes downtime, ensuring client satisfaction. Additionally, our knowledgeable staff offers comprehensive technical support, addressing inquiries promptly.          </p>
           <button>Read More</button>
+        </div>
+        <div className="service-card">
+          <h3>Exceptional Customer Service
+          </h3>
+          <p>
+          At Kaustubh Enterprises Pvt Ltd, exceptional customer service is our hallmark. We ensure a seamless and positive experience, fostering long-lasting client relationships built on trust and satisfaction. Our dedication guarantees outstanding support at every stage, surpassing mere product excellence</p>          <button>Read More</button>
         </div>
       </div>
     </div>
