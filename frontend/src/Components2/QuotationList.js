@@ -80,7 +80,7 @@ function QuotationList() {
               <td>{order.name}</td>
               <td>{order.email}</td>
               <td>✓</td>
-              <button onClick={() => handleUncheckMarkClick(order.id)}>Uncheck</button>
+              <button className="listbtn" onClick={() => handleUncheckMarkClick(order.id)}>Uncheck</button>
             </tr>
           ))}
         </tbody>
@@ -104,7 +104,7 @@ function QuotationList() {
               <td>{order.name}</td>
               <td>{order.email}</td>
               <td>
-                <button onClick={() => handleCheckMarkClick(order.id)}>Check</button>
+                <button className="listbtn" onClick={() => handleCheckMarkClick(order.id)}>Check</button>
                
               </td>
             </tr>
