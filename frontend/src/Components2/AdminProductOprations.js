@@ -4,7 +4,7 @@ import './../CSS/AdminProductList.css';
 import AddProduct from './AddProduct';
 import UpdateProduct from './UpdateProduct';
 import DisplayProduct from './DisplayProduct';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import QuotationList from './QuotationList';
 
 function AdminProductOperations() {
@@ -14,6 +14,7 @@ function AdminProductOperations() {
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [updatedProduct, setUpdatedProduct] = useState({ id: '', name: '', description: '', price: '', url: '', shape: '', application: '', width: '', thickness: '', grade: '', material: '', unitType: '' });
   const [displayType, setDisplayType] = useState('products'); // State to manage what to display
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProducts();
@@ -50,9 +51,15 @@ function AdminProductOperations() {
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const handleLogout = () => {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('lastActivity');
+    navigate('/admin');
+  };
+
   function AddProductModal({ isOpen, onClose, onSubmit, product, setProduct }) {
     if (!isOpen) return null;
-  
+
     return (
       <div className="modal">
         <div className="modal-content">
@@ -64,7 +71,6 @@ function AdminProductOperations() {
           <input type="text" placeholder="URL" value={product.url} onChange={(e) => setProduct({ ...product, url: e.target.value })} />
           <button onClick={onSubmit}>Add Product</button>
         </div>
-       
       </div>
     );
   }
@@ -94,6 +100,7 @@ function AdminProductOperations() {
         <button onClick={() => setDisplayType('products')}>Display Products</button>
         <AddProduct fetchProducts={fetchProducts} />
         <button onClick={() => setDisplayType('orderList')}>Order List</button>
+        <button onClick={handleLogout}>Logout</button>
       </aside>
       <main className="main-content">
         {/* Content based on the displayType state */}
@@ -107,6 +114,7 @@ function AdminProductOperations() {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
+            <br></br>
             <div className="products-grid">
               {filteredProducts.map((product) => (
                 <DisplayProduct
@@ -119,7 +127,6 @@ function AdminProductOperations() {
             </div>
           </div>
         )}
-        {/* {displayType === 'addProduct' && <AddProduct fetchProducts={fetchProducts} />} */}
         {displayType === 'orderList' && <QuotationList />}
         {showUpdateForm && (
           <UpdateProduct

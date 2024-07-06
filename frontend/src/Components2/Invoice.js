@@ -1,9 +1,50 @@
 // Invoice.js
+
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import orderService from "../Services2/order.service";
-import { Link } from 'react-router-dom';
-import "./../CSS/Invoice.css"; // Import CSS file for styling
+import logo from './../Assets/logo.jpeg';
+import "./../CSS/Invoice.css";
+
+export const roundToTwoDecimalPlaces = (value) => {
+  return Number.parseFloat(value).toFixed(2);
+};
+
+export const calculateQuantity = (product) => {
+  const { height, width, length, density, noofsheets } = product;
+  const volume = parseFloat(height) * parseFloat(width) * parseFloat(length); // Calculate volume in mm³
+  const metalDensity = parseFloat(density) || 1; // Default density to 1 if not provided
+  const quantity = volume * metalDensity * parseInt(noofsheets) / 1000000; // Convert volume from mm³ to m³ (density in g/cm³)
+  return roundToTwoDecimalPlaces(quantity); // Round off to two decimal places
+};
+
+export const calculateTotalAmount = (products, loadingPackingCharge) => {
+  const subtotal = products.reduce((total, product) => {
+    const amount = product.price * calculateQuantity(product);
+    return total + amount;
+  }, 0);
+  
+  const gstRate = 0.09; // GST rate of 9%
+
+  const cgst = roundToTwoDecimalPlaces(subtotal * gstRate);
+  const sgst = roundToTwoDecimalPlaces(subtotal * gstRate);
+  const total = roundToTwoDecimalPlaces(subtotal + cgst + sgst + loadingPackingCharge);
+
+  return {
+    subtotal: roundToTwoDecimalPlaces(subtotal),
+    cgst,
+    sgst,
+    total,
+  };
+};
+
+export const convertToWords = (amount) => {
+  // Function to convert amount to words (same as before)
+};
+
+export const formatDate = (date) => {
+  return date.toISOString().split('T')[0];
+};
 
 function Invoice() {
   const { id } = useParams();
@@ -26,175 +67,129 @@ function Invoice() {
 
     fetchOrder();
   }, [id]);
+
   const handlePrint = () => {
     window.print();
   };
+
+  const sendInvoice = () => console.log("Sending invoice...");
+
   if (!order) {
     return <div>Loading...</div>;
   }
 
-   // Helper function to round to two decimal places
-   const roundToTwoDecimalPlaces = (value) => {
-    return Number.parseFloat(value).toFixed(2);
-  };
+  const { products } = order;
 
-  // Calculate CGST and SGST rounded to two decimal places
-  const cgst = roundToTwoDecimalPlaces(calculateTax(order.products, 0.09));
-  const sgst = roundToTwoDecimalPlaces(calculateTax(order.products, 0.09));
+  const loadingPackingCharge = 480; // Example loading and packing charges
 
-  // Calculate total amount rounded to two decimal places
-  const subtotal = roundToTwoDecimalPlaces(calculateSubtotal(order.products));
-  const total = roundToTwoDecimalPlaces(parseFloat(subtotal) + parseFloat(cgst) + parseFloat(sgst));
-
-  // Convert total amount to words
-  const totalInWords = convertToWords(total);
+  const invoiceDetails = calculateTotalAmount(products, loadingPackingCharge);
 
   return (
     <div className="invoice-container">
-      <div className="header">
-        <img src="https://media.licdn.com/dms/image/C560BAQFQdCGK8os3jg/company-logo_200_200/0/1630644964827?e=1719446400&v=beta&t=iDdGbN_WJKVF3Nssfq-6EcWaD3PT-6TOuOSlFD1cfvA" alt="Company Logo" className="logo" />
-        <div className="quotation-info">
-          <p>Quotation By: Your Name</p>
-          <p>Quotation To: {order.name}</p>
-          <p>Invoice Date: {formatDate(new Date())}</p>
-          <p>Country of Supply: India</p>
-          <p>Place of Supply: Pune</p>
+      <div className="invoiceheader">
+        <h1 className="invoiceHead">PROFORMA INVOICE</h1>
+        <h3 className="invoiceHead">TAX INVOICE</h3>
+        <img src={logo} alt="Company Logo" className="invoicelogo" />
+      </div>
+      <div className="quotation-info">
+        <div>
+          <p><strong>M/s.Kaustubh Enterprises</strong></p>
+          <p>W-265, Near Sanket Hotel, MIDC. BHOSARI, PUNE-411026</p>
+          <p>Ph No: 9325006428</p>
+          <p>GSTIN/UIN: 27AGNPM0213C1ZV</p>
+          <p>State Name: Maharashtra, Code: 27</p>
+          <p>Email: kishor.marudwar@gmail.com</p>
+        </div>
+        <div>
+          <p><strong>Consignee (Ship to)</strong></p>
+          <p>{order.name}</p>
+          <p>State Name: Maharashtra, Code: 27</p>
+          <p><strong>Buyer (Bill to)</strong></p>
+          <p>{order.name}</p>
+          <p>State Name: Maharashtra, Code: 27</p>
         </div>
       </div>
-      <h2>Invoice</h2>
-      <p>ID: {order.id}</p>
-      <p>Email: {order.email}</p>
-      <p>Contact: {order.contact}</p>
+      <div className="invoice-details">
+        <div>
+          <p><strong>Invoice Id:</strong> {order.id}</p>
+          <p><strong>Dated:</strong> {formatDate(new Date())}</p>
+        </div>
+        <div>
+          <p><strong>Delivery Note:</strong></p>
+          <p><strong>Dispatched through:</strong></p>
+          <p><strong>Destination:</strong></p>
+          <p><strong>Terms of Delivery:</strong></p>
+        </div>
+      </div>
       <h3>Products:</h3>
       <table className="invoice-table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
+            <th>No.</th>
+            <th>Description of Goods</th>
+            <th>HSN/SAC</th>
+            <th>Quantity (KGS)</th>
+            <th>Rate</th>
+            <th>Amount</th>
           </tr>
         </thead>
         <tbody>
-          {order.products.map((product, index) => (
+          {products.map((product, index) => (
             <tr key={index}>
+              <td>{index + 1}</td>
               <td>{product.name}</td>
-              <td>${product.price}</td>
-              <td>{product.quantity}</td>
-              <td>${product.price * product.quantity}</td>
+              <td>720852</td>
+              <td>{calculateQuantity(product)} KGS</td>
+              <td>{roundToTwoDecimalPlaces(product.price)}</td>
+              <td>{roundToTwoDecimalPlaces(product.price * calculateQuantity(product))}</td>
             </tr>
           ))}
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan="5">Loading & Packing Charges</td>
+            <td>Rs {loadingPackingCharge}</td>
+          </tr>
+          <tr>
+            <td colSpan="5">OUTPUT-CGST 9%</td>
+            <td>Rs {invoiceDetails.cgst}</td>
+          </tr>
+          <tr>
+            <td colSpan="5">OUTPUT-SGST 9%</td>
+            <td>Rs {invoiceDetails.sgst}</td>
+          </tr>
+          <tr>
+            <td colSpan="5">Rounded Off</td>
+            <td>-0.46</td>
+          </tr>
+          <tr>
+            <td colSpan="5"><strong>Total</strong></td>
+            <td><strong>Rs {invoiceDetails.total}</strong></td>
+          </tr>
+        </tfoot>
       </table>
       <div className="totals">
-        <p>Subtotal: ${subtotal}</p>
-        <p>CGST (9%): ${cgst}</p>
-        <p>SGST (9%): ${sgst}</p>
-        <p>Total: ${total}</p>
-        <p>Total in Words: {totalInWords}</p>
+        <p><strong>Amount Chargeable (in words):</strong> {convertToWords(invoiceDetails.total)}</p>
       </div>
       <div className="invoicefooter">
-        <p>Terms & Conditions:</p>
-        <p>Additional Notes:</p>
-        <p>For any queries, email us at: example@example.com</p>
-        <p>Or call us at: 123-456-7890</p>
+        <p><strong>Terms & Conditions:</strong> E. & O.E</p>
+        <p><strong>Company’s PAN:</strong> AGNPM0213C</p>
+        <p><strong>Declaration:</strong> We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct.</p>
       </div>
-      <button onClick={handlePrint}>Print</button>
-      <button onClick={sendInvoice}>Send</button>
-      <Link to={`/orders/${id}`}>Back to Order Detail</Link>
+      <div className="bank-details">
+        <p><strong>Company’s Bank Details</strong></p>
+        <p><strong>A/c Holder’s Name:</strong> M/s.Kaustubh Enterprises</p>
+        <p><strong>Bank Name:</strong> BANK ICICI A/C:- 777705932500</p>
+        <p><strong>A/c No:</strong> 777705932500</p>
+        <p><strong>Branch & IFS Code:</strong> CHINCHWAD & ICIC0000321</p>
+      </div>
+      <div className="button-container">
+        <button onClick={handlePrint}>Print</button>
+        <button onClick={sendInvoice}>Send</button>
+        <Link to={`/orders/${id}`}>Back to Order Detail</Link>
+      </div>
     </div>
   );
-}
-
-// Helper function to calculate tax
-const calculateTax = (products, taxRate) => {
-  return products.reduce((totalTax, product) => {
-    return totalTax + (product.price * product.quantity * taxRate);
-  }, 0);
-}
-
-// Helper function to calculate subtotal
-const calculateSubtotal = (products) => {
-  return products.reduce((total, product) => total + (product.price * product.quantity), 0);
-}
-
-// Helper function to convert amount to words
-const convertToWords = (amount) => {
-    // Array of words for numbers from 0 to 19
-    const ones = [
-      "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
-      "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
-    ];
-
-    // Array of words for multiples of 10 from 20 to 90
-    const tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
-
-    // Array of words for powers of 10 (e.g., thousand, million, billion)
-    const scales = ["", "thousand", "million", "billion"];
-
-    // Function to convert a three-digit number to words
-    const convertThreeDigits = (num) => {
-      let words = "";
-      if (num >= 100) {
-        words += ones[Math.floor(num / 100)] + " hundred ";
-        num %= 100;
-      }
-      if (num >= 20) {
-        words += tens[Math.floor(num / 10)] + " ";
-        num %= 10;
-      }
-      if (num > 0) {
-        words += ones[num] + " ";
-      }
-      return words.trim();
-    };
-
-    // Function to convert the whole number to words
-    const convertWholeNumber = (num) => {
-      let words = "";
-      let scaleIndex = 0;
-      while (num > 0) {
-        if (num % 1000 !== 0) {
-          let part = convertThreeDigits(num % 1000);
-          if (scaleIndex > 0) {
-            part += " " + scales[scaleIndex];
-          }
-          words = part + " " + words;
-        }
-        num = Math.floor(num / 1000);
-        scaleIndex++;
-      }
-      return words.trim();
-    };
-
-    // Separate whole and decimal parts
-    const [wholePart, decimalPart] = amount.toString().split(".");
-
-    // Convert the whole part to words
-    let words = convertWholeNumber(parseInt(wholePart));
-
-    // Add "and" for the decimal part if it exists
-    if (decimalPart!=0) {
-      words += " and " + convertThreeDigits(parseInt(decimalPart));
-    }
-
-    return words+" only ".trim();
-  };
-
-
-// Helper function to format date
-const formatDate = (date) => {
-  // Implementation of date formatting
-  return date.toISOString().split('T')[0]; // Placeholder implementation
-}
-
-// Temporary function placeholders
-const printInvoice = () => {
-  console.log("Printing invoice...");
-}
-
-const sendInvoice = () => {
-  console.log("Sending invoice...");
 }
 
 export default Invoice;

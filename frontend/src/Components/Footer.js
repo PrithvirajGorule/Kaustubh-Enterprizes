@@ -56,7 +56,7 @@ deliver around the globe.
                 
             </p>
             <div class="footer-icons">
-            <a href="https://www.instagram.com/vasubiradar" className="footer__icon">
+            <a href="#" className="footer__icon">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
             <a href="https://in.linkedin.com/company/kaustubh-enterprises" className="footer__icon">

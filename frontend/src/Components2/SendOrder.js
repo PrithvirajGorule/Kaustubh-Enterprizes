@@ -10,9 +10,10 @@ export default class AddCustomer extends Component {
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangeContact = this.onChangeContact.bind(this);
     this.onChangeProduct = this.onChangeProduct.bind(this);
-    this.onChangeQuantity = this.onChangeQuantity.bind(this);
-    this.onChangeThickness = this.onChangeThickness.bind(this);
+    this.onChangeNoOfSheets = this.onChangeNoOfSheets.bind(this);
+    this.onChangeHeight = this.onChangeHeight.bind(this);
     this.onChangeWidth = this.onChangeWidth.bind(this);
+    this.onChangeLength = this.onChangeLength.bind(this);
     this.addProduct = this.addProduct.bind(this);
     this.calculateTotal = this.calculateTotal.bind(this);
     this.saveCustomer = this.saveCustomer.bind(this);
@@ -39,8 +40,9 @@ export default class AddCustomer extends Component {
           id: doc.id,
           name: doc.data().name,
           imageUrl: doc.data().url, // Adjust according to your data structure
-          thickness: doc.data().thickness || "",
+          height: doc.data().thickness || "",
           width: doc.data().width || "",
+          density: doc.data().density || 0, // Fetch density from backend
         };
         productOptions.push(productData);
       });
@@ -70,25 +72,30 @@ export default class AddCustomer extends Component {
     const { value } = e.target;
     this.setState((prevState) => {
       const products = [...prevState.products];
-      products[index] = { ...products[index], name: value };
+      const selectedProduct = this.state.productOptions.find((p) => p.name === value);
+      products[index] = {
+        ...products[index],
+        name: value,
+        density: selectedProduct ? selectedProduct.density : 0,
+      };
       return { products };
     });
   }
 
-  onChangeQuantity(e, index) {
+  onChangeNoOfSheets(e, index) {
     const { value } = e.target;
     this.setState((prevState) => {
       const products = [...prevState.products];
-      products[index] = { ...products[index], quantity: parseInt(value) };
+      products[index] = { ...products[index], noofsheets: parseInt(value) };
       return { products };
     });
   }
 
-  onChangeThickness(e, index) {
+  onChangeHeight(e, index) {
     const { value } = e.target;
     this.setState((prevState) => {
       const products = [...prevState.products];
-      products[index] = { ...products[index], thickness: value };
+      products[index] = { ...products[index], height: value };
       return { products };
     });
   }
@@ -102,18 +109,35 @@ export default class AddCustomer extends Component {
     });
   }
 
+  onChangeLength(e, index) {
+    const { value } = e.target;
+    this.setState((prevState) => {
+      const products = [...prevState.products];
+      products[index] = { ...products[index], length: value };
+      return { products };
+    });
+  }
+
   addProduct() {
     this.setState((prevState) => ({
       products: [
         ...prevState.products,
-        { name: "", price: 0, quantity: 1, thickness: "", width: "" },
+        {
+          name: "",
+          price: 0,
+          noofsheets: 1,
+          height: "",
+          width: "",
+          length: "",
+          density: 0, // Initialize density
+        },
       ],
     }));
   }
 
   calculateTotal() {
     const totalPrize = this.state.products.reduce(
-      (total, product) => total + product.price * product.quantity,
+      (total, product) => total + product.price * product.noofsheets,
       0
     );
     this.setState({ totalPrize });
@@ -121,17 +145,27 @@ export default class AddCustomer extends Component {
 
   saveCustomer() {
     // Check if any required field is empty for any product
-    const hasEmptyField = this.state.products.some(product =>
-      !product.name || !product.thickness || !product.width || !product.quantity
+    const hasEmptyField = this.state.products.some(
+      (product) =>
+        !product.name ||
+        !product.noofsheets ||
+        !product.height ||
+        !product.width ||
+        !product.length
     );
 
-    if (this.state.name && this.state.email && this.state.contact && !hasEmptyField) {
+    if (
+      this.state.name &&
+      this.state.email &&
+      this.state.contact &&
+      !hasEmptyField
+    ) {
       const data = {
         name: this.state.name,
         email: this.state.email,
         contact: this.state.contact,
         products: this.state.products,
-        totalPrize: this.state.totalPrize
+        totalPrize: this.state.totalPrize,
       };
 
       orderService
@@ -140,14 +174,13 @@ export default class AddCustomer extends Component {
           console.log("Customer data saved successfully!");
           this.setState({ submitted: true });
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Error saving customer data:", error);
         });
     } else {
       alert("Please fill in all required fields.");
     }
   }
-
 
   newCustomer() {
     this.setState({
@@ -166,12 +199,17 @@ export default class AddCustomer extends Component {
         {this.state.submitted ? (
           <div>
             <h4>You submitted successfully!</h4>
-            <button className="btn btn-success" onClick={this.newCustomer}>
+            <button
+              className="btn btn-success"
+              onClick={this.newCustomer}
+            >
               Add Another Quotation
             </button>
           </div>
         ) : (
           <div>
+            <br></br>
+            <br></br>
             <div className="form-group">
               <label htmlFor="name">Name</label>
               <input
@@ -212,10 +250,10 @@ export default class AddCustomer extends Component {
             </div>
 
             <div className="form-group">
-            <br></br>
+              <br></br>
               <label htmlFor="products">Products</label>
               <div>
-              <br></br>
+                <br></br>
                 {this.state.products.map((product, index) => (
                   <div key={index}>
                     <select
@@ -223,10 +261,7 @@ export default class AddCustomer extends Component {
                       value={product.name}
                       onChange={(e) => this.onChangeProduct(e, index)}
                       required
-
-                      
                     >
-                      <br></br><br></br>
                       <option value="">Select Product</option>
                       {this.state.productOptions.map((option) => (
                         <option key={option.id} value={option.name}>
@@ -247,15 +282,15 @@ export default class AddCustomer extends Component {
                         />
                         <div>
                           <br></br>
-                          
-                          <label htmlFor="thickness">Thickness (mm)</label>
+
+                          <label htmlFor="height">Height (mm)</label>
                           <input
-                            type="text"
+                            type="number"
                             className="form-control"
-                            id="thickness"
-                            value={product.thickness}
-                            onChange={(e) => this.onChangeThickness(e, index)}
-                            name="thickness"
+                            id="height"
+                            value={product.height}
+                            onChange={(e) => this.onChangeHeight(e, index)}
+                            name="height"
                             required
                           />
                         </div>
@@ -263,7 +298,7 @@ export default class AddCustomer extends Component {
                         <div>
                           <label htmlFor="width">Width (mm)</label>
                           <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             id="width"
                             value={product.width}
@@ -272,25 +307,37 @@ export default class AddCustomer extends Component {
                             required
                           />
                         </div>
+                        <br></br>
+                        <div>
+                          <label htmlFor="length">Length (mm)</label>
+                          <input
+                            type="number"
+                            className="form-control"
+                            id="length"
+                            value={product.length}
+                            onChange={(e) => this.onChangeLength(e, index)}
+                            name="length"
+                            required
+                          />
+                        </div>
+                        <br></br>
+                        <div>
+                          <label htmlFor="noofsheets">Number of Sheets</label>
+                          <input
+                            type="number"
+                            className="form-control"
+                            placeholder="Number of Sheets"
+                            value={product.noofsheets}
+                            onChange={(e) => this.onChangeNoOfSheets(e, index)}
+                            required
+                          />
+                        </div>
+                        <br></br>
+                        <hr></hr>
+                        <br></br>
                       </div>
                     )}
-                    <br></br>
-                    <br></br>
-                    <input
-                      type="number"
-                      className="form-control"
-                      placeholder="Quantity"
-                      value={product.quantity}
-                      onChange={(e) => this.onChangeQuantity(e, index)}
-                      required
-                    />
-                    <br></br>
-                    <br></br>
-                    <hr></hr>
-                    <hr></hr>
-                    <br></br>
                   </div>
-                  
                 ))}
               </div>
               <br></br>
