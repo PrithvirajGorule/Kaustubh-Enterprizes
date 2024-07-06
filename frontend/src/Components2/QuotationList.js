@@ -31,7 +31,10 @@ function QuotationList() {
     const confirmed = window.confirm("Are you sure you want to mark this order?");
     if (confirmed) {
       try {
+        // Update the check mark status in the database
         await orderService.update(orderId, { checkMark: true });
+
+        // Refetch data to update the tables
         fetchData();
       } catch (error) {
         console.error('Error updating check mark status:', error);
@@ -43,7 +46,10 @@ function QuotationList() {
     const confirmed = window.confirm("Are you sure you want to uncheck this order?");
     if (confirmed) {
       try {
+        // Update the check mark status in the database
         await orderService.update(orderId, { checkMark: false });
+
+        // Refetch data to update the tables
         fetchData();
       } catch (error) {
         console.error('Error updating check mark status:', error);
@@ -51,30 +57,18 @@ function QuotationList() {
     }
   };
 
-  const handleDelete = async (orderId) => {
-    const confirmed = window.confirm("Are you sure you want to delete this order?");
-    if (confirmed) {
-      try {
-        await orderService.delete(orderId);
-        fetchData();
-      } catch (error) {
-        console.error('Error deleting order:', error);
-      }
-    }
-  };
-
   return (
-    <div>
+    <div className="quotation-list-container">
       <Jumbotron />
+      
       <h2>With Check Mark</h2>
-      <br />
       <table>
         <thead>
           <tr>
             <th>Order ID</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Actions</th>
+            <th>Check Mark</th>
           </tr>
         </thead>
         <tbody>
@@ -83,26 +77,21 @@ function QuotationList() {
               <td><Link to={`/orders/${order.id}`}>{order.id}</Link></td>
               <td>{order.name}</td>
               <td>{order.email}</td>
-              <td>
-                ✓
-                <button onClick={() => handleUncheckMarkClick(order.id)}>Uncheck</button>
-                <br></br> <br></br>
-                <button onClick={() => handleDelete(order.id)}>Delete</button>
-              </td>
+              <td>✓</td>
+              <td><button className="check-btn" onClick={() => handleUncheckMarkClick(order.id)}>Uncheck</button></td>
             </tr>
           ))}
         </tbody>
       </table>
-      <br />
+
       <h2>Without Check Mark</h2>
-      <br />
       <table>
         <thead>
           <tr>
             <th>Order ID</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Actions</th>
+            <th>Check Mark</th>
           </tr>
         </thead>
         <tbody>
@@ -111,13 +100,7 @@ function QuotationList() {
               <td><Link to={`/orders/${order.id}`}>{order.id}</Link></td>
               <td>{order.name}</td>
               <td>{order.email}</td>
-              <td>
-                <button onClick={() => handleCheckMarkClick(order.id)}>Check</button>
-                <br></br>
-                <br></br>
-                
-                <button onClick={() => handleDelete(order.id)}>Delete</button>
-              </td>
+              <td><button className="uncheck-btn" onClick={() => handleCheckMarkClick(order.id)}>Check</button></td>
             </tr>
           ))}
         </tbody>
