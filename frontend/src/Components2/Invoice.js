@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import orderService from "../Services2/order.service";
-import logo from './../Assets/logo.jpeg';
+
 import "./../CSS/Invoice.css";
 
 export const roundToTwoDecimalPlaces = (value) => {
@@ -89,7 +89,7 @@ function Invoice() {
       <div className="invoiceheader">
         <h1 className="invoiceHead">PROFORMA INVOICE</h1>
         <h3 className="invoiceHead">TAX INVOICE</h3>
-        <img src={logo} alt="Company Logo" className="invoicelogo" />
+        <img src={"#"} alt="Company Logo" className="invoicelogo" />
       </div>
       <div className="quotation-info">
         <div>
