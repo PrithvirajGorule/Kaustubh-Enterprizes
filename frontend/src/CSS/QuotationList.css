@@ -1,18 +1,44 @@
-/* Center h2 */
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 20px;
+}
+
+.quotation-list-container {
+  max-width: 1500px; /* Increased max-width for wider container */
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+}
+
 h2 {
   text-align: center;
   font-weight: bold;
   font-size: x-large;
 }
 
-/* Style tables */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 0 auto; /* Center the table */
-  margin-left: 20px; /* Add left margin */
-  margin-right: 20px; /* Add right margin */
-  margin-bottom: 20px; /* Add margin at the bottom */
+  margin: 0 auto;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 th, td {
@@ -26,66 +52,64 @@ th {
 }
 
 /* Button styles */
-button {
-  background-color: #4CAF50;
+.quotation-list-container .check-btn {
+  background-color: #87CEEB; /* Sky blue for check button */
   color: white;
   border: none;
   padding: 8px 16px;
   cursor: pointer;
   border-radius: 4px;
+  transition: background-color 0.3s; /* Smooth transition on hover */
 }
 
-button:hover {
-  background-color: #45a049;
+.quotation-list-container .check-btn:hover {
+  background-color: #5F9EA0; /* Darker shade of sky blue on hover */
 }
 
-/* Link styles */
-a {
-  color: #007bff;
-  text-decoration: none;
+.quotation-list-container .uncheck-btn {
+  background-color: #28a745; /* Green for uncheck button */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s; /* Smooth transition on hover */
 }
 
-a:hover {
-  text-decoration: underline;
+.quotation-list-container .uncheck-btn:hover {
+  background-color: #218838; /* Darker shade of green on hover */
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  /* Center h2 */
   h2 {
-    font-size: large; /* Adjust font size for smaller screens */
-  }
-
-  /* Style tables */
-  table {
-    margin-left: 10px; /* Reduce left margin for smaller screens */
-    margin-right: 10px; /* Reduce right margin for smaller screens */
+    font-size: large;
   }
 }
 
 @media (max-width: 576px) {
-  /* Center h2 */
   h2 {
-    font-size: medium; /* Further adjust font size for even smaller screens */
-  }
-
-  /* Style tables */
-  table {
-    margin-left: 5px; /* Reduce left margin further for smallest screens */
-    margin-right: 5px; /* Reduce right margin further for smallest screens */
+    font-size: medium;
   }
 }
 
-/* Additional adjustment for screens up to 400px wide */
 @media (max-width: 400px) {
-  /* Center h2 */
   h2 {
-    font-size: small; /* Adjust font size for screens up to 400px */
+    font-size: small;
   }
+}
 
-  /* Style tables */
+@media (max-width: 320px) {
+  h2 {
+    font-size: x-small; /* Further reduce font size for very small screens */
+  }
+  
+  .quotation-list-container {
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+  
   table {
-    margin-left: 3px; /* Reduce left margin for screens up to 400px */
-    margin-right: 3px; /* Reduce right margin for screens up to 400px */
+    margin-left: 5px;
+    margin-right: 5px;
   }
 }

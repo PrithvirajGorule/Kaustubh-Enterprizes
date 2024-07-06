@@ -186,6 +186,41 @@
   margin-top: 20px;
 }
 
+.div{
+  height: 85%;
+}
+.bt1{
+  margin-bottom: 10px;
+  align-self: center;
+  padding: 5px;
+  background-color: #ff6b6b;
+  border: none;
+  border-radius: 5px;
+  width:50%;
+  
+}
+.bt2{
+  margin-bottom: 10px;
+  align-self: center;
+  padding: 10px;
+  padding: 5px;
+  width:50%;
+  border: none;
+  background-color: #1a2b7d;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.bt1:hover{
+  cursor: pointer;
+  background-color: #ea8181;
+}
+
+.bt2:hover{
+  cursor: pointer;
+  background-color: #15468c;
+}
+
 /* Responsive Design */
 @media (max-width: 960px) {
   .admin-product-operations {

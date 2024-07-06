@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import orderService from "../Services2/order.service";
 import AdminProductService from "../Services2/AdminProductService";
 import "./../CSS/SendOrder.css";
-
+//hello
 export default class AddCustomer extends Component {
   constructor(props) {
     super(props);
@@ -195,6 +195,8 @@ export default class AddCustomer extends Component {
 
   render() {
     return (
+      <div className="orderbg" href={"../../public/Assets/image2.png"} >
+    
       <div className="submit-form">
         {this.state.submitted ? (
           <div>
@@ -354,6 +356,7 @@ export default class AddCustomer extends Component {
             </button>
           </div>
         )}
+      </div>
       </div>
     );
   }
