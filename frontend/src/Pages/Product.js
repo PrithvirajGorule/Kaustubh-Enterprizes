@@ -76,16 +76,19 @@ const Product = () => {
   return (
     <div className='product-page'>
       <Jumbotron />
-      <div className="search-container">
+      {/* <div className="search-container">
         <input
           className="search-input"
           type="text"
           placeholder={`Search ${selectedCategory ? 'subcategories' : 'products'}...`}
-          value={searchQuery}
+          // value={searchQuery}
           onChange={handleSearchInputChange}
         />
-        <i className="fas fa-search search-icon"></i> {/* Search icon */}
-      </div>
+        <i className="fas fa-search search-icon"></i>
+      </div> */}
+
+
+
       {!selectedCategory && (
         <div className="gallery-container">
           {categories.map(category => (
