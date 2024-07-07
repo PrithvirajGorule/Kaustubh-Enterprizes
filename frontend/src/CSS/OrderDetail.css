@@ -1,9 +1,9 @@
 /* Global Reset/Normalize */
- h1, h2, h3, p, ul, li, table, td, th, input, button {
+ /* h1, h2, h3, p, ul, li, table, td, th, input, button {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 .orderbody {
   margin-left: 15%;

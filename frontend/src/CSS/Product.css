@@ -69,6 +69,7 @@
   width: 100%;
   height: auto;
   border-radius: 10px;
+  aspect-ratio: 4 / 3;
 }
 
 .product-body {
@@ -93,11 +94,11 @@
 }
 
 button {
-  background-color: #007bff;
+  background-color: #0b3c81;
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 10px 15px;
+ 
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.2s ease-in-out;

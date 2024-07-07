@@ -96,7 +96,7 @@ const Product = () => {
               <h3>{category.name}</h3>
               <img src={category.image ?? 'default-image-url.jpg'} alt={category.name ?? 'Category Image'} className="category-img" />
               <p>{category.description}</p>
-              <button onClick={() => fetchSubcategoriesByCategory(category)}>View Subcategories</button>
+              <button onClick={() => fetchSubcategoriesByCategory(category)}>View grades</button>
             </div>
           ))}
         </div>
@@ -110,7 +110,7 @@ const Product = () => {
               <div key={subcategory.id} className="subcategory-card">
                 <h4>{subcategory.name}</h4>
                 <p>{subcategory.description}</p>
-                <button onClick={() => fetchProductsBySubcategory(subcategory)}>View Products</button>
+                
               </div>
             ))}
           </div>
