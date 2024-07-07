@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import AdminProductService from "../Services2/AdminProductService";
+import "./../CSS/Mainpage.css";
+import { Link } from "react-router-dom";
+
 function MainPage() {
   const [categories, setCategories] = useState([]);
 
@@ -21,19 +24,30 @@ function MainPage() {
   }, []);
 
   return (
-    <div>
+    <div className="main-page">
       <h2>Main Categories</h2>
-      <ul>
+      <div className="categories-list">
         {categories.map((category) => (
-          <li key={category.id}>
-            <h3>{category.name}</h3>
-            <p>Description: {category.description}</p>
-            <p>Density: {category.density}</p>
+          <Link
+            key={category.id}
+            to={`/subcategories/${category.id}`}
+            className="category-card"
+          >
             <img src={category.image} alt={category.name} />
-            <a href={`/subcategories/${category.id}`}>{category.name}</a>
-          </li>
+            <div className="category-card-content">
+              <h3>{category.name}</h3>
+              <p>Description: {category.description}</p>
+              <p>Density: {category.density}</p>
+              <Link
+                to={`/subcategories/${category.id}`}
+                className="view-subcategories-btn"
+              >
+                View Subcategories
+              </Link>
+            </div>
+          </Link>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

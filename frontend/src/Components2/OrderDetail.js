@@ -51,6 +51,7 @@ function OrderDetail() {
 
   const calculateQuantity = (product) => {
     const { height, width, length, density, noofsheets } = product;
+
     const volume = (height * width * length) / 1000; // Convert mm^3 to cm^3
     const metalDensity = density ? parseFloat(density) / 1000 : 1; // Convert g/cm^3 to kg/mm^3 or default to 1 kg/mm^3
     const totalVolume = volume * noofsheets;
@@ -141,7 +142,7 @@ function OrderDetail() {
         <tbody>
           {order.products.map((product, index) => (
             <tr key={index}>
-              <td>{product.name}</td>
+              <td>{product.subcategory}</td>
               <td>{product.height} x {product.width} x {product.length}</td>
               <td>{calculateQuantity(product).toFixed(2)}</td>
               <td>

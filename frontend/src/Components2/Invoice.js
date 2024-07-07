@@ -138,7 +138,7 @@ function Invoice() {
           {products.map((product, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
-              <td>{product.name}</td>
+              <td>{product.subcategory}</td>
               <td>720852</td>
               <td>{calculateQuantity(product)} KGS</td>
               <td>{roundToTwoDecimalPlaces(product.price)}</td>
