@@ -3,7 +3,7 @@
   padding: 20px;
   border: 1px solid #000;
   background-color: #fff;
-  width: 60%;
+  width: 90%;
   max-width: 1200px;
   font-family: Arial, sans-serif;
   font-size: 12px;
@@ -15,12 +15,10 @@
   display: flex;
 } */
 
-
-
 .invoicelogo {
   width: 100px;
   display: block;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
 }
 
 .invoiceheader {
@@ -43,6 +41,7 @@
 .bank-details {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .quotation-info p,
@@ -98,6 +97,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
+  flex-wrap: wrap;
 }
 
 .button-container button {
@@ -109,6 +109,7 @@
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
+  margin: 10px 0;
 }
 
 .button-container button:hover {
@@ -119,6 +120,7 @@
   text-decoration: none;
   color: #007bff;
   font-size: 16px;
+  margin: 10px 0;
 }
 
 .button-container a:hover {
@@ -136,5 +138,47 @@
     box-shadow: none;
     width: 100%;
     max-width: none;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .quotation-info,
+  .ship-bill-info,
+  .invoice-details,
+  .bank-details {
+    flex-direction: column;
+  }
+
+  .button-container {
+    flex-direction: column;
+  }
+
+  .button-container button,
+  .button-container a {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .invoice-container {
+    width: 100%;
+    margin-top: 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  .invoice-container {
+    padding: 10px;
+  }
+
+  .invoice-table th,
+  .invoice-table td {
+    padding: 3px;
+  }
+
+  .button-container button,
+  .button-container a {
+    font-size: 14px;
   }
 }
