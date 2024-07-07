@@ -111,7 +111,7 @@ function OrderDetail() {
   }
 
   return (
-    <div>
+    <div className="orderbody">
       <h2>Order Detail</h2>
       <p>ID: {order.id}</p>
       <p>Name: {order.name}</p>
