@@ -173,7 +173,7 @@ function AdminProductOperations() {
                 <div key={category.id} className="category-card">
                   <h3>{category.name}</h3>
                   <img src={category.image} alt={category.name}></img>
-                  <p>{category.description}</p>
+                  <p className='cat-desp'>{category.description}</p>
                   <p>Density: {category.density}</p>
                   <div className="card-buttons">
                     <button onClick={() => fetchSubcategoriesByCategory(category)}>Show Subcategories</button>
