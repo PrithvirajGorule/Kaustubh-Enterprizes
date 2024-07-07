@@ -50,31 +50,27 @@ export default class AddCustomer extends Component {
       contact: e.target.value,
     });
   };
-
+  
   onChangeCategory = async (e) => {
     const categoryId = e.target.value;
   
     try {
+      // Fetch subcategories for the selected category
       const snapshot = await AdminProductService.getSubcategoriesByCategory(categoryId);
-      const subcategories = [];
-  
-      snapshot.forEach((doc) => {
-        const subcategoryData = {
-          id: doc.id,
-          name: doc.data().name,
-        };
-        subcategories.push(subcategoryData);
-      });
+      const subcategories = snapshot.docs.map(doc => ({
+        id: doc.id,
+        name: doc.data().name,
+      }));
   
       // Fetch category details including density
       const categoryDoc = await AdminProductService.getCategory(categoryId);
       const categoryData = categoryDoc.data(); // Retrieve document data
-    const density = categoryData.density; // Assuming density is a field in the document
-// Assuming categoryData contains density
-      // console.log(categoryData);
+      const { name: category, density } = categoryData; // Destructure name and density from categoryData
+  
       this.setState({
         subcategories,
-        density, // Set the density for the selected category
+        density,
+        category,
       });
     } catch (error) {
       console.error("Error fetching subcategories or category data:", error);
@@ -82,18 +78,22 @@ export default class AddCustomer extends Component {
     }
   };
   
+  
 
   onChangeSubcategory = (e, index) => {
     const { value } = e.target;
-    this.setState((prevState) => {
+    const subcategory = this.state.subcategories.find(sub => sub.id === value);
+  
+    this.setState(prevState => {
       const products = [...prevState.products];
       products[index] = {
         ...products[index],
-        subcategory: value,
+        subcategory: subcategory ? subcategory.name : '', 
       };
       return { products };
     });
   };
+  
 
   onChangeHeight = (e, index) => {
     const { value } = e.target;
@@ -148,6 +148,7 @@ export default class AddCustomer extends Component {
       products: [
         ...prevState.products,
         {
+          category:"",
           subcategory: "",
           height: "",
           width: "",
