@@ -10,22 +10,22 @@ const WhyWorkWithUs = () => {
         <FeatureCard 
           icon={<span role="img" aria-label="specialization">🔧</span>}
           title="Specialization"
-          description="Building on 5 years of Next.js focus, we are the industry leader in providing unmatched expertise and experience for headless web implementations, delivering top-notch solutions for businesses seeking a specialized partner."
+          description="Kaustubh Enterprises specializes in providing Metal Solutions to industries such as Automobile, Chemical, Pharmaceutical, and Oil & Gas, with over 40 years of experience. We ensure cost-competitive prices and just-in-time delivery, minimizing wastage through precise sizing. Our strong service center partnerships enable us to meet the exact needs of our customers efficiently."
         />
         <FeatureCard 
           icon={<span role="img" aria-label="consulting approach">👥</span>}
           title="Consulting approach"
-          description="We understand that communication is key to any successful project. We not only excel at developing high-quality solutions, but we also offer extensive consulting expertise, helping our clients make more informed decisions."
+          description="Kaustubh Enterprises consulting approach focuses on understanding industry-specific needs, leveraging 40+ years of expertise to provide tailored Metal Solutions We prioritize cost optimization and timely delivery, working closely with service centers to minimize wastage through precise sizing. Continuous feedback and innovation ensure we exceed customer expectations."
         />
         <FeatureCard 
           icon={<span role="img" aria-label="speed and flexibility">⚡</span>}
           title="Speed & flexibility"
-          description="We understand the importance of business value in software solutions. We fear no deadline. For urgent projects, we can flexibly scale our team to adapt to your timeline."
+          description="Kaustubh Enterprises excels in delivering rapid and flexible Metal Solutions tailored to diverse industry needs. Our agile processes and strong service center partnerships ensure quick adaptation to customer requirements while maintaining cost efficiency and just-in-time delivery. We continuously innovate to provide precise sizing and reduce wastage, ensuring swift and effective responses to market demands."
         />
         <FeatureCard 
           icon={<span role="img" aria-label="stability">⭐</span>}
           title="Stability"
-          description="We prioritize lasting partnerships with our clients and maintain consistent team composition throughout the entire project to build trust and a deep understanding of your businesses."
+          description="With over 40 years of experience, Kaustubh Enterprises offers stable and reliable Metal Solutions across various industries. Our long-term service center partnerships and customer-centric approach ensure consistent quality, precise sizing, and dependable just-in-time delivery. We focus on building enduring relationships and maintaining high standards to meet our customers' evolving needs."
         />
       </div>
     </div>
