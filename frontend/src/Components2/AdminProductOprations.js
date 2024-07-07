@@ -50,7 +50,9 @@ function AdminProductOperations() {
     try {
       const response = await AdminProductService.getSubcategoriesByCategory(categoryId);
       const subcategoriesData = response.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      console.log(subcategoriesData);
       setSubcategories(subcategoriesData);
+      setSelectedCategory(categoryId);
     } catch (error) {
       console.error('Error fetching subcategories by category:', error);
     }
@@ -187,6 +189,7 @@ function AdminProductOperations() {
               {filteredCategories.map((category) => (
                 <div key={category.id} className="category-card">
                   <h3>{category.name}</h3>
+                  <img src={category.image}></img>
                   <p>{category.description}</p>
                   <p>Density: {category.density}</p>
                   <div className="card-buttons">
@@ -194,8 +197,10 @@ function AdminProductOperations() {
                     <button onClick={() => setCategoryForUpdate(category)}>Update</button>
                     <button onClick={() => handleDeleteCategory(category.id)}>Delete</button>
                   </div>
-                  {selectedCategory === category.id && (
+                  {selectedCategory == category.id && (
+
                     <div className="subcategories-grid">
+                      <h1>sub-categories</h1>
                       {filteredSubcategories.map((subcategory) => (
                         <div key={subcategory.id} className="subcategory-card">
                           <h4>{subcategory.name}</h4>

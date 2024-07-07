@@ -13,7 +13,7 @@ function AddSubcategory({ fetchSubcategories, categories }) {
   const handleAddSubcategory = async () => {
     try {
       await AdminProductService.createSubcategory(newSubcategory);
-      fetchSubcategories(); // Refresh subcategories list after adding
+      fetchSubcategories(newSubcategory.category); // Refresh subcategories list after adding
       resetForm(); // Reset form fields
       setIsAddModalOpen(false); // Close modal after adding
     } catch (error) {

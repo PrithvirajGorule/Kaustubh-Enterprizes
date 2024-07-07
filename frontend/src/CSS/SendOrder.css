@@ -1,19 +1,4 @@
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; /* Ensures the body takes full viewport height */
-  margin: 20px; /* Adds equal spacing around the body */
-}
 
 .orderbg {
   background: url('../../public/Assets/image2.png') no-repeat center center;
