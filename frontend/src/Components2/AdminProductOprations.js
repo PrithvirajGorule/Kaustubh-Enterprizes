@@ -6,49 +6,90 @@ import UpdateProduct from './UpdateProduct';
 import DisplayProduct from './DisplayProduct';
 import { Link, useNavigate } from 'react-router-dom';
 import QuotationList from './QuotationList';
+import AddCategory from './AddCategory';
+import AddSubcategory from './AddSubcategory'; // Import AddSubcategory component here
 
 function AdminProductOperations() {
-  const [products, setProducts] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const [subcategories, setSubcategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [showUpdateForm, setShowUpdateForm] = useState(false);
-  const [updatedProduct, setUpdatedProduct] = useState({ id: '', name: '', description: '', price: '', url: '', shape: '', application: '', width: '', thickness: '', grade: '', material: '', unitType: '' });
-  const [displayType, setDisplayType] = useState('products'); // State to manage what to display
+  const [showUpdateCategoryForm, setShowUpdateCategoryForm] = useState(false);
+  const [updatedCategory, setUpdatedCategory] = useState({ id: '', name: '', image: '', description: '', density: '' });
+  const [showUpdateSubcategoryForm, setShowUpdateSubcategoryForm] = useState(false);
+  const [updatedSubcategory, setUpdatedSubcategory] = useState({ id: '', name: '', categoryId: '', description: '' });
+  const [displayType, setDisplayType] = useState('categories'); // State to manage what to display
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchProducts();
+    fetchCategories();
+    fetchSubcategories();
   }, []);
 
-  const fetchProducts = async () => {
+  const fetchCategories = async () => {
     try {
-      const querySnapshot = await AdminProductService.getAll();
-      const productsData = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setProducts(productsData);
+      const response = await AdminProductService.getAllCategories();
+      const categoriesData = response.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setCategories(categoriesData);
     } catch (error) {
-      console.error('Error fetching products:', error);
+      console.error('Error fetching categories:', error);
     }
   };
 
-  const handleDelete = async (productId) => {
+  const fetchSubcategories = async () => {
     try {
-      await AdminProductService.delete(productId);
-      fetchProducts();
+      const response = await AdminProductService.getAllSubcategories();
+      const subcategoriesData = response.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setSubcategories(subcategoriesData);
     } catch (error) {
-      console.error('Error deleting product:', error);
+      console.error('Error fetching subcategories:', error);
     }
   };
 
-  const setProductForUpdate = (product) => {
-    setUpdatedProduct(product);
-    setShowUpdateForm(true);
+  const fetchSubcategoriesByCategory = async (categoryId) => {
+    try {
+      const response = await AdminProductService.getSubcategoriesByCategory(categoryId);
+      const subcategoriesData = response.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setSubcategories(subcategoriesData);
+    } catch (error) {
+      console.error('Error fetching subcategories by category:', error);
+    }
   };
 
-  const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  const handleDeleteCategory = async (categoryId) => {
+    try {
+      await AdminProductService.deleteCategory(categoryId);
+      fetchCategories();
+    } catch (error) {
+      console.error('Error deleting category:', error);
+    }
+  };
+
+  const handleDeleteSubcategory = async (subcategoryId) => {
+    try {
+      await AdminProductService.deleteSubcategory(subcategoryId);
+      fetchSubcategories();
+    } catch (error) {
+      console.error('Error deleting subcategory:', error);
+    }
+  };
+
+  const setCategoryForUpdate = (category) => {
+    setUpdatedCategory(category);
+    setShowUpdateCategoryForm(true);
+  };
+
+  const setSubcategoryForUpdate = (subcategory) => {
+    setUpdatedSubcategory(subcategory);
+    setShowUpdateSubcategoryForm(true);
+  };
+
+  const filteredCategories = categories.filter(category =>
+    category.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredSubcategories = subcategories.filter(subcategory =>
+    subcategory.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const handleLogout = () => {
@@ -57,37 +98,63 @@ function AdminProductOperations() {
     navigate('/admin');
   };
 
-  function AddProductModal({ isOpen, onClose, onSubmit, product, setProduct }) {
+  function AddCategoryModal({ isOpen, onClose, onSubmit, category, setCategory }) {
     if (!isOpen) return null;
+
+    const handleCategorySubmit = async () => {
+      try {
+        await onSubmit(category);
+        fetchCategories();
+        setCategory({ id: '', name: '', image: '', description: '', density: '' }); // Clear form fields
+        onClose();
+      } catch (error) {
+        console.error('Error adding category:', error);
+      }
+    };
 
     return (
       <div className="modal">
         <div className="modal-content">
           <span className="close-button" onClick={onClose}>&times;</span>
-          <h2>Add New Product</h2>
-          <input type="text" placeholder="Name" value={product.name} onChange={(e) => setProduct({ ...product, name: e.target.value })} />
-          <input type="text" placeholder="Description" value={product.description} onChange={(e) => setProduct({ ...product, description: e.target.value })} />
-          <input type="number" placeholder="Price" value={product.price} onChange={(e) => setProduct({ ...product, price: parseFloat(e.target.value) })} />
-          <input type="text" placeholder="URL" value={product.url} onChange={(e) => setProduct({ ...product, url: e.target.value })} />
-          <button onClick={onSubmit}>Add Product</button>
+          <h2>Add New Category</h2>
+          <input type="text" placeholder="Name" value={category.name} onChange={(e) => setCategory({ ...category, name: e.target.value })} />
+          <input type="text" placeholder="Image URL" value={category.image} onChange={(e) => setCategory({ ...category, image: e.target.value })} />
+          <input type="text" placeholder="Description" value={category.description} onChange={(e) => setCategory({ ...category, description: e.target.value })} />
+          <input type="text" placeholder="Density" value={category.density} onChange={(e) => setCategory({ ...category, density: e.target.value })} />
+          <button onClick={handleCategorySubmit}>Add Category</button>
         </div>
       </div>
     );
   }
 
-  function UpdateProductModal({ isOpen, onClose, onSubmit, product, setProduct }) {
+  function AddSubcategoryModal({ isOpen, onClose, onSubmit, subcategory, setSubcategory }) {
     if (!isOpen) return null;
+
+    const handleSubcategorySubmit = async () => {
+      try {
+        await onSubmit(subcategory);
+        fetchSubcategories();
+        setSubcategory({ id: '', name: '', categoryId: '', description: '' }); // Clear form fields
+        onClose();
+      } catch (error) {
+        console.error('Error adding subcategory:', error);
+      }
+    };
 
     return (
       <div className="modal">
         <div className="modal-content">
           <span className="close-button" onClick={onClose}>&times;</span>
-          <h2>Update Product</h2>
-          <input type="text" placeholder="Name" value={product.name} onChange={(e) => setProduct({ ...product, name: e.target.value })} />
-          <input type="text" placeholder="Description" value={product.description} onChange={(e) => setProduct({ ...product, description: e.target.value })} />
-          <input type="number" placeholder="Price" value={product.price} onChange={(e) => setProduct({ ...product, price: parseFloat(e.target.value) })} />
-          <input type="text" placeholder="URL" value={product.url} onChange={(e) => setProduct({ ...product, url: e.target.value })} />
-          <button onClick={onSubmit}>Update Product</button>
+          <h2>Add New Subcategory</h2>
+          <input type="text" placeholder="Name" value={subcategory.name} onChange={(e) => setSubcategory({ ...subcategory, name: e.target.value })} />
+          <select value={subcategory.categoryId} onChange={(e) => setSubcategory({ ...subcategory, categoryId: e.target.value })}>
+            <option value="">Select Category</option>
+            {categories.map(category => (
+              <option key={category.id} value={category.id}>{category.name}</option>
+            ))}
+          </select>
+          <input type="text" placeholder="Description" value={subcategory.description} onChange={(e) => setSubcategory({ ...subcategory, description: e.target.value })} />
+          <button onClick={handleSubcategorySubmit}>Add Subcategory</button>
         </div>
       </div>
     );
@@ -97,47 +164,71 @@ function AdminProductOperations() {
     <div className="admin-product-operations">
       <aside className="sidebar">
         {/* Buttons to switch between display types */}
-        <button onClick={() => setDisplayType('products')}>Display Products</button>
-        <AddProduct fetchProducts={fetchProducts} />
+        <button onClick={() => setDisplayType('categories')}>Display Categories</button>
+        <AddCategory fetchCategories={fetchCategories} />
+        <AddSubcategory fetchSubcategories={fetchSubcategories} categories={categories} /> {/* AddSubcategory component usage */}
         <button onClick={() => setDisplayType('orderList')}>Order List</button>
         <button onClick={handleLogout}>Logout</button>
       </aside>
       <main className="main-content">
         {/* Content based on the displayType state */}
-        {displayType === 'products' && (
+        {displayType === 'categories' && (
           <div>
             <div className="search-section">
               <input
                 type="text"
-                placeholder="Search product"
+                placeholder="Search category"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            <br></br>
-            <div className="products-grid">
-              {filteredProducts.map((product) => (
-                <DisplayProduct
-                  key={product.id}
-                  product={product}
-                  handleDelete={handleDelete}
-                  setProductForUpdate={setProductForUpdate}
-                />
+            <br />
+            <div className="categories-grid">
+              {filteredCategories.map((category) => (
+                <div key={category.id} className="category-card">
+                  <h3>{category.name}</h3>
+                  <p>{category.description}</p>
+                  <p>Density: {category.density}</p>
+                  <div className="card-buttons">
+                    <button onClick={() => fetchSubcategoriesByCategory(category.id)}>Show Subcategories</button>
+                    <button onClick={() => setCategoryForUpdate(category)}>Update</button>
+                    <button onClick={() => handleDeleteCategory(category.id)}>Delete</button>
+                  </div>
+                  {selectedCategory === category.id && (
+                    <div className="subcategories-grid">
+                      {filteredSubcategories.map((subcategory) => (
+                        <div key={subcategory.id} className="subcategory-card">
+                          <h4>{subcategory.name}</h4>
+                          <p>{subcategory.description}</p>
+                          <div className="card-buttons">
+                            <button onClick={() => setSubcategoryForUpdate(subcategory)}>Update</button>
+                            <button onClick={() => handleDeleteSubcategory(subcategory.id)}>Delete</button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           </div>
         )}
         {displayType === 'orderList' && <QuotationList />}
-        {showUpdateForm && (
-          <UpdateProduct
-            fetchProducts={fetchProducts}
-            showUpdateForm={showUpdateForm}
-            setShowUpdateForm={setShowUpdateForm}
-            updatedProduct={updatedProduct}
-            setUpdatedProduct={setUpdatedProduct}
-          />
-        )}
       </main>
+      <AddCategoryModal
+        isOpen={showUpdateCategoryForm}
+        onClose={() => setShowUpdateCategoryForm(false)}
+        onSubmit={AdminProductService.updateCategory}
+        category={updatedCategory}
+        setCategory={setUpdatedCategory}
+      />
+      <AddSubcategoryModal
+        isOpen={showUpdateSubcategoryForm}
+        onClose={() => setShowUpdateSubcategoryForm(false)}
+        onSubmit={AdminProductService.updateSubcategory}
+        subcategory={updatedSubcategory}
+        setSubcategory={setUpdatedSubcategory}
+      />
     </div>
   );
 }

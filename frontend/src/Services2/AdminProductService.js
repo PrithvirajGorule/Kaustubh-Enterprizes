@@ -1,32 +1,79 @@
 import firebase from "./firebase";
 
-const db = firebase.collection("/products");
+const productsDb = firebase.collection("/products");
+const categoriesDb = firebase.collection("/categories");
+const subcategoriesDb = firebase.collection("/subcategories");
 
 class AdminProductService {
-  getAll() {
-    return db.get();
+  // Product methods
+  getAllProducts() {
+    return productsDb.get();
   }
 
-  create(product) {
-    return db.add(product);
+  createProduct(product) {
+    return productsDb.add(product);
   }
 
-  // update(id, value) {
-  //   return db.doc(id).update(value);
-  // }
-
-  update(id, order) {
-    // Remove the ID from the order object as it's already provided separately
-    const { id: orderId, ...orderData } = order;
-    return db.doc(id).set(orderData, { merge: true });
-  }
-  delete(id) {
-    return db.doc(id).delete();
+  updateProduct(id, product) {
+    const { id: productId, ...productData } = product;
+    return productsDb.doc(id).set(productData, { merge: true });
   }
 
-  // Add the get method to retrieve a single product by ID
-  get(id) {
-    return db.doc(id).get();
+  deleteProduct(id) {
+    return productsDb.doc(id).delete();
+  }
+
+  getProduct(id) {
+    return productsDb.doc(id).get();
+  }
+
+  // Category methods
+  getAllCategories() {
+    return categoriesDb.get();
+  }
+
+  createCategory(category) {
+    return categoriesDb.add(category);
+  }
+
+  updateCategory(id, category) {
+    const { id: categoryId, ...categoryData } = category;
+    return categoriesDb.doc(id).set(categoryData, { merge: true });
+  }
+
+  deleteCategory(id) {
+    return categoriesDb.doc(id).delete();
+  }
+
+  getCategory(id) {
+    return categoriesDb.doc(id).get();
+  }
+
+  // Subcategory methods
+  getAllSubcategories() {
+    return subcategoriesDb.get();
+  }
+
+  createSubcategory(subcategory) {
+    return subcategoriesDb.add(subcategory);
+  }
+
+  updateSubcategory(id, subcategory) {
+    const { id: subcategoryId, ...subcategoryData } = subcategory;
+    return subcategoriesDb.doc(id).set(subcategoryData, { merge: true });
+  }
+
+  deleteSubcategory(id) {
+    return subcategoriesDb.doc(id).delete();
+  }
+
+  getSubcategory(id) {
+    return subcategoriesDb.doc(id).get();
+  }
+
+  getSubcategoriesByCategory(categoryId) {
+    console.log(subcategoriesDb.where("category", "==", categoryId).get());
+    return subcategoriesDb.where("category", "==", categoryId).get();
   }
 }
 
