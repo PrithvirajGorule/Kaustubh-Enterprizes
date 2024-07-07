@@ -1,36 +1,149 @@
+/* Main styling for the page */
 .product-page {
-  padding-top: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* General body styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f4f4f4;
+}
+
+/* Title styling */
+.product-page h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* Search bar container styling */
 .search-container {
   text-align: center;
   margin-bottom: 20px;
 }
 
+/* Search input styling */
 .search-input {
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   padding: 10px;
   border: 2px solid #333;
   border-radius: 5px;
   font-size: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   vertical-align: middle;
-  margin-right: 10px;
-  margin-left: 150px;
+  margin: 0 auto 20px auto;
 }
 
+/* Search icon styling */
 .search-icon {
   margin-left: -30px;
   vertical-align: middle;
+  color: #333;
 }
 
+/* Gallery container for categories, subcategories, and products */
 .gallery-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 20px;
   justify-items: center;
 }
-@media screen and (max-width: 768px) {
+
+/* Category, subcategory, and product card styling */
+.category-card,
+.subcategory-card,
+.product-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.category-card:hover,
+.subcategory-card:hover,
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Image styling for categories and products */
+.category-img,
+.product-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Product body styling */
+.product-body {
+  padding: 15px;
+}
+
+/* Title styling for products */
+.product-title {
+  margin: 10px 0;
+  color: #34495e;
+  font-size: 18px;
+}
+
+/* Text styling for products */
+.product-text {
+  margin: 5px 0;
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+/* Price styling for products */
+.product-price {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* View subcategories button styling */
+.view-subcategories-btn {
+  display: block;
+  margin: 20px auto 10px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.view-subcategories-btn:hover {
+  background-color: #2980b9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .gallery-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .category-card,
+  .subcategory-card,
+  .product-card {
+    max-width: 90%;
+  }
+
   .search-input {
     width: calc(100% - 20px); /* Adjusted width for smaller screens */
     max-width: 400px; /* Adjusted max-width for smaller screens */
