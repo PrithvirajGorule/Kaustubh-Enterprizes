@@ -18,6 +18,7 @@ import OrderDetail from "./Components2/OrderDetail";
 import Invoice from "./Components2/Invoice";
 import ProtectedRoute from "./Sequrity/ProtectedRoute";
 import useActivityListener from "./Sequrity/useActivityListener";
+import SubcategoriesPage from "./Components2/SubcategoriesPage";
 function App() {
   useActivityListener(); // Initialize activity listener
 
@@ -34,6 +35,7 @@ function App() {
             <Route path="/calculator" element={<HardnessConverter />} />
             <Route path="/register" element={<Register />} />
             <Route path="/admin" element={<Login />} />
+            <Route path="/subcategories/:categoryId" element={<SubcategoriesPage />} />
             {/* <Route path="/admindashboard" element={
               <ProtectedRoute>
                 <AdminDashboard />
