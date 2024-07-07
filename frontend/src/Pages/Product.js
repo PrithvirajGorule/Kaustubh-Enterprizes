@@ -3,6 +3,8 @@ import Card from '../Components/Card';
 import AdminProductService from '../Services2/AdminProductService';
 import Jumbotron from '../Components/Jumbotron';
 import '../CSS/Product.css';
+import MainPage from '../Components2/DisplayCategory';
+
 const Product = () => {
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -33,28 +35,20 @@ const Product = () => {
 
   return (
     <div className='hello'>
-      <Jumbotron></Jumbotron>
-    <div className="product-page">
-     
-     
-      <div className="search-form">
-  <input
-    className="search-input"
-    type="text"
-    placeholder="Search products..."
-    value={searchQuery}
-    onChange={handleSearchInputChange}
-  />
-  <br></br>
-  <br></br>
-  <i className="fas fa-search search-icon"></i> {/* Search icon */}
-</div>
-</div>
-      <div className="gallery-container">
-        {filteredProducts.map(item => (
-          <Card key={item.id} data={item} />
-        ))}
+      <Jumbotron />
+      <div className="product-page">
+        <div className="search-form">
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Search products..."
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+          />
+          <i className="fas fa-search search-icon"></i> {/* Search icon */}
+        </div>
       </div>
+      <MainPage />
     </div>
   );
 };
