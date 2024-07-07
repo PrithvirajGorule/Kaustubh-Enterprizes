@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import orderService from '../Services2/order.service';
-import './../CSS/QuotationList.css';
 import Jumbotron from '../Components/Jumbotron';
+import './../CSS/QuotationList.css';
 
 function QuotationList() {
   const [ordersWithCheckMark, setOrdersWithCheckMark] = useState([]);
@@ -11,7 +11,6 @@ function QuotationList() {
   const fetchData = async () => {
     try {
       const querySnapshot = await orderService.getAll();
-      console.log('querySnapshot:', querySnapshot); // Log the value of querySnapshot
       const data = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
@@ -31,10 +30,7 @@ function QuotationList() {
     const confirmed = window.confirm("Are you sure you want to mark this order?");
     if (confirmed) {
       try {
-        // Update the check mark status in the database
         await orderService.update(orderId, { checkMark: true });
-
-        // Refetch data to update the tables
         fetchData();
       } catch (error) {
         console.error('Error updating check mark status:', error);
@@ -46,13 +42,22 @@ function QuotationList() {
     const confirmed = window.confirm("Are you sure you want to uncheck this order?");
     if (confirmed) {
       try {
-        // Update the check mark status in the database
         await orderService.update(orderId, { checkMark: false });
-
-        // Refetch data to update the tables
         fetchData();
       } catch (error) {
         console.error('Error updating check mark status:', error);
+      }
+    }
+  };
+
+  const handleDeleteClick = async (orderId) => {
+    const confirmed = window.confirm("Are you sure you want to delete this order?");
+    if (confirmed) {
+      try {
+        await orderService.delete(orderId);
+        fetchData();
+      } catch (error) {
+        console.error('Error deleting order:', error);
       }
     }
   };
@@ -68,7 +73,7 @@ function QuotationList() {
             <th>Order ID</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Check Mark</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -77,8 +82,10 @@ function QuotationList() {
               <td><Link to={`/orders/${order.id}`}>{order.id}</Link></td>
               <td>{order.name}</td>
               <td>{order.email}</td>
-              <td>✓</td>
-              <td><button className="check-btn" onClick={() => handleUncheckMarkClick(order.id)}>Uncheck</button></td>
+              <td>
+                <button className="check-btn" onClick={() => handleUncheckMarkClick(order.id)}>Uncheck</button>
+                <button className="delete-btn" onClick={() => handleDeleteClick(order.id)}>Delete</button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -91,7 +98,7 @@ function QuotationList() {
             <th>Order ID</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Check Mark</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -100,7 +107,10 @@ function QuotationList() {
               <td><Link to={`/orders/${order.id}`}>{order.id}</Link></td>
               <td>{order.name}</td>
               <td>{order.email}</td>
-              <td><button className="uncheck-btn" onClick={() => handleCheckMarkClick(order.id)}>Check</button></td>
+              <td>
+                <button className="uncheck-btn" onClick={() => handleCheckMarkClick(order.id)}>Check</button>
+                <button className="delete-btn" onClick={() => handleDeleteClick(order.id)}>Delete</button>
+              </td>
             </tr>
           ))}
         </tbody>

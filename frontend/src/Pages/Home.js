@@ -7,7 +7,7 @@ import HardnessConversion from './Calculator';
 import OurServices from '../Components/OurServices';
 import WhyWorkWithUs from '../Components/WhyWorkWithUs';
 import LogoSlider from '../Components/LogoSlider';
-
+import MainPage from '../Components2/DisplayCategory';
 const images = [ /* Array of image URLs */
   './../Assets/image1.png',
   './../Assets/image2.png',
@@ -128,11 +128,12 @@ const Homepage = () => {
       <div>
         <br></br>
         <br></br>
-        <div className="gallery-container">
+        {/* <div className="gallery-container">
           {products.map((item) => (
             <Card key={item.id} data={item} />
           ))}
-        </div>
+        </div> */}
+        <MainPage></MainPage>
       </div>
       {/* Add more sections/components as needed */}
       <OurServices/>
