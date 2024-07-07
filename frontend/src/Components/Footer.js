@@ -56,13 +56,13 @@ deliver around the globe.
                 
             </p>
             <div class="footer-icons">
-            <a href="#" className="footer__icon">
+            <a href="https://www.instagram.com/kaustubhenterprises?igsh=NTc4MTIwNjQ2YQ==" className="footer__icon">
               <FontAwesomeIcon icon={faInstagram} />
             </a>
             <a href="https://in.linkedin.com/company/kaustubh-enterprises" className="footer__icon">
               <FontAwesomeIcon icon={faLinkedin} />
             </a>
-            <a href="#" className="footer__icon">
+            <a href="https://www.facebook.com/KaustubhEnterprises?mibextid=ZbWKwL" className="footer__icon">
               <FontAwesomeIcon icon={faFacebook} />
             </a>
             </div>

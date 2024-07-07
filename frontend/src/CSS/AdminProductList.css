@@ -159,19 +159,7 @@
 }
 
 /* Modal Styling */
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-  z-index: 1050;
-  width: auto;
-  max-width: 600px;
-}
+
 
 .close-button {
   position: absolute;
@@ -259,22 +247,23 @@
   color: white;
   padding: 20px;
   width: 250px;
-  flex: 0 0 250px;
+  
+  
 }
 
 .sidebar button {
-  background-color: #34495e;
+  background-color: #34495ea0;
   border: none;
   color: white;
   padding: 10px 20px;
-  margin: 10px 0;
+  margin: 20px 0;
   cursor: pointer;
   width: 100%;
   text-align: left;
 }
 
 .sidebar button:hover {
-  background-color: #1abc9c;
+  background-color: #4cc2d4;
 }
 
 .main-content {
@@ -352,6 +341,9 @@
   align-items: center;
 }
 
+.modal h2{
+  color: black;
+}
 .modal-content {
   background-color: white;
   padding: 20px;
@@ -391,13 +383,18 @@
   background-color: #27ae60;
 }
 
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .admin-product-operations {
     flex-direction: column;
   }
+  .sidebar button{
+    margin: 10px 0px;
+  }
   
   .sidebar {
+    
     width: 100%;
     flex: 0 0 auto;
     text-align: center;
