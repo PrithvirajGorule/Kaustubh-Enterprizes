@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import AdminProductService from '../Services2/AdminProductService';
 import './../CSS/AdminProductList.css';
-import AddProduct from './AddProduct';
-import UpdateProduct from './UpdateProduct';
-import DisplayProduct from './DisplayProduct';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import QuotationList from './QuotationList';
 import AddCategory from './AddCategory';
-import AddSubcategory from './AddSubcategory'; // Import AddSubcategory component here
+import AddSubcategory from './AddSubcategory';
 
 function AdminProductOperations() {
   const [categories, setCategories] = useState([]);
@@ -18,12 +15,11 @@ function AdminProductOperations() {
   const [updatedCategory, setUpdatedCategory] = useState({ id: '', name: '', image: '', description: '', density: '' });
   const [showUpdateSubcategoryForm, setShowUpdateSubcategoryForm] = useState(false);
   const [updatedSubcategory, setUpdatedSubcategory] = useState({ id: '', name: '', categoryId: '', description: '' });
-  const [displayType, setDisplayType] = useState('categories'); // State to manage what to display
+  const [displayType, setDisplayType] = useState('categories');
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchCategories();
-    fetchSubcategories();
   }, []);
 
   const fetchCategories = async () => {
@@ -36,23 +32,12 @@ function AdminProductOperations() {
     }
   };
 
-  const fetchSubcategories = async () => {
+  const fetchSubcategoriesByCategory = async (category) => {
     try {
-      const response = await AdminProductService.getAllSubcategories();
+      const response = await AdminProductService.getSubcategoriesByCategory(category.id);
       const subcategoriesData = response.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setSubcategories(subcategoriesData);
-    } catch (error) {
-      console.error('Error fetching subcategories:', error);
-    }
-  };
-
-  const fetchSubcategoriesByCategory = async (categoryId) => {
-    try {
-      const response = await AdminProductService.getSubcategoriesByCategory(categoryId);
-      const subcategoriesData = response.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      console.log(subcategoriesData);
-      setSubcategories(subcategoriesData);
-      setSelectedCategory(categoryId);
+      setSelectedCategory(category);
     } catch (error) {
       console.error('Error fetching subcategories by category:', error);
     }
@@ -70,7 +55,7 @@ function AdminProductOperations() {
   const handleDeleteSubcategory = async (subcategoryId) => {
     try {
       await AdminProductService.deleteSubcategory(subcategoryId);
-      fetchSubcategories();
+      fetchSubcategoriesByCategory(selectedCategory);
     } catch (error) {
       console.error('Error deleting subcategory:', error);
     }
@@ -107,7 +92,7 @@ function AdminProductOperations() {
       try {
         await onSubmit(category);
         fetchCategories();
-        setCategory({ id: '', name: '', image: '', description: '', density: '' }); // Clear form fields
+        setCategory({ id: '', name: '', image: '', description: '', density: '' });
         onClose();
       } catch (error) {
         console.error('Error adding category:', error);
@@ -135,8 +120,8 @@ function AdminProductOperations() {
     const handleSubcategorySubmit = async () => {
       try {
         await onSubmit(subcategory);
-        fetchSubcategories();
-        setSubcategory({ id: '', name: '', categoryId: '', description: '' }); // Clear form fields
+        fetchSubcategoriesByCategory(selectedCategory);
+        setSubcategory({ id: '', name: '', categoryId: '', description: '' });
         onClose();
       } catch (error) {
         console.error('Error adding subcategory:', error);
@@ -165,16 +150,14 @@ function AdminProductOperations() {
   return (
     <div className="admin-product-operations">
       <aside className="sidebar">
-        {/* Buttons to switch between display types */}
-        <button onClick={() => setDisplayType('categories')}>Display Categories</button>
+        <button onClick={() => { setDisplayType('categories'); setSelectedCategory(null); }}>Display Categories</button>
         <AddCategory fetchCategories={fetchCategories} />
-        <AddSubcategory fetchSubcategories={fetchSubcategories} categories={categories} /> {/* AddSubcategory component usage */}
+        <AddSubcategory fetchSubcategories={() => fetchSubcategoriesByCategory(selectedCategory)} categories={categories} />
         <button onClick={() => setDisplayType('orderList')}>Order List</button>
         <button onClick={handleLogout}>Logout</button>
       </aside>
       <main className="main-content">
-        {/* Content based on the displayType state */}
-        {displayType === 'categories' && (
+        {displayType === 'categories' && !selectedCategory && (
           <div>
             <div className="search-section">
               <input
@@ -189,30 +172,41 @@ function AdminProductOperations() {
               {filteredCategories.map((category) => (
                 <div key={category.id} className="category-card">
                   <h3>{category.name}</h3>
-                  <img src={category.image}></img>
+                  <img src={category.image} alt={category.name}></img>
                   <p>{category.description}</p>
                   <p>Density: {category.density}</p>
                   <div className="card-buttons">
-                    <button onClick={() => fetchSubcategoriesByCategory(category.id)}>Show Subcategories</button>
+                    <button onClick={() => fetchSubcategoriesByCategory(category)}>Show Subcategories</button>
                     <button onClick={() => setCategoryForUpdate(category)}>Update</button>
                     <button onClick={() => handleDeleteCategory(category.id)}>Delete</button>
                   </div>
-                  {selectedCategory == category.id && (
-
-                    <div className="subcategories-grid">
-                      <h1>sub-categories</h1>
-                      {filteredSubcategories.map((subcategory) => (
-                        <div key={subcategory.id} className="subcategory-card">
-                          <h4>{subcategory.name}</h4>
-                          <p>{subcategory.description}</p>
-                          <div className="card-buttons">
-                            <button onClick={() => setSubcategoryForUpdate(subcategory)}>Update</button>
-                            <button onClick={() => handleDeleteSubcategory(subcategory.id)}>Delete</button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        {displayType === 'categories' && selectedCategory && (
+          <div>
+            <button onClick={() => setSelectedCategory(null)}>Back to Categories</button>
+            <div className="search-section">
+              <input
+                type="text"
+                placeholder="Search subcategory"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+            <h2>{selectedCategory.name} Subcategories</h2>
+            <br />
+            <div className="subcategories-grid">
+              {filteredSubcategories.map((subcategory) => (
+                <div key={subcategory.id} className="subcategory-card">
+                  <h4>{subcategory.name}</h4>
+                  <p>{subcategory.description}</p>
+                  <div className="card-buttons">
+                    <button onClick={() => setSubcategoryForUpdate(subcategory)}>Update</button>
+                    <button onClick={() => handleDeleteSubcategory(subcategory.id)}>Delete</button>
+                  </div>
                 </div>
               ))}
             </div>
