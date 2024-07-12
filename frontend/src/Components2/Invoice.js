@@ -1,10 +1,7 @@
-// Invoice.js
-
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import orderService from "../Services2/order.service";
-import logo from'./../Assects/logo.jpeg';
-
+// import logo from './../Assets/logo.jpeg';
 import "./../CSS/Invoice.css";
 
 export const roundToTwoDecimalPlaces = (value) => {
@@ -24,7 +21,7 @@ export const calculateTotalAmount = (products, loadingPackingCharge) => {
     const amount = product.price * calculateQuantity(product);
     return total + amount;
   }, 0);
-  
+
   const gstRate = 0.09; // GST rate of 9%
 
   const cgst = roundToTwoDecimalPlaces(subtotal * gstRate);
@@ -57,6 +54,7 @@ function Invoice() {
         const orderSnapshot = await orderService.getById(id);
         if (orderSnapshot.exists) {
           const orderData = orderSnapshot.data();
+          console.log(orderData)
           setOrder({ id: orderSnapshot.id, ...orderData });
         } else {
           console.log("Order not found");
@@ -73,7 +71,26 @@ function Invoice() {
     window.print();
   };
 
-  const sendInvoice = () => console.log("Sending invoice...");
+  const sendInvoice = async () => {
+    const response = await fetch('http://localhost:3001/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        to: order.email,
+        subject: 'Your Invoice',
+        text: 'Please find your invoice attached.',
+        order
+      }),
+    });
+
+    if (!response.ok) {
+      console.error('Failed to send email');
+    } else {
+      console.log('Email sent successfully');
+    }
+  };
 
   if (!order) {
     return <div>Loading...</div>;
@@ -90,7 +107,7 @@ function Invoice() {
       <div className="invoiceheader">
         <h1 className="invoiceHead">PROFORMA INVOICE</h1>
         <h3 className="invoiceHead">TAX INVOICE</h3>
-        <img src={logo} alt="Company Logo" className="invoicelogo" />
+        {/* <img src={logo} alt="Company Logo" className="invoicelogo" /> */}
       </div>
       <div className="quotation-info">
         <div>

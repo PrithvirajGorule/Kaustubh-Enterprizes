@@ -142,7 +142,7 @@ function OrderDetail() {
         <tbody>
           {order.products.map((product, index) => (
             <tr key={index}>
-              <td>{product.subcategory}</td>
+              <td>{product.category}{product.subcategory}</td>
               <td>{product.height} x {product.width} x {product.length}</td>
               <td>{calculateQuantity(product).toFixed(2)}</td>
               <td>

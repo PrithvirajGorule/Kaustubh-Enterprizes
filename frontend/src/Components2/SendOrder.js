@@ -50,23 +50,25 @@ export default class AddCustomer extends Component {
       contact: e.target.value,
     });
   };
-  
+
   onChangeCategory = async (e) => {
     const categoryId = e.target.value;
-  
+
     try {
       // Fetch subcategories for the selected category
-      const snapshot = await AdminProductService.getSubcategoriesByCategory(categoryId);
-      const subcategories = snapshot.docs.map(doc => ({
+      const snapshot = await AdminProductService.getSubcategoriesByCategory(
+        categoryId
+      );
+      const subcategories = snapshot.docs.map((doc) => ({
         id: doc.id,
         name: doc.data().name,
       }));
-  
+
       // Fetch category details including density
       const categoryDoc = await AdminProductService.getCategory(categoryId);
       const categoryData = categoryDoc.data(); // Retrieve document data
       const { name: category, density } = categoryData; // Destructure name and density from categoryData
-  
+
       this.setState({
         subcategories,
         density,
@@ -77,23 +79,22 @@ export default class AddCustomer extends Component {
       // Handle error state or alert the user
     }
   };
-  
-  
 
   onChangeSubcategory = (e, index) => {
     const { value } = e.target;
-    const subcategory = this.state.subcategories.find(sub => sub.id === value);
-  
-    this.setState(prevState => {
+    const subcategory = this.state.subcategories.find(
+      (sub) => sub.id === value
+    );
+
+    this.setState((prevState) => {
       const products = [...prevState.products];
       products[index] = {
         ...products[index],
-        subcategory: subcategory ? subcategory.name : '', 
+        subcategory: subcategory ? subcategory.name : "",
       };
       return { products };
     });
   };
-  
 
   onChangeHeight = (e, index) => {
     const { value } = e.target;
@@ -148,7 +149,7 @@ export default class AddCustomer extends Component {
       products: [
         ...prevState.products,
         {
-          category:"",
+          category: "",
           subcategory: "",
           height: "",
           width: "",
@@ -195,6 +196,24 @@ export default class AddCustomer extends Component {
         .create(data)
         .then(() => {
           console.log("Customer data saved successfully!");
+          fetch("http://localhost:3001/send-notification", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: this.state.email,
+              quotationId: " ",
+              details: data,
+            }),
+          })
+            .then(() => {
+              console.log("Notification email sent successfully!");
+            })
+            .catch((error) => {
+              console.error("Error sending notification email:", error);
+            });
+
           this.setState({ submitted: true });
         })
         .catch((error) => {
@@ -290,10 +309,9 @@ export default class AddCustomer extends Component {
                         </option>
                       ))}
                     </select>
-                    
                   </div>
 
-                  { (
+                  {
                     <div>
                       <div className="form-group">
                         <label htmlFor="subcategory">Subcategory</label>
@@ -370,11 +388,14 @@ export default class AddCustomer extends Component {
                         Remove Product
                       </button>
                     </div>
-                  )}
+                  }
                 </div>
               ))}
 
-              <button className="btn btn-primary mt-2" onClick={this.addProduct}>
+              <button
+                className="btn btn-primary mt-2"
+                onClick={this.addProduct}
+              >
                 Add another Product
               </button>
 
