@@ -95,7 +95,7 @@ const Product = () => {
             <div key={category.id} className="category-card">
               <h3>{category.name}</h3>
               <img src={category.image ?? 'default-image-url.jpg'} alt={category.name ?? 'Category Image'} className="category-img" />
-              <p>{category.description}</p>
+              <p className='cat-desp'>{category.description}</p>
               <button onClick={() => fetchSubcategoriesByCategory(category)}>View grades</button>
             </div>
           ))}
