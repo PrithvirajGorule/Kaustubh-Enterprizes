@@ -120,7 +120,7 @@ function Invoice() {
   }
 
   const { products } = order;
-  const loadingPackingCharge = 480; // Example loading and packing charges
+  const loadingPackingCharge = localStorage.getItem('loadingPackingCharges') || 0;; // Example loading and packing charges
   const invoiceDetails = calculateTotalAmount(products, loadingPackingCharge);
 
   return (

@@ -47,6 +47,7 @@ function OrderDetail() {
   const handleLoadingPackingChargesChange = (e) => {
     const value = parseFloat(e.target.value);
     setLoadingPackingCharges(value);
+    localStorage.setItem('loadingPackingCharges', value);
   };
 
   const calculateQuantity = (product) => {
@@ -73,6 +74,9 @@ function OrderDetail() {
     }
     setTotalAmount(total);
   };
+
+
+  
 
   const handleSaveChanges = async () => {
     try {
@@ -110,6 +114,8 @@ function OrderDetail() {
   if (!order) {
     return <div>Loading...</div>;
   }
+
+  
 
   return (
     <div className="orderbody">
