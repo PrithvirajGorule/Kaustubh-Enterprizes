@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import orderService from "../Services2/order.service";
-// import logo from './../Assets/logo.jpeg';
 import "./../CSS/Invoice.css";
 
 export const roundToTwoDecimalPlaces = (value) => {
@@ -54,7 +53,7 @@ function Invoice() {
         const orderSnapshot = await orderService.getById(id);
         if (orderSnapshot.exists) {
           const orderData = orderSnapshot.data();
-          console.log(orderData)
+          console.log(orderData);
           setOrder({ id: orderSnapshot.id, ...orderData });
         } else {
           console.log("Order not found");
@@ -72,7 +71,31 @@ function Invoice() {
   };
 
   const sendInvoice = async () => {
-    const response = await fetch('http://localhost:3001/send-email', {
+    const invoiceDetails = calculateTotalAmount(order.products, loadingPackingCharge);
+    const invoiceData = {
+      id: order.id,
+      date: formatDate(new Date()),
+      name: order.name,
+      contact: order.contact,
+      products: order.products.map((product, index) => ({
+        category: product.category,
+        subcategory: product.subcategory,
+        height: product.height,
+        width: product.width,
+        length: product.length,
+        noofsheets: product.noofsheets,
+        quantity: calculateQuantity(product),
+        price: product.price,
+        amount: roundToTwoDecimalPlaces(product.price * calculateQuantity(product)),
+      })),
+      loadingPackingCharge,
+      cgst: invoiceDetails.cgst,
+      sgst: invoiceDetails.sgst,
+      totalPrize: invoiceDetails.total,
+      totalInWords: convertToWords(invoiceDetails.total),
+    };
+
+    const response = await fetch('http://localhost:3001/send-invoice', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -81,7 +104,7 @@ function Invoice() {
         to: order.email,
         subject: 'Your Invoice',
         text: 'Please find your invoice attached.',
-        order
+        order: invoiceData
       }),
     });
 
@@ -97,9 +120,7 @@ function Invoice() {
   }
 
   const { products } = order;
-
   const loadingPackingCharge = 480; // Example loading and packing charges
-
   const invoiceDetails = calculateTotalAmount(products, loadingPackingCharge);
 
   return (
