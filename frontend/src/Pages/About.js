@@ -168,7 +168,7 @@ const about = () => {
       <h2 className="section-title">About Us</h2>
       <div className="about__container bd-grid">
         <div className="about__img">
-          <img src="https://media.istockphoto.com/id/1344231216/photo/rolled-metal-warehouse-many-packs-of-metal-bars-on-the-shelves.jpg?s=612x612&w=0&k=20&c=NdBJpn98jT43UXxRMv-R1gVwynBq-2nQGmJVLx4bCxc=" alt="" />
+          <img src="https://media.istockphoto.com/id/1344231216/photo/rolled-metal-warehouse-many-packs-of-metal-bars-on-the-shelves.jpg?s=612x612&w=0&k=20&c=NdBJpn98jT43UXxRMv-R1gVwynBq-2nQGmJVLx4bCxc=" alt="" sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 100vw"/>
         </div>
         <div>
           <h2 className="about__subtitle">It's Kaustubh Enterprize  </h2>
@@ -186,6 +186,15 @@ const about = () => {
           
         </div>
       </div>
+      <div class="objective__container">
+    <h2 class="objective__title">Our Objectives</h2>
+    <div class="objective__cards">
+        <div class="objective__card">Our main aim is to increase our sales with added profits.</div>
+        <div class="objective__card">Currently we are at an outstanding growth rate.</div>
+        <div class="objective__card">Our business hasn’t been affected due to Covid-19. In fact, it has increased due to our goodwill and best-in-class sales force.</div>
+    </div>
+</div>
+
     </section>
   )
 };

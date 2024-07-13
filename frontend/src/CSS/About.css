@@ -215,6 +215,7 @@ img {
 }
 .about__text {
   text-align: justify; /* Justify the text */
+  margin: 30px;
 }
 .about__img {
   justify-self: center;
@@ -593,4 +594,51 @@ img {
   .home__img {
     width: 450px;
   }
+}
+
+.objective__container {
+  text-align: center; /* Center align the title */
+}
+
+.objective__title {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.objective__cards {
+  display: flex;
+  
+  flex-wrap: wrap;
+  justify-content: space-around; /* Adjust spacing between cards */
+  
+}
+
+.objective__card {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  width: calc(25% - 20px); /* Adjust width for 3 columns */
+  border: 3px solid green;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .objective__cards {
+    justify-content: center;
+  }
+  .objective__card {
+    width: calc(100% - 20px); /* Make cards full width on smaller screens */
+  }
+}
+.about__img img {
+  width: 100%; /* Make the image responsive */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 900px; /* Limit the maximum width if necessary */
+  display: block; /* Ensure the image takes up the entire container */
+  margin: 0 auto; /* Center the image horizontally */
+}
+.about__img{
+  border: 1px solid black;
+  border-right: 60px;
 }
