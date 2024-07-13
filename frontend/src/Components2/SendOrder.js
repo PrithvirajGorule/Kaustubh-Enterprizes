@@ -51,14 +51,12 @@ export default class AddCustomer extends Component {
     });
   };
 
-  onChangeCategory = async (e) => {
+  onChangeCategory = async (e, index) => {
     const categoryId = e.target.value;
 
     try {
       // Fetch subcategories for the selected category
-      const snapshot = await AdminProductService.getSubcategoriesByCategory(
-        categoryId
-      );
+      const snapshot = await AdminProductService.getSubcategoriesByCategory(categoryId);
       const subcategories = snapshot.docs.map((doc) => ({
         id: doc.id,
         name: doc.data().name,
@@ -69,10 +67,14 @@ export default class AddCustomer extends Component {
       const categoryData = categoryDoc.data(); // Retrieve document data
       const { name: category, density } = categoryData; // Destructure name and density from categoryData
 
-      this.setState({
-        subcategories,
-        density,
-        category,
+      this.setState((prevState) => {
+        const products = [...prevState.products];
+        products[index] = {
+          ...products[index],
+          category,
+          density,
+        };
+        return { subcategories, products };
       });
     } catch (error) {
       console.error("Error fetching subcategories or category data:", error);
@@ -298,8 +300,8 @@ export default class AddCustomer extends Component {
                     <label htmlFor="category">Category</label>
                     <select
                       className="form-control"
-                      onChange={this.onChangeCategory}
-                      value={this.state.category}
+                      onChange={(e) => this.onChangeCategory(e, index)}
+                      value={product.category}
                       required
                     >
                       <option value="">Select Category</option>
@@ -374,14 +376,17 @@ export default class AddCustomer extends Component {
                         <input
                           type="number"
                           className="form-control"
-                          placeholder="Number of Sheets"
+                          id="noofsheets"
                           value={product.noofsheets}
                           onChange={(e) => this.onChangeNoOfSheets(e, index)}
+                          name="noofsheets"
+                          min="1"
                           required
                         />
                       </div>
 
                       <button
+                        type="button"
                         className="btn btn-danger"
                         onClick={() => this.removeProduct(index)}
                       >
@@ -393,13 +398,17 @@ export default class AddCustomer extends Component {
               ))}
 
               <button
-                className="btn btn-primary mt-2"
+                type="button"
+                className="btn btn-primary"
                 onClick={this.addProduct}
               >
-                Add another Product
+                Add Product
               </button>
 
-              <button onClick={this.saveCustomer} className="btn btn-success">
+              <button
+                onClick={this.saveCustomer}
+                className="btn btn-success"
+              >
                 Submit
               </button>
             </div>

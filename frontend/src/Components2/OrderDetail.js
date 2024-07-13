@@ -52,8 +52,8 @@ function OrderDetail() {
   const calculateQuantity = (product) => {
     const { height, width, length, density, noofsheets } = product;
 
-    const volume = (height * width * length) / 1000; // Convert mm^3 to cm^3
-    const metalDensity = density ? parseFloat(density) / 1000 : 1; // Convert g/cm^3 to kg/mm^3 or default to 1 kg/mm^3
+    const volume = (height * width * length) ; // Convert mm^3 to cm^3
+    const metalDensity = density ? parseFloat(density): 1; // Convert g/cm^3 to kg/mm^3 or default to 1 kg/mm^3
     const totalVolume = volume * noofsheets;
     const quantityInKg = totalVolume * metalDensity;
     return quantityInKg;
@@ -152,7 +152,7 @@ function OrderDetail() {
                   onChange={(e) => handlePriceChange(index, e.target.value)}
                 />
               </td>
-              <td>${(calculateQuantity(product) * (editedPrices[index] || product.price)).toFixed(2)}</td>
+              <td>₹{(calculateQuantity(product) * (editedPrices[index] || product.price)).toFixed(2)}</td>
             </tr>
           ))}
         </tbody>
