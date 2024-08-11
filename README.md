@@ -1,4 +1,4 @@
-Kaustubh Enterprises Industrial Showcase
+# Kaustubh Enterprises Industrial Showcase
 
 Welcome to the Kaustubh Enterprises Industrial Showcase project! This web application is designed to enhance the visibility of Kaustubh Enterprises' products and facilitate customer interactions.
 
