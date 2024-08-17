@@ -1,6 +1,7 @@
 
 
 .orderbg {
+
   background: url('../../public/Assets/image2.png') no-repeat center center;
   background-size: cover;
   padding: 40px;
@@ -10,6 +11,7 @@
   width: 100%;
   border: 2px solid black; /* Black border */
   margin: auto; /* Centering the box */
+  margin-top: 5%;
 }
 
 .submit-form {

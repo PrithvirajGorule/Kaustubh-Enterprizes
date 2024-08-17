@@ -301,10 +301,12 @@ export default class AddCustomer extends Component {
                     <select
                       className="form-control"
                       onChange={(e) => this.onChangeCategory(e, index)}
-                      value={product.category}
+                      value={this.state.categories.find(
+                        (cat) => cat.name === this.state.products[index].category
+                      )?.id || ""}
                       required
                     >
-                      <option value="">Select Category</option>
+                      <option value="">select category</option>
                       {this.state.categories.map((category) => (
                         <option key={category.id} value={category.id}>
                           {category.name}
@@ -320,7 +322,9 @@ export default class AddCustomer extends Component {
                         <select
                           className="form-control"
                           onChange={(e) => this.onChangeSubcategory(e, index)}
-                          value={product.subcategory}
+                          value={this.state.subcategories.find(
+                            (sub) => sub.name === this.state.products[index].subcategory
+                          )?.id || ""}
                           required
                         >
                           <option value="">Select Subcategory</option>
@@ -333,7 +337,7 @@ export default class AddCustomer extends Component {
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor="height">Height (mm)</label>
+                        <label htmlFor="height">Thickness (mm)</label>
                         <input
                           type="number"
                           className="form-control"
@@ -342,6 +346,7 @@ export default class AddCustomer extends Component {
                           onChange={(e) => this.onChangeHeight(e, index)}
                           name="height"
                           required
+                          onWheel={(e) => e.target.blur()}
                         />
                       </div>
 
@@ -355,6 +360,7 @@ export default class AddCustomer extends Component {
                           onChange={(e) => this.onChangeWidth(e, index)}
                           name="width"
                           required
+                          onWheel={(e) => e.target.blur()}
                         />
                       </div>
 
@@ -368,6 +374,7 @@ export default class AddCustomer extends Component {
                           onChange={(e) => this.onChangeLength(e, index)}
                           name="length"
                           required
+                          onWheel={(e) => e.target.blur()}
                         />
                       </div>
 
@@ -382,6 +389,7 @@ export default class AddCustomer extends Component {
                           name="noofsheets"
                           min="1"
                           required
+                          onWheel={(e) => e.target.blur()}
                         />
                       </div>
 
