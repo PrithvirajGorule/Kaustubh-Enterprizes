@@ -10,7 +10,7 @@ import Product from "./Pages/Product";
 import HardnessConverter from "./Pages/Calculator";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
-import AdminDashboard from "./Components2/AdminDashboard";
+// import AdminDashboard from "./Components2/AdminDashboard";
 import AdminProductOperations from "./Components2/AdminProductOprations";
 import AddCustomer from "./Components2/SendOrder";
 import QuotationList from "./Components2/QuotationList";
