@@ -121,6 +121,7 @@ function Invoice() {
       console.error('Failed to send email');
     } else {
       console.log('Email sent successfully');
+      alert('Email sent successfully')
     }
   };
 
