@@ -322,7 +322,7 @@ app.post("/send-invoice", (req, res) => {
     res.status(200).send("Invoice sent successfully");
   });
 });
-
-app.listen(3001, () => {
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
   console.log("Server is running on port 3001");
 });
