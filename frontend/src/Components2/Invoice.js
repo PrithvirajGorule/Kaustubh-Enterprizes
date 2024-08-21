@@ -3,7 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import orderService from "../Services2/order.service";
 import "./../CSS/Invoice.css";
 import { faAlignRight } from "@fortawesome/free-solid-svg-icons";
-
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 export const roundToTwoDecimalPlaces = (value) => {
   return Number(parseFloat(value).toFixed(2));
 };
@@ -55,6 +56,7 @@ export const formatDate = (date) => {
 function Invoice() {
   const { id } = useParams();
   const [order, setOrder] = useState(null);
+  const [recipientEmail, setRecipientEmail] = useState(""); 
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -64,6 +66,7 @@ function Invoice() {
           const orderData = orderSnapshot.data();
           console.log(orderData);
           setOrder({ id: orderSnapshot.id, ...orderData });
+          setRecipientEmail(orderData.email);
         } else {
           console.log("Order not found");
         }
@@ -79,51 +82,92 @@ function Invoice() {
     window.print();
   };
 
+  
   const sendInvoice = async () => {
-    const invoiceDetails = calculateTotalAmount(order.products, loadingPackingCharge);
-    const invoiceData = {
-      id: order.id,
-      date: formatDate(new Date()),
-      name: order.name,
-      contact: order.contact,
-      products: order.products.map((product, index) => ({
-        category: product.category,
-        subcategory: product.subcategory,
-        height: product.height,
-        width: product.width,
-        length: product.length,
-        noofsheets: product.noofsheets,
-        quantity: calculateQuantity(product),
-        price: product.price,
-        amount: roundToTwoDecimalPlaces(product.price * calculateQuantity(product)),
-      })),
-      loadingPackingCharge,
-      cgst: invoiceDetails.cgst,
-      sgst: invoiceDetails.sgst,
-      totalPrize: invoiceDetails.total,
-      totalInWords: convertToWords(invoiceDetails.total),
-    };
-
-    const response = await fetch('https://kaustubh-enterprizes.onrender.com/send-invoice', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        to: order.email,
-        subject: 'Your Invoice',
-        text: 'Please find your invoice attached.',
-        order: invoiceData
-      }),
-    });
-
-    if (!response.ok) {
-      console.error('Failed to send email');
-    } else {
-      console.log('Email sent successfully');
-      alert('Email sent successfully')
+    if (!recipientEmail) {
+      setRecipientEmail(order.email);
     }
+    console.log("Recipient Email:", recipientEmail);
+  
+    const invoiceElement = document.getElementById("invoice");
+    html2canvas(invoiceElement).then(canvas => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "pc", "a1");
+      pdf.addImage(imgData, "PNG", 0, 0);
+      const pdfBlob = pdf.output("blob");
+  
+      const formData = new FormData();
+      formData.append("invoice", pdfBlob, "invoice.pdf");
+      formData.append("recipientEmail", recipientEmail);
+  
+      fetch('http://localhost:3001/send-invoice', {
+        method: 'POST',
+        body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Response:", data);
+        if (data.error) {
+          alert("Failed to send invoice: " + data.error);
+        } else {
+          alert("Invoice sent successfully!");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+    });
   };
+  
+  if (!order) {
+    return <div>Loading...</div>;
+  }
+
+  // const sendInvoice = async () => {
+  //   const invoiceDetails = calculateTotalAmount(order.products, loadingPackingCharge);
+  //   const invoiceData = {
+  //     id: order.id,
+  //     date: formatDate(new Date()),
+  //     name: order.name,
+  //     contact: order.contact,
+  //     products: order.products.map((product, index) => ({
+  //       category: product.category,
+  //       subcategory: product.subcategory,
+  //       height: product.height,
+  //       width: product.width,
+  //       length: product.length,
+  //       noofsheets: product.noofsheets,
+  //       quantity: calculateQuantity(product),
+  //       price: product.price,
+  //       amount: roundToTwoDecimalPlaces(product.price * calculateQuantity(product)),
+  //     })),
+  //     loadingPackingCharge,
+  //     cgst: invoiceDetails.cgst,
+  //     sgst: invoiceDetails.sgst,
+  //     totalPrize: invoiceDetails.total,
+  //     totalInWords: convertToWords(invoiceDetails.total),
+  //   };
+
+  //   const response = await fetch('http://localhost:3000//send-invoice', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       to: order.email,
+  //       subject: 'Your Invoice',
+  //       text: 'Please find your invoice attached.',
+  //       order: invoiceData
+  //     }),
+  //   });
+
+  //   if (!response.ok) {
+  //     console.error('Failed to send email');
+  //   } else {
+  //     console.log('Email sent successfully');
+  //     alert('Email sent successfully')
+  //   }
+  // };
 
   if (!order) {
     return <div>Loading...</div>;
@@ -134,7 +178,8 @@ function Invoice() {
   const invoiceDetails = calculateTotalAmount(products, loadingPackingCharge);
 
   return (
-    <div className="invoice-container">
+    <div  id="invoice"  className="invoice-container">
+    
       <div className="invoiceheader">
         <h1 className="invoiceHead">PROFORMA INVOICE</h1>
         <h3 className="invoiceHead">TAX INVOICE</h3>
