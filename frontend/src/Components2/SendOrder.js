@@ -198,7 +198,7 @@ export default class AddCustomer extends Component {
         .create(data)
         .then(() => {
           console.log("Customer data saved successfully!");
-          fetch("http://localhost:3001/send-notification", {
+          fetch("https://kaustubh-enterprizes.onrender.com/send-notification", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
