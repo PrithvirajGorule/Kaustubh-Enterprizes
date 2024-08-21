@@ -2,17 +2,26 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import orderService from "../Services2/order.service";
 import "./../CSS/Invoice.css";
+import { faAlignRight } from "@fortawesome/free-solid-svg-icons";
 
 export const roundToTwoDecimalPlaces = (value) => {
-  return Number.parseFloat(value).toFixed(2);
+  return Number(parseFloat(value).toFixed(2));
 };
 
 export const calculateQuantity = (product) => {
+  // const { height, width, length, density, noofsheets } = product;
+  // const volume = parseFloat(height) * parseFloat(width) * parseFloat(length); // Calculate volume in mm³
+  // const metalDensity = parseFloat(density) || 1; // Default density to 1 if not provided
+  // const quantity = volume * metalDensity * parseInt(noofsheets) / 1000000; // Convert volume from mm³ to m³ (density in g/cm³)
+
   const { height, width, length, density, noofsheets } = product;
-  const volume = parseFloat(height) * parseFloat(width) * parseFloat(length); // Calculate volume in mm³
-  const metalDensity = parseFloat(density) || 1; // Default density to 1 if not provided
-  const quantity = volume * metalDensity * parseInt(noofsheets) / 1000000; // Convert volume from mm³ to m³ (density in g/cm³)
-  return roundToTwoDecimalPlaces(quantity); // Round off to two decimal places
+
+  const volume = (height * width * length) ; // Convert mm^3 to cm^3
+  const metalDensity = density ? parseFloat(density): 1; // Convert g/cm^3 to kg/mm^3 or default to 1 kg/mm^3
+  const totalVolume = volume * noofsheets;
+  const quantity = totalVolume * metalDensity;
+  // return roundToTwoDecimalPlaces(quantity); // Round off to two decimal places
+  return quantity.toFixed(4);
 };
 
 export const calculateTotalAmount = (products, loadingPackingCharge) => {
@@ -164,12 +173,12 @@ function Invoice() {
       <table className="invoice-table">
         <thead>
           <tr>
-            <th>No.</th>
-            <th>Description of Goods</th>
-            <th>HSN/SAC</th>
-            <th>Quantity (KGS)</th>
-            <th>Rate</th>
-            <th>Amount</th>
+            <th style={{ textAlign: 'center' }}>No.</th>
+            <th style={{ textAlign: 'center' }}>Description of Goods</th>
+            <th style={{ textAlign: 'center' }}>HSN/SAC</th>
+            <th style={{ textAlign: 'center' }}>Quantity (KGS)</th>
+            <th style={{ textAlign: 'center' }}>Rate</th>
+            <th style={{ textAlign: 'center' }}>Amount</th>
           </tr>
         </thead>
         <tbody>
@@ -178,9 +187,9 @@ function Invoice() {
               <td>{index + 1}</td>
               <td>{product.subcategory}</td>
               <td>720852</td>
-              <td>{calculateQuantity(product)} KGS</td>
-              <td>{roundToTwoDecimalPlaces(product.price)}</td>
-              <td>{roundToTwoDecimalPlaces(product.price * calculateQuantity(product))}</td>
+              <td  style={{ textAlign: 'right' }}>{calculateQuantity(product)} KGS</td>
+              <td style={{ textAlign: 'right' }}>{roundToTwoDecimalPlaces(product.price)}</td>
+              <td style={{ textAlign: 'right' }}>{roundToTwoDecimalPlaces(product.price * calculateQuantity(product))}</td>
             </tr>
           ))}
         </tbody>
