@@ -104,7 +104,7 @@ function Invoice() {
       totalInWords: convertToWords(invoiceDetails.total),
     };
 
-    const response = await fetch('http://localhost:3001/send-invoice', {
+    const response = await fetch('https://kaustubh-enterprizes.onrender.com/send-invoice', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
