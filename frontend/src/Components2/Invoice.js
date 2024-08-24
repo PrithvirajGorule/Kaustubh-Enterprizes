@@ -100,7 +100,7 @@ function Invoice() {
       formData.append("invoice", pdfBlob, "invoice.pdf");
       formData.append("recipientEmail", recipientEmail);
   
-      fetch('http://localhost:3001/send-invoice', {
+      fetch('https://kaustubh-enterprizes.onrender.com/send-invoice', {
         method: 'POST',
         body: formData,
       })
